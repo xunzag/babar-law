@@ -17,9 +17,9 @@ export default function PageHero({
         alt=""
         fill
         priority
-        className="absolute inset-0 object-cover opacity-30"
+        className="absolute inset-0 object-cover opacity-50"
       />
-      <div className="absolute inset-0 bg-linear-to-b from-ink/82 to-ink/97" />
+      <div className="absolute inset-0 bg-linear-to-b from-ink/60 to-ink/92" />
       <div className="relative max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] pt-[clamp(52px,9vw,86px)] pb-[78px]">
         <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-4.5">
           {eyebrow}

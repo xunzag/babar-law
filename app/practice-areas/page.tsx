@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import PageHero from "@/components/PageHero";
+import PracticeIcon from "@/components/PracticeIcon";
 import { areasFull } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -23,8 +24,8 @@ export default function PracticeAreasPage() {
             <Reveal key={a.num} delay={Math.min(i * 0.05, 0.3)}>
               <div className="bg-ink-4 py-12.5 px-10.5 grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-9 items-start transition-colors duration-350 hover:bg-ink-5">
                 <div>
-                  <div className="text-gold font-serif text-[15px] tracking-[0.2em] mb-4">
-                    {a.num}
+                  <div className="w-12.5 h-12.5 border border-gold/35 flex items-center justify-center mb-6">
+                    <PracticeIcon num={a.num} className="w-6 h-6 text-gold" />
                   </div>
                   <h3 className="font-serif font-semibold text-[clamp(23px,3.4vw,30px)] leading-tight text-white">
                     {a.title}

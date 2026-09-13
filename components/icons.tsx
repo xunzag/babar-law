@@ -39,3 +39,74 @@ export function PinIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function PassportIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className={className}>
+      <rect x="5" y="2.5" width="14" height="19" rx="1.6" strokeLinejoin="round" />
+      <circle cx="12" cy="9.5" r="2.6" />
+      <path d="M8.5 15.5h7M9.5 18h5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function KeyIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className={className}>
+      <circle cx="8" cy="15.5" r="4" />
+      <path d="M11 12.5 19.5 4M16.5 6.5l2.3 2.3M14 9l2 2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function BankIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className={className}>
+      <path d="M3 9.5 12 4l9 5.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4.5 9.5v9M9 9.5v9M15 9.5v9M19.5 9.5v9" strokeLinecap="round" />
+      <path d="M3 19h18" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function BriefcaseIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className={className}>
+      <rect x="2.5" y="7.5" width="19" height="12" rx="1.6" strokeLinejoin="round" />
+      <path d="M8.5 7.5v-2a1.6 1.6 0 0 1 1.6-1.6h3.8A1.6 1.6 0 0 1 15.5 5.5v2" strokeLinejoin="round" />
+      <path d="M2.5 13h19" />
+    </svg>
+  );
+}
+
+export function ScalesIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className={className}>
+      <path d="M12 3v17M8 20h8" strokeLinecap="round" />
+      <path d="M4 7h6M14 7h6" strokeLinecap="round" />
+      <path d="M4 7 1.5 12a2.7 2.7 0 0 0 5 0Zm16 0-2.5 5a2.7 2.7 0 0 0 5 0Z" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function HandshakeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className={className}>
+      <circle cx="8" cy="8" r="4" />
+      <circle cx="17" cy="10" r="3.4" />
+      <path d="M3 20c.6-3 2.6-5 5-5s4 1.6 4.8 3.6M11.5 20c.5-2.6 2.2-4.2 4.3-4.4 1.9-.2 3.6.8 4.7 2.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function BookIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className={className}>
+      <path
+        d="M12 5.5c-1.6-1.2-4-1.7-6.5-1.5a1 1 0 0 0-.9 1v12.6a1 1 0 0 0 1.1 1c2.2-.1 4.4.4 6.3 1.6 1.9-1.2 4.1-1.7 6.3-1.6a1 1 0 0 0 1.1-1V5a1 1 0 0 0-.9-1c-2.5-.2-4.9.3-6.5 1.5Z"
+        strokeLinejoin="round"
+      />
+      <path d="M12 5.5v14" />
+    </svg>
+  );
+}

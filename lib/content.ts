@@ -54,6 +54,7 @@ export const recognition = [
   { src: "/assets/studyuk.png", alt: "Ghulam Shabbir Babar receiving a Study UK award at the British Council", title: "Study UK · British Council", meta: "Recognition at the GREAT Britain & Northern Ireland event" },
   { src: "/assets/cert-dla-2024.png", alt: "Certificate of appreciation, Dynamic Law Association, 2024", title: "Dynamic Law Association", meta: "Speaker, international scholarships webinar · 5 August 2024" },
   { src: "/assets/podium.png", alt: "Ghulam Shabbir Babar speaking at a university podium", title: "Guest lecture", meta: "University address on law and immigration" },
+  { src: "/assets/zamin-talpur-meeting.jpg", alt: "Ghulam Shabbir Babar with Mr. Zamin Talpur in Canada", title: "Meeting with Zamin Talpur", meta: "Cooperation with Zamin Talpur, Barrister & Solicitor, Canada" },
 ];
 
 export const gallery = [
@@ -63,6 +64,7 @@ export const gallery = [
   { src: "/assets/seminar.png", alt: "Conference proceedings, Karachi", title: "Conference proceedings, Karachi" },
   { src: "/assets/card.png", alt: "Ghulam Shabbir Babar", title: "Babar Law Associates" },
   { src: "/assets/dc.png", alt: "Ghulam Shabbir Babar in Washington, DC", title: "Washington, DC" },
+  { src: "/assets/zamin-talpur-meeting.jpg", alt: "Ghulam Shabbir Babar with Mr. Zamin Talpur in Canada", title: "Meeting with Zamin Talpur, Canada" },
 ];
 
 export const certificates = [
@@ -85,11 +87,13 @@ export const education = [
 ];
 
 export const memberships = [
+  "Equivalency granted by the National Committee of Accreditation, Federation of Law Societies of Canada; forthcoming member, Law Society of Ontario",
+  "Active Member, RAND Institute, Washington, D.C., USA",
   "Member, European Corporate Governance Institute, Brussels, Belgium",
   "Member, The European Centre for Comparative Commercial & Company Law (Centrum C-Law.org), Krakow, Poland",
   "Erasmus Mundus Alumni Association, Brussels, Belgium",
   "Certificate Course in International Humanitarian Law, International Committee of the Red Cross (ICRC), Geneva",
-  "Administrative Officer, British Council Advocacy Training Programme, Karachi (2004 – 2005)",
+  "Administrative Officer, British Council Advocacy Training Programme, Karachi (2004 to 2005)",
 ];
 
 export const experience = [
@@ -122,10 +126,15 @@ export const partners = [
   { country: "Greece", name: "CHRO'NI & Associates Law Firm", role: "Memorandum of Understanding", note: "MoU with Ms. Anastasia Chorni, Founder & Chief Lawyer of CHRO'NI & Associates Law Firm, to work together on the Greece Golden Visa programme.", logo: "/assets/chroni-logo.png", url: "https://chronilaw.com/" },
   { country: "Cyprus", name: "Singularis Investment Ltd", role: "Consultant · since Feb 2018", note: "Agreement to promote all development projects of Singularis Investments in Larnaca, a Cyprus Government approved project meeting the requirements for permanent residency, citizenship and passport applications.", logo: "/assets/singularis-logo.webp", url: undefined },
   { country: "Cyprus", name: "Karma Developers", role: "Cooperation agreement", note: "Cooperation on Cyprus development projects supporting residency and citizenship applications.", logo: "/assets/karma-logo.svg", url: undefined },
+  { country: "United Arab Emirates", name: "Hotel101", role: "Cooperation agreement", note: "Cooperation with Hotel101, supporting real estate and investment-related client engagements in Dubai.", logo: "/assets/hotel101-logo.png", url: "https://hotel101global.com" },
+  { country: "United Arab Emirates", name: "Premier Consultancy", role: "Cooperation agreement", note: "Cooperation with Premier Consultancy, a Dubai-based luxury and lifestyle consultancy, supporting client referrals and engagements in the UAE.", logo: "/assets/premier-consultancy-logo.webp", url: "https://premierconsultancy.com" },
+  { country: "Canada", name: "Zamin Talpur, Barrister, Solicitor and Notary Public", role: "Cooperation agreement", note: "Cooperation with Mr. Zamin Talpur, Barrister, Solicitor and Notary Public, based in Mississauga, Canada.", logo: undefined, url: "https://www.zamintalpur.ca" },
 ];
 
 // Partners with a logo, used for the homepage trust strip and cooperation grid.
-export const cooperationLogos = partners.filter((p) => p.logo);
+export const cooperationLogos = partners.filter(
+  (p): p is typeof p & { logo: string } => Boolean(p.logo)
+);
 
 export const ublSpotlight = {
   eyebrow: "Banking panel",

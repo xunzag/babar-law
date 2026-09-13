@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import ImageGrid from "@/components/ImageGrid";
 import LogoBadge from "@/components/LogoBadge";
 import LogoMarquee from "@/components/LogoMarquee";
+import PracticeIcon from "@/components/PracticeIcon";
 import {
   stats,
   areasHome,
@@ -117,8 +118,8 @@ export default function HomePage() {
               key={a.num}
               className="bg-ink-4 py-11.5 px-9.5 transition-all duration-350 hover:bg-ink-5 hover:-translate-y-1"
             >
-              <div className="text-gold font-serif text-[15px] tracking-[0.2em] mb-6">
-                {a.num}
+              <div className="w-12.5 h-12.5 border border-gold/35 flex items-center justify-center mb-6">
+                <PracticeIcon num={a.num} className="w-6 h-6 text-gold" />
               </div>
               <h3 className="font-serif font-semibold text-[26px] mb-3.5 leading-tight text-white">
                 {a.title}
