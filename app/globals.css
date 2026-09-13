@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #08080a;
+  --color-ink-2: #0a0a0c;
+  --color-ink-3: #0c0c0e;
+  --color-ink-4: #0d0d0f;
+  --color-ink-5: #131316;
+  --color-ink-6: #060608;
+  --color-gold: #c9a227;
+  --color-gold-light: #e6cd72;
+  --color-cream: #efeadf;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-barlow), Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--color-ink);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  a:hover {
+    color: var(--color-gold-light);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-ink-2);
+  }
+}
+
+@keyframes heroDrift {
+  from {
+    transform: scale(1.06) translateY(0);
+  }
+  to {
+    transform: scale(1.14) translateY(-1.5%);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
