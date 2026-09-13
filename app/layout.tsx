@@ -19,7 +19,11 @@ const barlow = Barlow({
   weight: ["200", "300", "400", "500"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.babarlawassociates.com";
+const productionUrl =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (productionUrl ? `https://${productionUrl}` : "http://localhost:3000");
 const description =
   "Babar Law Associates is the practice of Ghulam Shabbir Babar, Attorney at Law and LLM (Europe), advising private clients, investors and institutions in Pakistan, the United States, the United Kingdom and the European Union since 2004.";
 
