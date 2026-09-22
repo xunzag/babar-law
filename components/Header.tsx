@@ -32,17 +32,17 @@ export default function Header() {
             className="h-[clamp(34px,9vw,46px)] w-auto shrink-0 drop-shadow-[0_2px_6px_rgba(201,162,39,0.25)]"
           />
           <span className="flex flex-col gap-0.5 min-w-0 text-left">
-            <span className="font-serif text-white text-[clamp(13px,3.4vw,19px)] tracking-[0.12em] leading-[1.15]">
+            <span className="font-serif text-white text-[clamp(13px,3.4vw,19px)] tracking-[0.12em] leading-[1.15] whitespace-nowrap">
               BABAR LAW ASSOCIATES
             </span>
-            <span className="hidden min-[1260px]:block text-gold/85 text-[9.5px] tracking-[0.3em] uppercase">
+            <span className="hidden min-[1560px]:block text-gold/85 text-[9.5px] tracking-[0.3em] uppercase whitespace-nowrap">
               Advocates &amp; International Consultants
             </span>
           </span>
         </button>
 
-        <div className="hidden min-[1260px]:flex items-center gap-6.5">
-          <nav className="flex items-center gap-5.5">
+        <div className="hidden min-[1360px]:flex items-center gap-4.5">
+          <nav className="flex items-center gap-4">
             {nav.map((item) => {
               const active = pathname === item.href;
               return (
@@ -51,7 +51,7 @@ export default function Header() {
                   onClick={() => go(item.href)}
                   className="relative flex items-center h-11.5 cursor-pointer group"
                 >
-                  <span className="text-cream/78 text-xs tracking-[0.14em] uppercase whitespace-nowrap transition-colors duration-250 group-hover:text-gold-light">
+                  <span className="text-cream/78 text-xs tracking-[0.1em] uppercase whitespace-nowrap transition-colors duration-250 group-hover:text-gold-light">
                     {item.label}
                   </span>
                   {active && (
@@ -67,7 +67,7 @@ export default function Header() {
           </nav>
           <a
             href="tel:+19145577765"
-            className="border border-gold text-gold py-2.75 px-5.5 text-[12.5px] tracking-[0.14em] whitespace-nowrap transition-all duration-300 hover:bg-gold hover:text-ink"
+            className="border border-gold text-gold py-2.75 px-4 text-[12px] tracking-[0.1em] whitespace-nowrap transition-all duration-300 hover:bg-gold hover:text-ink"
           >
             +1 (914) 557 7765
           </a>
@@ -75,7 +75,7 @@ export default function Header() {
 
         <button
           onClick={() => setMenuOpen((o) => !o)}
-          className="flex min-[1260px]:hidden items-center gap-2.5 border border-gold/50 text-gold py-2.75 px-3.5 text-[11.5px] tracking-[0.14em] uppercase cursor-pointer shrink-0 whitespace-nowrap"
+          className="flex min-[1360px]:hidden items-center gap-2.5 border border-gold/50 text-gold py-2.75 px-3.5 text-[11.5px] tracking-[0.14em] uppercase cursor-pointer shrink-0 whitespace-nowrap"
         >
           <span className="flex flex-col gap-1">
             <span className="w-4.5 h-px bg-gold block" />
@@ -93,7 +93,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="border-t border-gold/20 bg-ink/98 min-[1260px]:hidden"
+            className="border-t border-gold/20 bg-ink/98 min-[1360px]:hidden"
           >
             <div className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] pt-4.5 pb-6.5 grid gap-0.5">
               {nav.map((item) => (

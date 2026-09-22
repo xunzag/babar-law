@@ -2,7 +2,8 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import PageHero from "@/components/PageHero";
 import ImageGrid from "@/components/ImageGrid";
-import { academic, gallery, certificates, education, memberships } from "@/lib/content";
+import CredentialGrid from "@/components/CredentialGrid";
+import { academic, gallery, certificates, education, memberships, credentialGroups } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -99,6 +100,21 @@ export default function AboutPage() {
               Speaking &amp; appreciation
             </h2>
             <ImageGrid items={certificates} variant="certificates" />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-ink-2 border-t border-gold/18">
+        <div className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] py-[clamp(52px,9vw,88px)]">
+          <Reveal>
+            <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-4">Credentials</div>
+            <h2 className="font-serif font-medium text-[clamp(28px,4.8vw,44px)] mb-12 text-white">Licence, degrees and letters of cooperation</h2>
+            {credentialGroups.map((g) => (
+              <div key={g.heading} className="mb-14 last:mb-0">
+                <div className="text-cream/45 text-[11px] tracking-[0.28em] uppercase mb-6">{g.heading}</div>
+                <CredentialGrid items={g.items} />
+              </div>
+            ))}
           </Reveal>
         </div>
       </section>

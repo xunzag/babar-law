@@ -11,8 +11,10 @@ export const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/practice-areas", label: "Practice Areas" },
+  { href: "/cases", label: "Cases" },
   { href: "/experience", label: "Experience" },
   { href: "/international", label: "International" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Consultation" },
 ];
@@ -246,5 +248,53 @@ export const matterTypes = [
     label: "Other / Not sure",
     helper: "Describe your matter in as much detail as you can, and we will point you in the right direction.",
     fields: [],
+  },
+];
+
+export const galleryCategories = ["All", "Offices & practice", "Events & conventions", "International", "Portraits"] as const;
+
+const g = (n: number) => `/assets/gallery/photo-${String(n).padStart(2, "0")}.jpg`;
+
+export const galleryPhotos: { src: string; alt: string; title: string; category: Exclude<(typeof galleryCategories)[number], "All"> }[] = [
+  { src: g(10), alt: "Ghulam Shabbir Babar at his desk beneath the Babar Law Associates emblem", title: "At the desk, Babar Law Associates, Karachi", category: "Offices & practice" },
+  { src: g(14), alt: "Ghulam Shabbir Babar with two colleagues in his Karachi office", title: "With the team, Karachi office", category: "Offices & practice" },
+  { src: g(8), alt: "Ghulam Shabbir Babar in consultation in his office", title: "Client consultation, Karachi office", category: "Offices & practice" },
+  { src: g(13), alt: "Ghulam Shabbir Babar at the Sindh High Court Bar Association All Pakistan Lawyers Convention", title: "All Pakistan Lawyers Convention, Sindh High Court Bar Association", category: "Events & conventions" },
+  { src: g(11), alt: "Ghulam Shabbir Babar with fellow advocates", title: "With fellow advocates", category: "Events & conventions" },
+  { src: g(12), alt: "Ghulam Shabbir Babar being welcomed by a colleague in a law library", title: "Bar room welcome", category: "Events & conventions" },
+  { src: g(0), alt: "Meeting around a conference table in a New York law office", title: "Case meeting, law office conference room", category: "International" },
+  { src: g(1), alt: "Ghulam Shabbir Babar at an evening reception", title: "Diplomatic reception", category: "International" },
+  { src: g(2), alt: "Ghulam Shabbir Babar at an evening reception", title: "Diplomatic reception", category: "International" },
+  { src: g(3), alt: "Ghulam Shabbir Babar beside the European Union and Belgian flags", title: "European Union and Belgium", category: "International" },
+  { src: g(5), alt: "Ghulam Shabbir Babar outside Citigroup Place, Front Street West, Toronto", title: "Toronto, Canada", category: "International" },
+  { src: g(6), alt: "Ghulam Shabbir Babar in front of a historic hotel flying Canadian flags", title: "Canada", category: "International" },
+  { src: g(4), alt: "Ghulam Shabbir Babar in a modern office atrium", title: "Business district visit", category: "International" },
+  { src: g(15), alt: "Ghulam Shabbir Babar with colleagues in Times Square, New York", title: "Times Square, New York", category: "International" },
+  { src: g(16), alt: "Ghulam Shabbir Babar with colleagues in midtown New York", title: "Midtown, New York", category: "International" },
+  { src: g(17), alt: "Ghulam Shabbir Babar with colleagues in Times Square, New York", title: "New York", category: "International" },
+  { src: g(7), alt: "Portrait of Ghulam Shabbir Babar", title: "Ghulam Shabbir Babar", category: "Portraits" },
+  { src: g(9), alt: "Portrait of Ghulam Shabbir Babar", title: "Ghulam Shabbir Babar", category: "Portraits" },
+  { src: g(18), alt: "Portrait of Ghulam Shabbir Babar", title: "Ghulam Shabbir Babar", category: "Portraits" },
+];
+
+export const credentialGroups = [
+  {
+    heading: "Licence & degrees",
+    items: [
+      { src: "/assets/credentials/sindh-bar-council-advocate.jpg", alt: "Sindh Bar Council certificate, Advocate of the High Court", title: "Advocate of the High Court", issuer: "Sindh Bar Council", year: "18 November 2006" },
+      { src: "/assets/credentials/emle-degree.jpg", alt: "Degree of European Master in Law and Economics", title: "European Master in Law and Economics", issuer: "EMLE Consortium, Rotterdam", year: "14 October 2006" },
+      { src: "/assets/credentials/bologna-master-degree.jpg", alt: "Master Universitario di I Livello in Law and Economics, University of Bologna", title: "Master in Law and Economics", issuer: "University of Bologna and Ghent University", year: "9 October 2006" },
+      { src: "/assets/credentials/emle-diploma-supplement.jpg", alt: "EMLE diploma supplement, academic year 2005 to 2006", title: "EMLE Diploma Supplement", issuer: "European Master Programme in Law and Economics", year: "Academic year 2005 to 2006" },
+      { src: "/assets/credentials/hamdard-llb-degree.jpg", alt: "Hamdard University Bachelor of Law degree", title: "Bachelor of Law (LL.B)", issuer: "Hamdard University, Karachi", year: "14 February 2004" },
+      { src: "/assets/credentials/hamdard-llb-transcript.jpg", alt: "Hamdard University LL.B transcript", title: "LL.B Transcript", issuer: "Hamdard University, Karachi", year: "2001 to 2003" },
+    ],
+  },
+  {
+    heading: "Letters of cooperation",
+    items: [
+      { src: "/assets/credentials/letter-emle.png", alt: "EMLE letter confirming associated partnership", title: "Associated Partnership with EMLE", issuer: "Prof. Alessio M. Pacces, Director, EMLE", year: "21 December 2017" },
+      { src: "/assets/credentials/letter-quintal.png", alt: "Letter from the Law Offices of Manuel B. Quintal, P.C.", title: "Affiliation acknowledgement", issuer: "Law Offices of Manuel B. Quintal, P.C., New York", year: "16 August 2024" },
+      { src: "/assets/credentials/letter-karma.png", alt: "Karma Developers authorization letter", title: "Authorization letter", issuer: "Karma Developers, Cyprus", year: "30 October 2017" },
+    ],
   },
 ];

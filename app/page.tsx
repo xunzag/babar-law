@@ -5,6 +5,7 @@ import ImageGrid from "@/components/ImageGrid";
 import LogoBadge from "@/components/LogoBadge";
 import LogoMarquee from "@/components/LogoMarquee";
 import PracticeIcon from "@/components/PracticeIcon";
+import { casesSummary } from "@/lib/cases";
 import {
   stats,
   areasHome,
@@ -129,6 +130,26 @@ export default function HomePage() {
               </p>
             </div>
           ))}
+        </Reveal>
+      </section>
+
+      {/* Case record */}
+      <section className="bg-ink-2 border-y border-gold/18">
+        <Reveal className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] py-[clamp(52px,8vw,84px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(32px,5vw,64px)] items-center">
+          <div>
+            <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-5">Case portfolio</div>
+            <h2 className="font-serif font-medium text-[clamp(28px,4.4vw,42px)] text-white leading-[1.2] mb-5">A record before the High Court of Sindh</h2>
+            <p className="text-cream/58 text-base leading-[1.8] font-light max-w-[460px] mb-8">Constitutional petitions, bail, criminal and civil matters since 2008, searchable by case number, party and subject.</p>
+            <Link href="/cases" className="inline-block border border-gold text-gold py-3.5 px-7 text-[12.5px] tracking-[0.16em] uppercase transition-all duration-300 hover:bg-gold hover:text-ink">Browse the cases →</Link>
+          </div>
+          <div className="grid grid-cols-2 gap-px bg-gold/16 border border-gold/16">
+            {[[casesSummary.registered, "Matters registered"], [casesSummary.disposed, "Disposed of"], [casesSummary.judgments, "Judgments on record"], [casesSummary.seats.length, "Court benches"]].map(([v, l]) => (
+              <div key={String(l)} className="bg-ink-4 p-7">
+                <div className="font-serif text-gold-light text-[clamp(34px,4vw,48px)] leading-none mb-2.5">{v}</div>
+                <div className="text-cream/50 text-[11.5px] tracking-[0.12em] uppercase">{l}</div>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </section>
 
