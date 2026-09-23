@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "International",
   description:
     "Partnerships and panels across the United States, Cyprus, Greece, Portugal, the Netherlands and Pakistan.",
+  alternates: { canonical: "/international" },
 };
 
 export default function InternationalPage() {

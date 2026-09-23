@@ -2,26 +2,21 @@
 
 import { useMemo, useState } from "react";
 import { cases, caseYear, fmtMonth } from "@/lib/cases";
+import Dropdown from "@/components/Dropdown";
 
 const groups = ["All", "Constitutional", "Bail", "Criminal appeals", "Civil & commercial"];
 const PAGE = 25;
 
 const sorted = [...cases].sort((a, b) => (b.filed || `${b.year}-00`).localeCompare(a.filed || `${a.year}-00`));
 
-function Select({ value, onChange, options, label }: { value: string; onChange: (v: string) => void; options: string[]; label: string }) {
+const toOptions = (values: string[]) => values.map((v) => ({ id: v, label: v }));
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <select
-      aria-label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="bg-ink-4 border border-gold/25 text-cream/85 text-[13px] py-3 px-3.5 outline-none cursor-pointer focus:border-gold"
-    >
-      {options.map((o) => (
-        <option key={o} value={o} className="bg-ink-4">
-          {o}
-        </option>
-      ))}
-    </select>
+    <div>
+      <div className="text-gold/60 text-[10px] tracking-[0.22em] uppercase mb-2">{label}</div>
+      {children}
+    </div>
   );
 }
 
@@ -52,9 +47,21 @@ export default function CasesExplorer() {
 
   const reset = () => setShown(PAGE);
 
+  const filtersActive =
+    status !== "All statuses" || subject !== "All subjects" || role !== "All roles" || judgOnly || q.trim() !== "";
+
+  const clearFilters = () => {
+    setStatus("All statuses");
+    setSubject("All subjects");
+    setRole("All roles");
+    setJudgOnly(false);
+    setQ("");
+    reset();
+  };
+
   return (
     <div>
-      <div className="flex flex-wrap gap-2.5 mb-5">
+      <div className="flex flex-wrap gap-2.5 mb-7">
         {groups.map((g) => (
           <button
             key={g}
@@ -68,20 +75,74 @@ export default function CasesExplorer() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[1.4fr_repeat(3,1fr)_auto] gap-3 mb-3">
-        <input
-          value={q}
-          onChange={(e) => { setQ(e.target.value); reset(); }}
-          placeholder="Search case number or party"
-          className="bg-ink-4 border border-gold/25 text-cream text-[14px] py-3 px-4 outline-none placeholder:text-cream/30 focus:border-gold"
-        />
-        <Select label="Status" value={status} onChange={(v) => { setStatus(v); reset(); }} options={["All statuses", "Disposed", "Pending"]} />
-        <Select label="Subject" value={subject} onChange={(v) => { setSubject(v); reset(); }} options={subjects} />
-        <Select label="Role" value={role} onChange={(v) => { setRole(v); reset(); }} options={roles} />
-        <label className="flex items-center gap-2.5 text-cream/70 text-[13px] cursor-pointer select-none px-2">
-          <input type="checkbox" checked={judgOnly} onChange={(e) => { setJudgOnly(e.target.checked); reset(); }} className="accent-[#c9a227] w-4 h-4" />
-          Judgment on record
-        </label>
+      <div className="border border-gold/16 bg-ink-3 p-5 sm:p-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-[1.5fr_repeat(3,1fr)] gap-4">
+          <Field label="Search">
+            <div className="relative">
+              <svg
+                aria-hidden
+                viewBox="0 0 18 18"
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 fill-none stroke-gold/55"
+                strokeWidth={1.4}
+              >
+                <circle cx="7.5" cy="7.5" r="5.5" />
+                <path d="M15.5 15.5l-3.8-3.8" strokeLinecap="round" />
+              </svg>
+              <input
+                value={q}
+                onChange={(e) => { setQ(e.target.value); reset(); }}
+                placeholder="Case number or party name"
+                className="w-full bg-ink-4 border border-gold/25 text-cream text-[15px] py-3.5 pl-10 pr-4.5 outline-none placeholder:text-cream/30 transition-colors duration-200 hover:border-gold/45 focus:border-gold"
+              />
+            </div>
+          </Field>
+          <Field label="Status">
+            <Dropdown
+              label="Status"
+              value={status}
+              onChange={(v) => { setStatus(v); reset(); }}
+              options={toOptions(["All statuses", "Disposed", "Pending"])}
+            />
+          </Field>
+          <Field label="Subject">
+            <Dropdown label="Subject" value={subject} onChange={(v) => { setSubject(v); reset(); }} options={toOptions(subjects)} />
+          </Field>
+          <Field label="Role">
+            <Dropdown label="Role" value={role} onChange={(v) => { setRole(v); reset(); }} options={toOptions(roles)} />
+          </Field>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-4 mt-5 pt-5 border-t border-cream/8">
+          <label className="flex items-center gap-3 cursor-pointer select-none group">
+            <span
+              className={`relative flex items-center justify-center w-[18px] h-[18px] border transition-colors duration-200 ${
+                judgOnly ? "bg-gold border-gold" : "border-gold/35 group-hover:border-gold/60"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={judgOnly}
+                onChange={(e) => { setJudgOnly(e.target.checked); reset(); }}
+                className="absolute inset-0 opacity-0 cursor-pointer"
+              />
+              {judgOnly && (
+                <svg viewBox="0 0 12 10" className="w-2.5 h-2.5 fill-none stroke-ink" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 5l3.2 3.2L11 1.5" />
+                </svg>
+              )}
+            </span>
+            <span className="text-cream/70 text-[13px] tracking-wide">Judgment on record only</span>
+          </label>
+
+          {filtersActive && (
+            <button
+              onClick={clearFilters}
+              className="text-gold/80 text-[11.5px] tracking-[0.14em] uppercase cursor-pointer transition-colors hover:text-gold-light"
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="text-cream/45 text-[13px] mb-4 tracking-wide">
@@ -103,9 +164,9 @@ export default function CasesExplorer() {
           <tbody>
             {list.slice(0, shown).map((c, i) => (
               <tr key={c.id + i} className="border-b border-cream/8 hover:bg-ink-5 transition-colors align-top">
-                <td className="px-5 py-4 text-cream text-[14px] whitespace-nowrap">
+                <td className="px-5 py-4 font-serif text-cream text-[15px] tracking-wide whitespace-nowrap">
                   {c.short} {c.bench}-{c.number}/{c.year}
-                  <div className="text-cream/40 text-[11.5px] mt-1">{c.seat} · {c.typeLabel}</div>
+                  <div className="font-sans text-cream/40 text-[11.5px] mt-1 tracking-normal">{c.seat} · {c.typeLabel}</div>
                 </td>
                 <td className="px-5 py-4 text-cream/75 text-[14px] leading-snug max-w-[340px]">{c.title}</td>
                 <td className="px-5 py-4 text-cream/65 text-[13.5px]">{c.subject}</td>

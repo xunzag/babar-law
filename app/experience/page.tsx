@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Experience",
   description: "Appointments and engagements since 2004.",
+  alternates: { canonical: "/experience" },
 };
 
 export default function ExperiencePage() {

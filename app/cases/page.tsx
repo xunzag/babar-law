@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cases",
   description: `${s.registered} matters registered before the High Court of Sindh across constitutional, criminal, bail and civil jurisdictions.`,
+  alternates: { canonical: "/cases" },
 };
 
 const Bars = ({ rows, max }: { rows: [string, number][]; max: number }) => (

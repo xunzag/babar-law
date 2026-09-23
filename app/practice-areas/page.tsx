@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Practice Areas",
   description:
     "Immigration & visas, citizenship & residency by investment, banking & consumer law, corporate & commercial, litigation, mediation & ADR, and academic advisory.",
+  alternates: { canonical: "/practice-areas" },
 };
 
 export default function PracticeAreasPage() {

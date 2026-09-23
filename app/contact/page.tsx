@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Consultation",
   description: "Send a detailed enquiry, or speak with Mr. Babar directly on WhatsApp, by email, or by telephone.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

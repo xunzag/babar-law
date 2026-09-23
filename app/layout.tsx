@@ -64,12 +64,41 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: "Babar Law Associates",
+  image: `${siteUrl}/assets/babar-law-logo.png`,
+  url: siteUrl,
+  telephone: "+19145577765",
+  email: "ghulam.babar123@gmail.com",
+  founder: {
+    "@type": "Person",
+    name: "Ghulam Shabbir Babar",
+    jobTitle: "Attorney at Law, LLM (Europe)",
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Suite No. 305, 3rd Floor, Al-Ayesha Chambers, Passport Office, Saddar",
+    addressLocality: "Karachi",
+    addressRegion: "Sindh",
+    addressCountry: "PK",
+  },
+  areaServed: ["Pakistan", "United States", "United Kingdom", "Canada", "Cyprus", "Greece", "European Union"],
+  priceRange: "$$",
+  sameAs: ["https://www.lawofficesofmanuelbquintal.com"],
+};
+
 export default function RootLayout({
   children,
 }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${cormorant.variable} ${barlow.variable}`}>
       <body className="bg-ink min-h-screen flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ScrollProgress />
         <Header />
         <main className="flex-1">{children}</main>

@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Gallery",
   description: "Offices, conventions and international engagements of Ghulam Shabbir Babar and Babar Law Associates.",
+  alternates: { canonical: "/gallery" },
 };
 
 export default function GalleryPage() {

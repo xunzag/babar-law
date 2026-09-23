@@ -19,6 +19,27 @@ export const nav = [
   { href: "/contact", label: "Consultation" },
 ];
 
+// Grouped primary navigation for the header — keeps the top bar to a
+// handful of links by folding secondary pages under "The Firm".
+export const headerNav: {
+  label: string;
+  href?: string;
+  items?: { href: string; label: string }[];
+}[] = [
+  { href: "/practice-areas", label: "Practice Areas" },
+  { href: "/cases", label: "Cases" },
+  { href: "/international", label: "International" },
+  {
+    label: "The Firm",
+    items: [
+      { href: "/about", label: "About" },
+      { href: "/experience", label: "Experience" },
+      { href: "/gallery", label: "Gallery" },
+      { href: "/faq", label: "FAQ" },
+    ],
+  },
+];
+
 export const callLines = [
   { label: "United States", number: "+1 (914) 557 7765", href: "tel:+19145577765" },
   { label: "USA / Canada", number: "001 202807 7206", href: "tel:0012028077206" },

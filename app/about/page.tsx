@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Ghulam Shabbir Babar, Attorney at Law, LLM (Europe), immigration lawyer, academic supervisor, Member Expert (Law).",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
