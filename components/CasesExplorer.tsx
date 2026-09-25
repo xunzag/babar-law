@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { cases, caseYear, fmtMonth } from "@/lib/cases";
 import Dropdown from "@/components/Dropdown";
 
@@ -145,8 +146,11 @@ export default function CasesExplorer() {
         </div>
       </div>
 
-      <div className="text-cream/45 text-[13px] mb-4 tracking-wide">
-        {list.length} matter{list.length === 1 ? "" : "s"}
+      <div className="font-mono text-cream/45 text-[11px] tracking-[0.16em] uppercase mb-4 tabular-nums">
+        <motion.span key={list.length} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="inline-block text-gold-light">
+          {list.length}
+        </motion.span>{" "}
+        matter{list.length === 1 ? "" : "s"}
       </div>
 
       <div className="border border-gold/20 bg-ink-4 overflow-x-auto">
@@ -161,12 +165,19 @@ export default function CasesExplorer() {
               <th className="px-5 py-4 font-normal">Outcome</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody key={[group, status, subject, role, judgOnly, q].join("|")}>
             {list.slice(0, shown).map((c, i) => (
-              <tr key={c.id + i} className="border-b border-cream/8 hover:bg-ink-5 transition-colors align-top">
-                <td className="px-5 py-4 font-display text-cream text-[15px] tracking-wide whitespace-nowrap">
+              <motion.tr
+                key={c.id + i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: (i % (PAGE * 2)) * 0.022, ease: [0.16, 1, 0.3, 1] }}
+                className="group border-b border-cream/8 hover:bg-ink-5 transition-colors align-top"
+              >
+                <td className="relative px-5 py-4 font-mono text-gold-light text-[13.5px] whitespace-nowrap">
+                  <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-gold scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
                   {c.short} {c.bench}-{c.number}/{c.year}
-                  <div className="font-sans text-cream/40 text-[11.5px] mt-1 tracking-normal">{c.seat} · {c.typeLabel}</div>
+                  <div className="font-sans text-cream/40 text-[11.5px] mt-1.5 tracking-normal">{c.seat} · {c.typeLabel}</div>
                 </td>
                 <td className="px-5 py-4 text-cream/75 text-[14px] leading-snug max-w-[340px]">{c.title}</td>
                 <td className="px-5 py-4 text-cream/65 text-[13.5px]">{c.subject}</td>
@@ -179,7 +190,7 @@ export default function CasesExplorer() {
                   {c.judgment && <span className="ml-2 text-gold-light text-[11px] tracking-wide">Judgment</span>}
                   {c.disposed && <div className="text-cream/40 text-[11.5px] mt-1.5">{fmtMonth(c.disposed)}</div>}
                 </td>
-              </tr>
+              </motion.tr>
             ))}
             {list.length === 0 && (
               <tr>

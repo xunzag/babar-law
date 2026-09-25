@@ -7,7 +7,7 @@ export default function LogoMarquee({ items }: { items: Item[] }) {
 
   return (
     <div className="group relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
-      <div className="flex w-max items-center gap-10 animate-[marquee_70s_linear_infinite] group-hover:[animation-play-state:paused]">
+      <div className="flex w-max items-center gap-10 animate-[marquee_45s_linear_infinite] [@media(hover:hover)]:group-hover:[animation-play-state:paused]">
         {track.map((item, i) => {
           const badge = (
             <div className="h-16 w-40 bg-[#f4f1ea] flex items-center justify-center shrink-0 px-5">

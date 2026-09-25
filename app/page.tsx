@@ -13,7 +13,10 @@ import CountUp from "@/components/motion/CountUp";
 import ScrollText from "@/components/motion/ScrollText";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
-import { casesSummary } from "@/lib/cases";
+import { casesSummary, docketSample } from "@/lib/cases";
+import DocketFeed from "@/components/DocketFeed";
+import ChambersRoster from "@/components/ChambersRoster";
+import GrowSegment from "@/components/motion/GrowSegment";
 import {
   areasHome,
   recognition,
@@ -24,7 +27,6 @@ import {
   associates,
   principal,
   teamGroups,
-  initials,
 } from "@/lib/content";
 
 const wrap = "max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)]";
@@ -170,92 +172,113 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Chambers teaser */}
-      <section className="bg-paper text-ink">
+      {/* Chambers: editorial roster */}
+      <section className="bg-paper text-ink overflow-hidden">
         <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
-          <SectionHead
-            tone="light"
-            index="04"
-            label="The chambers"
-            title={
-              <>
-                {associates.length + 1} people. <span className="text-gold-deep">One docket.</span>
-              </>
-            }
-            aside={
-              <ArrowLink href="/associates" variant="dark">
-                Meet the associates
-              </ArrowLink>
-            }
-          />
-          <Stagger className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/12 border border-ink/12">
-            {teamGroups.map((g) => {
-              const members = g.id === "partners" ? [principal, ...associates.filter((a) => a.group === g.id)] : associates.filter((a) => a.group === g.id);
-              return (
-                <StaggerItem key={g.id} className="bg-paper p-7 flex flex-col gap-6 min-h-[280px]">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10.5px] tracking-[0.18em] uppercase text-ink/50">{g.label}</span>
-                    <span className="font-mono text-[11px] text-gold-deep">{String(members.length).padStart(2, "0")}</span>
-                  </div>
-                  <ul className="m-0 p-0 list-none grid gap-3 mt-auto">
-                    {members.map((m) => (
-                      <li key={m.name} className="flex items-center gap-3">
-                        <span className="w-8 h-8 shrink-0 rounded-full border border-ink/20 flex items-center justify-center font-display text-[11px] font-semibold tracking-[-0.02em]">
-                          {initials(m.name)}
-                        </span>
-                        <span className="text-[15px] leading-tight">
-                          {m.name}
-                          {"role" in m && m.role && (
-                            <span className="block font-mono text-[10px] tracking-[0.12em] uppercase text-gold-deep mt-0.5">
-                              {m.role}
-                            </span>
-                          )}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </StaggerItem>
-              );
-            })}
-          </Stagger>
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] gap-x-16 gap-y-10 items-end mb-[clamp(48px,6vw,80px)]">
+            <SectionHead
+              tone="light"
+              index="04"
+              label="The chambers"
+              className="mb-0"
+              title={
+                <>
+                  {associates.length + 1} advocates &amp; staff.{" "}
+                  <span className="text-gold-deep">One chambers.</span>
+                </>
+              }
+            />
+            <Reveal delay={0.1} className="grid gap-6">
+              <p className="m-0 text-ink/60 text-[16px] leading-[1.75] max-w-[460px]">
+                Partners, Advocates of the High Court, advocates and court staff, working from Al-Ayesha Chambers,
+                Saddar, Karachi.
+              </p>
+              {/* Composition of the chambers, drawn as one segmented bar */}
+              <div>
+                <div className="flex h-2 gap-1">
+                  {teamGroups.map((g, i) => {
+                    const n = associates.filter((a) => a.group === g.id).length + (g.id === "partners" ? 1 : 0);
+                    return (
+                      <GrowSegment
+                        key={g.id}
+                        grow={n}
+                        delay={0.2 + i * 0.15}
+                        className={["bg-ink", "bg-gold-deep", "bg-gold", "bg-ink/25"][i]}
+                      />
+                    );
+                  })}
+                </div>
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
+                  {teamGroups.map((g, i) => (
+                    <span key={g.id} className="flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-ink/55">
+                      <span className={`w-2 h-2 ${["bg-ink", "bg-gold-deep", "bg-gold", "bg-ink/25"][i]}`} />
+                      {g.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+          <ChambersRoster />
+          <Reveal className="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-ink/15 pt-8">
+            <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-ink/50">
+              Profiles of every member of chambers
+            </span>
+            <ArrowLink href="/associates" variant="dark">
+              Meet the associates
+            </ArrowLink>
+          </Reveal>
         </div>
       </section>
 
-      {/* Case record */}
-      <section className="bg-ink">
-        <div className={`${wrap} py-[clamp(80px,11vw,150px)] grid lg:grid-cols-2 gap-[clamp(40px,6vw,96px)] items-center`}>
+      {/* Case portfolio: live docket */}
+      <section className="relative bg-ink overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_70%_50%,black,transparent_70%)]" />
+        <div className={`relative ${wrap} py-[clamp(80px,11vw,150px)] grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-[clamp(40px,6vw,96px)] items-center`}>
           <div>
             <SectionHead
               index="05"
               label="Case portfolio"
-              title="A record before the High Court of Sindh."
+              title={
+                <>
+                  A record before the <span className="text-gold">High Court of Sindh.</span>
+                </>
+              }
               className="mb-7"
             />
             <Reveal delay={0.1}>
               <p className="text-cream/55 text-[16px] leading-[1.8] max-w-[480px] mb-10">
-                Constitutional petitions, bail, criminal and civil matters since {casesSummary.firstYear},
-                searchable by case number, party and subject.
+                Constitutional petitions, bail, criminal and civil matters since {casesSummary.firstYear}, at Karachi
+                and the Sukkur, Larkana and Hyderabad benches.
               </p>
+            </Reveal>
+            <Stagger className="grid grid-cols-2 border-t border-cream/10 mb-10">
+              {(
+                [
+                  [casesSummary.registered, "Registered"],
+                  [casesSummary.disposed, "Disposed of"],
+                  [casesSummary.judgments, "Judgments"],
+                  [casesSummary.seats.length, "Benches"],
+                ] as [number, string][]
+              ).map(([v, l], i) => (
+                <StaggerItem
+                  key={l}
+                  className={`py-5 border-b border-cream/10 ${i % 2 ? "pl-6 border-l border-cream/10" : "pr-6"}`}
+                >
+                  <div className="font-display font-medium text-[clamp(36px,4vw,54px)] leading-none tracking-[-0.05em] text-gold-light mb-2">
+                    <CountUp to={v} />
+                  </div>
+                  <div className="font-mono text-[10px] tracking-[0.18em] uppercase text-cream/45">{l}</div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+            <Reveal delay={0.1}>
               <ArrowLink href="/cases">Search the register</ArrowLink>
             </Reveal>
           </div>
-          <Stagger className="grid grid-cols-2 gap-px bg-cream/10 border border-cream/10">
-            {(
-              [
-                [casesSummary.registered, "Matters registered"],
-                [casesSummary.disposed, "Disposed of"],
-                [casesSummary.judgments, "Judgments on record"],
-                [casesSummary.seats.length, "Court benches"],
-              ] as [number, string][]
-            ).map(([v, l]) => (
-              <StaggerItem key={l} className="bg-ink-3 p-[clamp(20px,3vw,36px)] aspect-[5/4] flex flex-col justify-between">
-                <div className="font-mono text-[10.5px] tracking-[0.18em] uppercase text-cream/45">{l}</div>
-                <div className="font-display font-medium text-[clamp(44px,6vw,80px)] leading-[0.85] tracking-[-0.05em] text-gold-light">
-                  <CountUp to={v} />
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <Reveal delay={0.15}>
+            <DocketFeed items={docketSample()} total={casesSummary.listed} />
+          </Reveal>
         </div>
       </section>
 

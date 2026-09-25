@@ -84,7 +84,8 @@
     html {
       scroll-behavior: auto;
     }
-    *,
+    /* Slow decorative marquees keep running (they pause on hover). */
+    *:not([class*="animate-[marquee"]),
     *::before,
     *::after {
       animation-duration: 0.01ms !important;

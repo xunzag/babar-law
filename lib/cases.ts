@@ -68,3 +68,28 @@ export const fmtMonth = (ym: string) => {
 };
 
 export const caseYear = yearOf;
+
+// A varied sample of titled matters for the animated docket feed, newest first,
+// interleaving pending, judgment and disposed matters so the feed never stalls on one kind.
+export const docketSample = (n = 36) => {
+  const titled = [...cases]
+    .filter((c) => c.title && c.title.length > 8)
+    .sort((a, b) => (b.filed || `${b.year}-00`).localeCompare(a.filed || `${a.year}-00`));
+  const pending = titled.filter((c) => c.status === "Pending");
+  const judged = titled.filter((c) => c.status !== "Pending" && c.judgment);
+  const rest = titled.filter((c) => c.status !== "Pending" && !c.judgment);
+  const out: CaseRow[] = [];
+  for (let i = 0; out.length < n && i < titled.length; i++) {
+    for (const pool of [rest, pending, judged, rest]) if (pool[i] && out.length < n) out.push(pool[i]);
+  }
+  return out.map((c) => ({
+    id: `${c.short} ${c.bench}-${c.number}/${c.year}`,
+    title: c.title.replace(/\s+VS\.?\s+/i, " v. ").replace(/\.$/, ""),
+    subject: c.subject,
+    seat: c.seat,
+    role: c.role || "Counsel",
+    status: c.status,
+    judgment: c.judgment,
+    when: c.filed ? fmtMonth(c.filed) : String(c.year),
+  }));
+};
