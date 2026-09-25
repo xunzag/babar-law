@@ -5,23 +5,35 @@ import { useState } from "react";
 import { faqs } from "@/lib/content";
 
 export default function FaqAccordion() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div>
+    <div className="border-t border-ink/15">
       {faqs.map((f, i) => {
         const isOpen = open === i;
         return (
-          <div key={f.q} className="border-b border-cream/10">
+          <div key={f.q} className="border-b border-ink/15">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="w-full flex items-center justify-between gap-7.5 py-7 cursor-pointer text-left"
+              aria-expanded={isOpen}
+              className="group w-full grid grid-cols-[44px_minmax(0,1fr)_40px] items-center gap-4 py-7 cursor-pointer text-left"
             >
-              <h3 className="font-serif font-semibold text-2xl leading-snug text-white m-0">
+              <span className="font-mono text-[11px] text-gold-deep">{String(i + 1).padStart(2, "0")}</span>
+              <h3
+                className={`m-0 font-display font-medium text-[clamp(20px,2.2vw,28px)] leading-[1.2] transition-colors ${
+                  isOpen ? "text-ink" : "text-ink/75 group-hover:text-ink"
+                }`}
+              >
                 {f.q}
               </h3>
-              <span className="text-gold text-2xl leading-none shrink-0">
-                {isOpen ? "−" : "+"}
+              <span
+                className={`w-10 h-10 rounded-full border flex items-center justify-center transition-colors duration-300 ${
+                  isOpen ? "bg-ink border-ink text-gold" : "border-ink/20 text-ink group-hover:border-ink"
+                }`}
+              >
+                <motion.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3 }} className="text-xl leading-none">
+                  +
+                </motion.span>
               </span>
             </button>
             <AnimatePresence initial={false}>
@@ -30,12 +42,10 @@ export default function FaqAccordion() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="m-0 pb-7.5 text-cream/68 text-[16.5px] leading-[1.85] font-light max-w-[760px]">
-                    {f.a}
-                  </p>
+                  <p className="m-0 pb-8 pl-[60px] pr-14 text-ink/65 text-[16.5px] leading-[1.8] max-w-[820px]">{f.a}</p>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -1,5 +1,5 @@
+import ExperienceHero from "@/components/heroes/ExperienceHero";
 import Reveal from "@/components/Reveal";
-import PageHero from "@/components/PageHero";
 import { experience } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -12,35 +12,32 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return (
     <div>
-      <PageHero eyebrow="Experience" title="Appointments since 2004" />
-      <section className="max-w-[1120px] mx-auto px-[clamp(18px,4.2vw,32px)] pt-[clamp(50px,8vw,84px)] pb-26">
-        {experience.map((x, i) => (
-          <Reveal key={x.role + x.period} delay={Math.min(i * 0.04, 0.3)}>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,360px),1fr))] gap-7 py-8 border-b border-cream/9">
-              <div className="max-w-55">
-                <div className="text-gold text-[13.5px] tracking-wide mb-2">
-                  {x.period}
+      <ExperienceHero count={experience.length} />
+      <section className="bg-paper text-ink">
+        <div className="max-w-[1200px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(64px,9vw,120px)]">
+          <div className="relative">
+            {/* Timeline spine */}
+            <div className="absolute left-[7px] md:left-[227px] top-2 bottom-2 w-px bg-ink/15" />
+            {experience.map((x) => (
+              <Reveal key={x.role + x.period + x.org}>
+                <div className="group relative grid md:grid-cols-[200px_minmax(0,1fr)] gap-x-14 gap-y-2 pl-9 md:pl-0 py-8">
+                  <span className="absolute left-0 md:left-[220px] top-10 w-[15px] h-[15px] rounded-full border border-ink/30 bg-paper group-hover:bg-gold group-hover:border-gold-deep transition-colors duration-300" />
+                  <div className="md:text-right md:pt-1.5">
+                    <div className="font-mono text-[12px] text-gold-deep mb-1.5">{x.period}</div>
+                    <div className="text-ink/45 text-[13px] leading-snug">{x.place}</div>
+                  </div>
+                  <div className="md:pl-2">
+                    <h3 className="m-0 font-display font-medium text-[clamp(24px,2.6vw,32px)] leading-[1.1] mb-2">
+                      {x.role}
+                    </h3>
+                    <div className="text-ink/75 text-[15.5px] mb-3">{x.org}</div>
+                    {x.note && <p className="m-0 text-ink/60 text-[15.5px] leading-[1.75] max-w-[720px]">{x.note}</p>}
+                  </div>
                 </div>
-                <div className="text-cream/42 text-[13px] leading-snug">
-                  {x.place}
-                </div>
-              </div>
-              <div>
-                <h3 className="font-serif font-semibold text-[27px] mb-1.5 leading-tight text-white">
-                  {x.role}
-                </h3>
-                <div className="text-gold-light/90 text-[15px] mb-3 tracking-wide">
-                  {x.org}
-                </div>
-                {x.note && (
-                  <p className="m-0 text-cream/62 text-base leading-[1.75] font-light">
-                    {x.note}
-                  </p>
-                )}
-              </div>
-            </div>
-          </Reveal>
-        ))}
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   );

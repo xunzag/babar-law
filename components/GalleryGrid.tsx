@@ -131,7 +131,7 @@ export default function GalleryGrid() {
                 <div className="text-gold text-[10.5px] tracking-[0.24em] uppercase mb-1.5">
                   {p.category}
                 </div>
-                <div className="text-cream/90 text-[16px] leading-snug font-serif">{p.title}</div>
+                <div className="text-cream/90 text-[16px] leading-snug font-display">{p.title}</div>
               </figcaption>
             </figure>
           ))}

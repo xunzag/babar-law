@@ -82,7 +82,7 @@ export default function ImageGrid({
             >
               {variant === "recognition" ? (
                 <>
-                  <div className="text-white font-serif text-xl leading-tight mb-1.5">
+                  <div className="text-white font-display text-xl leading-tight mb-1.5">
                     {item.title}
                   </div>
                   <div className="text-cream/45 text-[13px] tracking-wide">

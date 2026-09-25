@@ -2,206 +2,125 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { headerNav } from "@/lib/content";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { callLines, firm, headerNav, nav } from "@/lib/content";
 
 export default function Header() {
   const pathname = usePathname();
-  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [firmOpen, setFirmOpen] = useState(false);
-  const [mobileFirmOpen, setMobileFirmOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
 
-  const go = (href: string) => {
+  // Solid once the hero is behind us; tuck away while scrolling down.
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setScrolled(y > 40);
+    setHidden(y > 320 && y > prev && !menuOpen);
+  });
+
+  // Close menus when the route changes (adjusting state during render).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
     setMenuOpen(false);
     setFirmOpen(false);
-    router.push(href);
-  };
+  }
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
+
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-[60] bg-ink/90 backdrop-blur-md border-b border-gold/20">
-      <div className="max-w-[1320px] mx-auto px-[clamp(14px,4.2vw,32px)] py-3.5 flex items-center justify-between gap-[clamp(12px,3vw,28px)] flex-nowrap">
-        <button
-          onClick={() => go("/")}
-          className="flex items-center gap-[clamp(9px,2.4vw,15px)] min-w-0 shrink cursor-pointer"
-        >
-          <Image
-            src="/assets/babar-law-mark.png"
-            alt="Babar Law Associates"
-            width={46}
-            height={46}
-            className="h-[clamp(34px,9vw,46px)] w-auto shrink-0 drop-shadow-[0_2px_6px_rgba(201,162,39,0.25)]"
-          />
-          <span className="flex flex-col gap-0.5 min-w-0 text-left">
-            <span className="font-serif text-white text-[clamp(13px,3.4vw,19px)] tracking-[0.12em] leading-[1.15] whitespace-nowrap">
-              BABAR LAW ASSOCIATES
+    <>
+      <motion.header
+        animate={{ y: hidden ? "-100%" : "0%" }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed inset-x-0 top-0 z-[60] transition-[background-color,border-color,backdrop-filter] duration-500 border-b ${
+          scrolled || menuOpen
+            ? "bg-ink/85 backdrop-blur-xl border-cream/8"
+            : "bg-transparent border-transparent"
+        }`}
+      >
+        <div className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] h-[76px] flex items-center justify-between gap-6">
+          <Link href="/" className="flex items-center gap-3.5 min-w-0 shrink group" aria-label="Babar Law Associates, home">
+            <Image
+              src="/assets/babar-law-mark.png"
+              alt=""
+              width={40}
+              height={40}
+              priority
+              className="h-9 w-auto shrink-0 transition-transform duration-700 ease-out-expo group-hover:rotate-[-8deg]"
+            />
+            <span className="flex flex-col leading-none min-w-0">
+              <span className="font-display font-semibold text-white text-[15px] tracking-[0.16em] whitespace-nowrap">
+                BABAR LAW
+              </span>
+              <span className="font-mono text-gold text-[9.5px] tracking-[0.34em] mt-1.5 whitespace-nowrap">
+                ASSOCIATES
+              </span>
             </span>
-            <span className="hidden min-[1560px]:block text-gold/85 text-[9.5px] tracking-[0.3em] uppercase whitespace-nowrap">
-              Advocates &amp; International Consultants
-            </span>
-          </span>
-        </button>
+          </Link>
 
-        <div className="hidden min-[1180px]:flex items-center gap-8">
-          <nav className="flex items-center gap-7">
-            {headerNav.map((item) =>
-              item.items ? (
-                <div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => setFirmOpen(true)}
-                  onMouseLeave={() => setFirmOpen(false)}
-                >
-                  <button
-                    onClick={() => setFirmOpen((o) => !o)}
-                    aria-haspopup="menu"
-                    aria-expanded={firmOpen}
-                    className="relative flex items-center gap-1.5 h-11.5 cursor-pointer group"
+          <div className="hidden min-[1180px]:flex items-center gap-9">
+            <nav className="flex items-center gap-1">
+              {headerNav.map((item) =>
+                item.items ? (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => setFirmOpen(true)}
+                    onMouseLeave={() => setFirmOpen(false)}
                   >
-                    <span
-                      className={`text-xs tracking-[0.1em] uppercase whitespace-nowrap transition-colors duration-250 ${
-                        item.items.some((i) => i.href === pathname)
-                          ? "text-gold-light"
-                          : "text-cream/78 group-hover:text-gold-light"
+                    <button
+                      onClick={() => setFirmOpen((o) => !o)}
+                      aria-haspopup="menu"
+                      aria-expanded={firmOpen}
+                      className={`flex items-center gap-1.5 h-11 px-3.5 text-[13.5px] cursor-pointer transition-colors duration-250 ${
+                        item.items.some((i) => isActive(i.href)) ? "text-white" : "text-cream/65 hover:text-white"
                       }`}
                     >
                       {item.label}
-                    </span>
-                    <motion.span
-                      animate={{ rotate: firmOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-gold/70 text-[9px]"
-                    >
-                      ▾
-                    </motion.span>
-                  </button>
-
-                  <AnimatePresence>
-                    {firmOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -6 }}
-                        transition={{ duration: 0.16 }}
-                        role="menu"
-                        className="absolute left-1/2 -translate-x-1/2 top-full pt-2.5 w-52"
+                      <motion.svg
+                        animate={{ rotate: firmOpen ? 180 : 0 }}
+                        width="9"
+                        height="9"
+                        viewBox="0 0 10 10"
+                        className="text-gold"
                       >
-                        <div className="bg-ink-4 border border-gold/25 shadow-[0_18px_40px_rgba(0,0,0,0.55)] py-1.5">
-                          {item.items.map((sub) => (
-                            <button
-                              key={sub.href}
-                              role="menuitem"
-                              onClick={() => go(sub.href)}
-                              className={`w-full text-left px-4.5 py-3 text-[11.5px] tracking-[0.12em] uppercase cursor-pointer transition-colors duration-150 ${
-                                pathname === sub.href
-                                  ? "bg-gold/12 text-gold-light"
-                                  : "text-cream/78 hover:bg-ink-5 hover:text-gold-light"
-                              }`}
-                            >
-                              {sub.label}
-                            </button>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
-                <button
-                  key={item.href}
-                  onClick={() => go(item.href!)}
-                  className="relative flex items-center h-11.5 cursor-pointer group"
-                >
-                  <span className="text-cream/78 text-xs tracking-[0.1em] uppercase whitespace-nowrap transition-colors duration-250 group-hover:text-gold-light">
-                    {item.label}
-                  </span>
-                  {pathname === item.href && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute left-0 right-0 bottom-2.25 h-px bg-gold block"
-                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    />
-                  )}
-                </button>
-              )
-            )}
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <a
-              href="tel:+19145577765"
-              className="text-cream/55 text-[11.5px] tracking-[0.08em] whitespace-nowrap transition-colors duration-250 hover:text-gold-light hidden min-[1420px]:block"
-            >
-              +1 (914) 557 7765
-            </a>
-            <Link
-              href="/contact"
-              className="bg-gold text-ink py-2.75 px-5 text-[12px] font-medium tracking-[0.1em] uppercase whitespace-nowrap transition-all duration-300 hover:bg-gold-light"
-            >
-              Consultation
-            </Link>
-          </div>
-        </div>
-
-        <button
-          onClick={() => setMenuOpen((o) => !o)}
-          className="flex min-[1180px]:hidden items-center gap-2.5 border border-gold/50 text-gold py-2.75 px-3.5 text-[11.5px] tracking-[0.14em] uppercase cursor-pointer shrink-0 whitespace-nowrap"
-        >
-          <span className="flex flex-col gap-1">
-            <span className="w-4.5 h-px bg-gold block" />
-            <span className="w-4.5 h-px bg-gold block" />
-            <span className="w-4.5 h-px bg-gold block" />
-          </span>
-          {menuOpen ? "Close" : "Menu"}
-        </button>
-      </div>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="border-t border-gold/20 bg-ink/98 min-[1180px]:hidden"
-          >
-            <div className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] pt-4.5 pb-6.5 grid gap-0.5">
-              {headerNav.map((item) =>
-                item.items ? (
-                  <div key={item.label} className="border-b border-cream/7">
-                    <button
-                      onClick={() => setMobileFirmOpen((o) => !o)}
-                      className="w-full flex items-center justify-between py-3.25 text-left text-cream/85 text-sm tracking-[0.16em] uppercase cursor-pointer transition-colors hover:text-gold-light"
-                    >
-                      {item.label}
-                      <motion.span
-                        animate={{ rotate: mobileFirmOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-gold text-[10px]"
-                      >
-                        ▾
-                      </motion.span>
+                        <path d="M1 3l4 4 4-4" stroke="currentColor" fill="none" strokeWidth="1.4" />
+                      </motion.svg>
                     </button>
                     <AnimatePresence>
-                      {mobileFirmOpen && (
+                      {firmOpen && (
                         <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden"
+                          initial={{ opacity: 0, y: -8, filter: "blur(4px)" }}
+                          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                          exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
+                          transition={{ duration: 0.22 }}
+                          role="menu"
+                          className="absolute left-0 top-full pt-2 w-60"
                         >
-                          <div className="grid gap-0.5 pb-2.5 pl-4">
-                            {item.items.map((sub) => (
-                              <button
+                          <div className="bg-ink-4/95 backdrop-blur-xl border border-cream/10 p-2 shadow-[0_30px_60px_rgba(0,0,0,0.5)]">
+                            {item.items.map((sub, i) => (
+                              <Link
                                 key={sub.href}
-                                onClick={() => go(sub.href)}
-                                className="text-left py-2.75 text-cream/65 text-[13px] tracking-[0.14em] uppercase cursor-pointer transition-colors hover:text-gold-light"
+                                href={sub.href}
+                                role="menuitem"
+                                className={`flex items-center justify-between px-3.5 py-3 text-[13.5px] transition-colors duration-150 group/item ${
+                                  isActive(sub.href) ? "bg-cream/6 text-white" : "text-cream/70 hover:bg-cream/5 hover:text-white"
+                                }`}
                               >
-                                {sub.label}
-                              </button>
+                                <span>{sub.label}</span>
+                                <span className="font-mono text-[10px] text-gold/60 group-hover/item:text-gold">
+                                  0{i + 1}
+                                </span>
+                              </Link>
                             ))}
                           </div>
                         </motion.div>
@@ -209,34 +128,112 @@ export default function Header() {
                     </AnimatePresence>
                   </div>
                 ) : (
-                  <button
+                  <Link
                     key={item.href}
-                    onClick={() => go(item.href!)}
-                    className="text-left py-3.25 border-b border-cream/7 text-cream/85 text-sm tracking-[0.16em] uppercase cursor-pointer transition-colors hover:text-gold-light"
+                    href={item.href!}
+                    className={`relative flex items-center h-11 px-3.5 text-[13.5px] transition-colors duration-250 ${
+                      isActive(item.href!) ? "text-white" : "text-cream/65 hover:text-white"
+                    }`}
                   >
                     {item.label}
-                  </button>
+                    {isActive(item.href!) && (
+                      <motion.span
+                        layoutId="nav-dot"
+                        className="absolute left-1/2 -translate-x-1/2 bottom-1 w-1 h-1 rounded-full bg-gold"
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      />
+                    )}
+                  </Link>
                 )
               )}
-              <div className="mt-4 grid gap-2.5">
-                <Link
-                  href="/contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="bg-gold text-ink py-3.5 px-5.5 text-[12.5px] font-medium tracking-[0.16em] uppercase text-center"
-                >
-                  Book a Consultation
+            </nav>
+
+            <Link
+              href="/contact"
+              className="group/cta relative overflow-hidden border border-gold/60 text-gold-light hover:text-ink py-3 px-5 text-[13px] font-medium whitespace-nowrap transition-colors duration-500"
+            >
+              <span className="absolute inset-0 bg-gold translate-y-full transition-transform duration-500 ease-out-expo group-hover/cta:translate-y-0" />
+              <span className="relative">Book a consultation</span>
+            </Link>
+          </div>
+
+          <button
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="min-[1180px]:hidden flex items-center gap-3 text-cream cursor-pointer h-11 pl-3"
+          >
+            <span className="font-mono text-[11px] tracking-[0.2em] uppercase">{menuOpen ? "Close" : "Menu"}</span>
+            <span className="relative w-6 h-3 block">
+              <motion.span
+                animate={menuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                className="absolute left-0 right-0 top-0 h-px bg-gold block"
+              />
+              <motion.span
+                animate={menuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                className="absolute left-0 right-0 bottom-0 h-px bg-gold block"
+              />
+            </span>
+          </button>
+        </div>
+      </motion.header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[55] bg-ink-6 min-[1180px]:hidden overflow-y-auto"
+          >
+            <div className="absolute inset-0 bg-grid opacity-60 pointer-events-none" />
+            <div className="relative px-[clamp(16px,4vw,40px)] pt-[104px] pb-10 min-h-full flex flex-col">
+              <nav className="grid">
+                {nav.filter((n) => n.href !== "/contact").map((item, i) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 + i * 0.045, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="border-b border-cream/8"
+                  >
+                    <Link
+                      href={item.href}
+                      className={`flex items-baseline gap-4 py-3.5 font-display text-[clamp(28px,7vw,40px)] font-medium tracking-[-0.03em] ${
+                        isActive(item.href) ? "text-gold" : "text-white"
+                      }`}
+                    >
+                      <span className="font-mono text-[11px] text-gold/60 tracking-normal w-6">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="mt-auto pt-10 grid gap-3"
+              >
+                <Link href="/contact" className="bg-gold text-ink py-4 px-6 text-center text-sm font-medium">
+                  Book a consultation
                 </Link>
-                <a
-                  href="tel:+19145577765"
-                  className="border border-gold text-gold py-3.5 px-5.5 text-[12.5px] tracking-[0.16em] text-center"
-                >
-                  +1 (914) 557 7765
-                </a>
-              </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <a href={callLines[0].href} className="border border-cream/15 text-cream py-3.5 text-center text-[13px]">
+                    Call USA
+                  </a>
+                  <a href={firm.whatsapp} target="_blank" rel="noopener" className="border border-cream/15 text-cream py-3.5 text-center text-[13px]">
+                    WhatsApp
+                  </a>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

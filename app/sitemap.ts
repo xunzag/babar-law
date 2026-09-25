@@ -13,6 +13,7 @@ const priority: Record<string, number> = {
   "/practice-areas": 0.8,
   "/cases": 0.7,
   "/about": 0.7,
+  "/associates": 0.7,
   "/international": 0.6,
   "/experience": 0.5,
   "/gallery": 0.5,

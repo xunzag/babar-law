@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Barlow } from "next/font/google";
+import { Inter_Tight, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgress from "@/components/ScrollProgress";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const barlow = Barlow({
-  variable: "--font-barlow",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500"],
+  display: "swap",
 });
 
 const productionUrl =
@@ -93,7 +92,7 @@ export default function RootLayout({
   children,
 }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${barlow.variable}`}>
+    <html lang="en" className={`${interTight.variable} ${geistMono.variable}`}>
       <body className="bg-ink min-h-screen flex flex-col">
         <script
           type="application/ld+json"

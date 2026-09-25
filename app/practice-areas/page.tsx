@@ -1,6 +1,7 @@
 import Reveal from "@/components/Reveal";
-import PageHero from "@/components/PageHero";
+import PracticeHero from "@/components/heroes/PracticeHero";
 import PracticeIcon from "@/components/PracticeIcon";
+import ArrowLink from "@/components/ArrowLink";
 import { areasFull } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -14,42 +15,50 @@ export const metadata: Metadata = {
 export default function PracticeAreasPage() {
   return (
     <div>
-      <PageHero
-        eyebrow="Practice areas"
-        title="What the firm handles"
-        description="Instructions are accepted from private individuals, families, investors, companies and institutions."
-      />
-      <section className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] pt-[clamp(48px,8vw,80px)] pb-25">
-        <div className="grid gap-px bg-gold/16 border border-gold/16">
-          {areasFull.map((a, i) => (
-            <Reveal key={a.num} delay={Math.min(i * 0.05, 0.3)}>
-              <div className="bg-ink-4 py-12.5 px-10.5 grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-9 items-start transition-colors duration-350 hover:bg-ink-5">
-                <div>
-                  <div className="w-12.5 h-12.5 border border-gold/35 flex items-center justify-center mb-6">
-                    <PracticeIcon num={a.num} className="w-6 h-6 text-gold" />
-                  </div>
-                  <h3 className="font-serif font-semibold text-[clamp(23px,3.4vw,30px)] leading-tight text-white">
-                    {a.title}
-                  </h3>
+      <PracticeHero />
+      <section className="bg-paper text-ink">
+        <div className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(64px,9vw,120px)]">
+          {areasFull.map((a) => (
+            <Reveal key={a.num}>
+              <article
+                id={`area-${a.num}`}
+                className="group scroll-mt-24 grid lg:grid-cols-[minmax(0,0.2fr)_minmax(0,0.9fr)_minmax(0,1fr)] gap-x-10 gap-y-6 py-[clamp(40px,6vw,72px)] border-t border-ink/15 last:border-b"
+              >
+                <div className="flex lg:flex-col items-center lg:items-start gap-5">
+                  <span className="font-display font-medium text-[clamp(44px,5vw,72px)] leading-[0.8] tracking-[-0.05em] text-transparent [-webkit-text-stroke:1.2px_#8c6d3c] group-hover:text-gold-deep transition-colors duration-500">
+                    {a.num}
+                  </span>
+                  <span className="w-12 h-12 border border-ink/15 flex items-center justify-center transition-all duration-500 group-hover:bg-ink group-hover:border-ink">
+                    <PracticeIcon num={a.num} className="w-5.5 h-5.5 text-gold-deep group-hover:text-gold" />
+                  </span>
                 </div>
+                <h2 className="m-0 font-display font-medium text-[clamp(30px,3.8vw,52px)] leading-[1.02]">
+                  {a.title}
+                </h2>
                 <div>
-                  <p className="m-0 mb-5 text-cream/70 text-[16.5px] leading-[1.8] font-light">
-                    {a.body}
-                  </p>
-                  <div className="flex flex-wrap gap-2.25">
+                  <p className="m-0 mb-7 text-ink/70 text-[17px] leading-[1.8]">{a.body}</p>
+                  <div className="flex flex-wrap gap-2">
                     {a.tags.map((t) => (
                       <span
                         key={t}
-                        className="border border-gold/30 text-gold-light/90 text-xs tracking-wide py-1.75 px-3.5 uppercase"
+                        className="font-mono text-[10.5px] tracking-[0.12em] uppercase border border-ink/15 text-ink/70 py-1.5 px-3 rounded-full"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
-              </div>
+              </article>
             </Reveal>
           ))}
+          <Reveal className="mt-16 flex flex-wrap items-center justify-between gap-6">
+            <p className="m-0 font-display font-medium text-[clamp(22px,2.6vw,32px)] tracking-[-0.03em] max-w-[640px]">
+              Not sure which practice your matter falls under?
+            </p>
+            <ArrowLink href="/contact" variant="dark">
+              Describe it to us
+            </ArrowLink>
+          </Reveal>
         </div>
       </section>
     </div>

@@ -10,7 +10,7 @@ export default function LogoMarquee({ items }: { items: Item[] }) {
       <div className="flex w-max items-center gap-10 animate-[marquee_70s_linear_infinite] group-hover:[animation-play-state:paused]">
         {track.map((item, i) => {
           const badge = (
-            <div className="h-16 w-40 bg-[#f7f4ec] flex items-center justify-center shrink-0 px-5">
+            <div className="h-16 w-40 bg-[#f4f1ea] flex items-center justify-center shrink-0 px-5">
               <div className="relative h-10 w-full">
                 <Image
                   src={item.logo}

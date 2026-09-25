@@ -17,7 +17,7 @@ function CardBody({ partner }: { partner: Partner }) {
     <>
       {partner.logo && (
         <div className="h-16 w-full flex items-center">
-          <div className="bg-[#f7f4ec] h-16 px-5 flex items-center justify-center">
+          <div className="bg-[#f4f1ea] h-16 px-5 flex items-center justify-center">
             <div className="relative h-10 w-36">
               <Image
                 src={partner.logo}
@@ -34,7 +34,7 @@ function CardBody({ partner }: { partner: Partner }) {
         <div className="text-cream/40 text-[11px] tracking-[0.24em] uppercase mb-2.5">
           {partner.country}
         </div>
-        <h3 className="font-serif font-semibold text-[22px] leading-tight text-white mb-1.5">
+        <h3 className="font-display font-semibold text-[22px] leading-tight text-white mb-1.5">
           {partner.name}
         </h3>
         <div className="text-gold text-[13px] mb-3">{partner.role}</div>

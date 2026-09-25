@@ -164,7 +164,7 @@ export default function CasesExplorer() {
           <tbody>
             {list.slice(0, shown).map((c, i) => (
               <tr key={c.id + i} className="border-b border-cream/8 hover:bg-ink-5 transition-colors align-top">
-                <td className="px-5 py-4 font-serif text-cream text-[15px] tracking-wide whitespace-nowrap">
+                <td className="px-5 py-4 font-display text-cream text-[15px] tracking-wide whitespace-nowrap">
                   {c.short} {c.bench}-{c.number}/{c.year}
                   <div className="font-sans text-cream/40 text-[11.5px] mt-1 tracking-normal">{c.seat} · {c.typeLabel}</div>
                 </td>
