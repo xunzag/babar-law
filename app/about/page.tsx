@@ -1,8 +1,11 @@
-import Image from "next/image";
 import Reveal from "@/components/Reveal";
-import PageHero from "@/components/PageHero";
+import AboutHero from "@/components/heroes/AboutHero";
+import SectionHead from "@/components/SectionHead";
 import ImageGrid from "@/components/ImageGrid";
 import CredentialGrid from "@/components/CredentialGrid";
+import ParallaxImage from "@/components/motion/ParallaxImage";
+import ScrollText from "@/components/motion/ScrollText";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { academic, gallery, certificates, education, memberships, credentialGroups } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -13,163 +16,126 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
+const wrap = "max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)]";
+
 export default function AboutPage() {
   return (
     <div>
-      <PageHero
-        eyebrow="About"
-        title="Ghulam Shabbir Babar"
-        description="Attorney at Law · LLM (Europe) · Immigration lawyer, academic supervisor, Member Expert (Law)"
-      />
+      <AboutHero />
 
-      <section className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] py-[clamp(52px,9vw,86px)]">
-        <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[clamp(34px,5.6vw,70px)] items-start">
-          <div className="relative">
-            <div className="absolute inset-[18px_-18px_-18px_18px] border border-gold/45" />
-            <div className="relative w-full aspect-[4/5]">
-              <Image
+      {/* Biography */}
+      <section className="bg-paper text-ink">
+        <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
+          <ScrollText
+            text="Babar Ghulam Shabbir is Partner of Babar Law Associates: professional lawyer, academician and international consultant in immigration, corporate and commercial matters, engaged in litigation since 2004."
+            highlight={["Partner", "2004."]}
+            className="font-display font-medium text-[clamp(26px,3.8vw,54px)] leading-[1.1] tracking-[-0.035em] max-w-[1180px] m-0 mb-[clamp(56px,8vw,110px)]"
+          />
+          <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-[clamp(40px,6vw,96px)] items-start">
+            <div className="lg:sticky lg:top-28">
+              <ParallaxImage
                 src="/assets/home-and-about-page.png"
                 alt="Ghulam Shabbir Babar at his desk, Babar Law Associates, Karachi"
-                fill
-                className="object-cover"
+                className="aspect-[4/5] w-full"
               />
             </div>
-          </div>
-          <div>
-            <p className="text-cream text-[18.5px] leading-[1.85] font-light mb-5.5">
-              Babar Ghulam Shabbir is sole Partner of Babar Law Associates,
-              professional lawyer, academician, International consultant
-              (immigration, corporate and commercial), engaged in litigation
-              practices (criminal, civil, Constitutional petitions, service
-              matters, mediation and ADR) since 2004.
-            </p>
-            <p className="text-cream/68 text-base leading-[1.85] font-light mb-5.5">
-              Academically, he did his Masters in Economics from University
-              of Sindh, Jamshoro, Pakistan (Gold Medalist) 1996–2000,
-              graduated Law from Hamdard School of Law, Hamdard University,
-              Karachi, Pakistan (2003). Won Erasmus Mundus scholarship to
-              undertake his degree of LLM in Law and Economics at the
-              University of Bologna, Italy &amp; University of Gent, Belgium.
-            </p>
-            <p className="text-cream/68 text-base leading-[1.85] font-light mb-8.5">
-              Babar Law Associates got cooperation with Karma Developers
-              (Cyprus) and became Associated Partner of the Erasmus+
-              programme called European Masters in Law and Economics (EMLE).
-              Recently, Babar has joined as Foreign Attorney in the office of
-              Manuel B. Quintal at New York Manhattan USA and also Canadian
-              Society of Law as Barrister and Solicitor. He has also joined
-              the UBL legal panel.
-            </p>
-            <div className="border-t border-gold/25 pt-8">
-              <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-5.5">
-                Academic appointments
-              </div>
-              <div>
-                {academic.map((t) => (
-                  <div
+            <Reveal>
+              <p className="text-ink/80 text-[17px] leading-[1.85] mb-6">
+                His litigation practice covers criminal, civil and constitutional petitions, service matters,
+                mediation and ADR. Academically, he took his Masters in Economics from the University of Sindh,
+                Jamshoro (Gold Medalist, 1996–2000), graduated in Law from Hamdard School of Law, Hamdard University,
+                Karachi (2003), and won an Erasmus Mundus scholarship for the LLM in Law and Economics at the
+                University of Bologna, Italy and Ghent University, Belgium.
+              </p>
+              <p className="text-ink/65 text-[16.5px] leading-[1.85] mb-12">
+                Babar Law Associates entered into cooperation with Karma Developers (Cyprus) and became Associated
+                Partner of the Erasmus+ European Masters in Law and Economics (EMLE). He has joined the office of
+                Manuel B. Quintal in Manhattan, New York as Foreign Attorney, the Canadian Society of Law as
+                Barrister and Solicitor, and the UBL legal panel.
+              </p>
+              <div className="eyebrow text-gold-deep! mb-5">Academic appointments</div>
+              <Stagger className="border-t border-ink/12">
+                {academic.map((t, i) => (
+                  <StaggerItem
                     key={t}
-                    className="grid grid-cols-[24px_minmax(0,1fr)] gap-3.5 py-3.25 border-b border-cream/8"
+                    className="grid grid-cols-[40px_minmax(0,1fr)] gap-3 py-4.5 border-b border-ink/12"
                   >
-                    <span className="text-gold text-[15px]">•</span>
-                    <span className="text-cream/82 text-base leading-relaxed font-light">
-                      {t}
-                    </span>
-                  </div>
+                    <span className="font-mono text-[11px] text-gold-deep pt-1">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="text-ink/85 text-[16px] leading-relaxed">{t}</span>
+                  </StaggerItem>
                 ))}
-              </div>
-            </div>
+              </Stagger>
+            </Reveal>
           </div>
-        </Reveal>
-      </section>
-
-      <section className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] pt-2.5 pb-22.5">
-        <Reveal>
-          <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-7.5">
-            In practice
-          </div>
-          <ImageGrid items={gallery} variant="gallery" />
-        </Reveal>
-      </section>
-
-      <section className="bg-ink-3 border-t border-gold/18">
-        <div className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] py-[clamp(52px,9vw,88px)]">
-          <Reveal>
-            <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-4">
-              Certificates
-            </div>
-            <h2 className="font-serif font-medium text-[clamp(28px,4.8vw,44px)] mb-11 text-white">
-              Speaking &amp; appreciation
-            </h2>
-            <ImageGrid items={certificates} variant="certificates" />
-          </Reveal>
         </div>
       </section>
 
-      <section className="bg-ink-2 border-t border-gold/18">
-        <div className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] py-[clamp(52px,9vw,88px)]">
-          <Reveal>
-            <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-4">Credentials</div>
-            <h2 className="font-serif font-medium text-[clamp(28px,4.8vw,44px)] mb-12 text-white">Licence, degrees and letters of cooperation</h2>
-            {credentialGroups.map((g) => (
-              <div key={g.heading} className="mb-14 last:mb-0">
-                <div className="text-cream/45 text-[11px] tracking-[0.28em] uppercase mb-6">{g.heading}</div>
-                <CredentialGrid items={g.items} />
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-ink-3 border-t border-gold/18">
-        <div className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] py-[clamp(54px,9vw,92px)]">
-          <Reveal>
-            <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-4">
-              Education
-            </div>
-            <h2 className="font-serif font-medium text-[clamp(28px,5vw,46px)] mb-12 text-white">
-              Qualifications
-            </h2>
-            <div className="grid gap-px bg-gold/16 border border-gold/16">
-              {education.map((e) => (
-                <div
-                  key={e.school}
-                  className="bg-ink-2 py-9.5 px-9 grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-8.5 items-start"
-                >
-                  <div>
-                    <div className="font-serif text-[23px] leading-snug mb-2 text-white">
-                      {e.school}
-                    </div>
-                    <div className="text-cream/50 text-sm">{e.degree}</div>
-                    <div className="text-gold text-[13.5px] tracking-wide mt-2.5">
-                      {e.years}
-                    </div>
-                  </div>
-                  <div className="text-cream/70 text-base leading-[1.75] font-light">
-                    {e.note}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="max-w-[1320px] mx-auto px-[clamp(18px,4.2vw,32px)] py-[clamp(54px,9vw,90px)]">
-        <Reveal>
-          <div className="text-gold text-[11.5px] tracking-[0.36em] uppercase mb-8.5">
-            Memberships &amp; distinctions
-          </div>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,270px),1fr))] gap-7.5">
-            {memberships.map((m) => (
-              <div
-                key={m}
-                className="border-t border-gold/45 pt-5 text-cream/80 text-base leading-relaxed font-light"
+      {/* Education */}
+      <section className="bg-ink">
+        <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
+          <SectionHead index="01" label="Education" title="Qualifications." />
+          <Stagger className="border-t border-cream/10">
+            {education.map((e) => (
+              <StaggerItem
+                key={e.school}
+                className="group grid md:grid-cols-[140px_minmax(0,1fr)_minmax(0,1.1fr)] gap-x-10 gap-y-3 py-9 border-b border-cream/10"
               >
-                {m}
-              </div>
+                <div className="font-mono text-[12px] text-gold pt-1.5">{e.years}</div>
+                <div>
+                  <h3 className="m-0 font-display font-medium text-[clamp(22px,2.4vw,30px)] leading-[1.1] text-white mb-2 group-hover:text-gold-light transition-colors">
+                    {e.school}
+                  </h3>
+                  <div className="text-cream/50 text-[14.5px]">{e.degree}</div>
+                </div>
+                <p className="m-0 text-cream/65 text-[15.5px] leading-[1.75]">{e.note}</p>
+              </StaggerItem>
             ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Memberships */}
+      <section className="bg-ink-2 border-y border-cream/8">
+        <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
+          <SectionHead index="02" label="Memberships & distinctions" title="Institutions and associations." />
+          <Stagger className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-cream/10 border border-cream/10">
+            {memberships.map((m, i) => (
+              <StaggerItem key={m} className="bg-ink-2 p-7 min-h-[180px] flex flex-col justify-between gap-8 hover:bg-ink-4 transition-colors">
+                <span className="font-mono text-[11px] text-gold">{String(i + 1).padStart(2, "0")}</span>
+                <p className="m-0 text-cream/80 text-[15.5px] leading-relaxed">{m}</p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Credentials */}
+      <section className="bg-ink">
+        <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
+          <SectionHead index="03" label="Credentials" title="Licence, degrees and letters of cooperation." />
+          {credentialGroups.map((g) => (
+            <Reveal key={g.heading} className="mb-16 last:mb-0">
+              <div className="font-mono text-cream/40 text-[10.5px] tracking-[0.2em] uppercase mb-6">{g.heading}</div>
+              <CredentialGrid items={g.items} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* In practice + certificates */}
+      <section className="bg-ink-3 border-t border-cream/8">
+        <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
+          <SectionHead index="04" label="In practice" title="At the podium and abroad." />
+          <Reveal>
+            <ImageGrid items={gallery} variant="gallery" />
+          </Reveal>
+          <div className="mt-[clamp(64px,9vw,120px)]">
+            <SectionHead index="05" label="Certificates" title="Speaking & appreciation." />
+            <Reveal>
+              <ImageGrid items={certificates} variant="certificates" />
+            </Reveal>
           </div>
-        </Reveal>
+        </div>
       </section>
     </div>
   );

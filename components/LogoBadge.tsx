@@ -18,7 +18,7 @@ export default function LogoBadge({
 
   const content = (
     <div
-      className={`${box} bg-[#f7f4ec] flex items-center justify-center shrink-0 transition-transform duration-300`}
+      className={`${box} bg-[#f4f1ea] flex items-center justify-center shrink-0 transition-transform duration-300`}
     >
       <div className="relative w-full h-full">
         <Image src={src} alt={alt} fill className="object-contain" sizes="220px" />

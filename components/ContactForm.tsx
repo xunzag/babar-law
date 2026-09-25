@@ -84,7 +84,7 @@ export default function ContactForm() {
         animate={{ opacity: 1, y: 0 }}
         className="border border-gold/40 bg-ink-4 p-9"
       >
-        <div className="font-serif text-2xl text-white mb-2.5">
+        <div className="font-display text-2xl text-white mb-2.5">
           Thank you. Your message has been sent.
         </div>
         <p className="m-0 text-cream/65 text-[15.5px] leading-relaxed font-light">

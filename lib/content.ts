@@ -10,6 +10,7 @@ export const firm = {
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/associates", label: "Associates" },
   { href: "/practice-areas", label: "Practice Areas" },
   { href: "/cases", label: "Cases" },
   { href: "/experience", label: "Experience" },
@@ -27,6 +28,7 @@ export const headerNav: {
   items?: { href: string; label: string }[];
 }[] = [
   { href: "/practice-areas", label: "Practice Areas" },
+  { href: "/associates", label: "Associates" },
   { href: "/cases", label: "Cases" },
   { href: "/international", label: "International" },
   {
@@ -39,6 +41,51 @@ export const headerNav: {
     ],
   },
 ];
+
+// The chambers: partners, advocates and court staff of Babar Law Associates.
+export type Member = {
+  name: string;
+  designation: string;
+  role?: string;
+  group: (typeof teamGroups)[number]["id"];
+};
+
+export const teamGroups = [
+  { id: "partners", label: "Partners", blurb: "Leading the firm's practice in Karachi and its international work." },
+  { id: "high-court", label: "Advocates of the High Court", blurb: "Enrolled to appear before the High Court of Sindh and its benches." },
+  { id: "advocates", label: "Advocates", blurb: "Conducting matters before the district and subordinate courts." },
+  { id: "staff", label: "Court & chambers", blurb: "Keeping filings, cause lists and hearings running on time." },
+] as const;
+
+export const principal = {
+  name: "Ghulam Shabbir Babar",
+  designation: "Attorney at Law · LLM (Europe)",
+  role: "Principal & Partner",
+  image: "/assets/gallery/photo-10.jpg",
+};
+
+export const associates: Member[] = [
+  { name: "Shahmeer Ali Babar", designation: "Advocate High Court", role: "Associate Partner", group: "partners" },
+  { name: "Ghulam Ali Sabayo", designation: "Advocate High Court", role: "Associate", group: "high-court" },
+  { name: "Kamran Khan", designation: "Advocate High Court", group: "high-court" },
+  { name: "Ms. Shaista Khan", designation: "Advocate High Court", group: "high-court" },
+  { name: "Abdul Hameed Leghari", designation: "Advocate High Court", group: "high-court" },
+  { name: "Nadeem Khoso", designation: "Advocate", group: "advocates" },
+  { name: "Saghar Ali Babar", designation: "Advocate", group: "advocates" },
+  { name: "Ms. Ambreen Naz", designation: "Advocate", group: "advocates" },
+  { name: "Ms. Ramsha", designation: "Advocate", group: "advocates" },
+  { name: "Shahzad Ali", designation: "Court Clerk", group: "staff" },
+  { name: "Shahmeer Jamali", designation: "Court Clerk", group: "staff" },
+];
+
+export const initials = (name: string) =>
+  name
+    .replace(/^Ms\.\s*/, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((w) => w[0])
+    .filter((_, i, a) => i === 0 || i === a.length - 1)
+    .join("");
 
 export const callLines = [
   { label: "United States", number: "+1 (914) 557 7765", href: "tel:+19145577765" },
