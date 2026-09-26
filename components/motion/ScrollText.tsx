@@ -14,7 +14,7 @@ function Word({
   range: [number, number];
   highlight: boolean;
 }) {
-  const opacity = useTransform(progress, range, [0.14, 1]);
+  const opacity = useTransform(progress, range, [0.2, 1]);
   return (
     <motion.span style={{ opacity }} className={highlight ? "text-gold-deep" : undefined}>
       {children}{" "}
@@ -37,7 +37,8 @@ export default function ScrollText({
   const words = text.split(" ");
 
   return (
-    <p ref={ref} className={className} aria-label={text}>
+    <p ref={ref} className={className}>
+      <span className="sr-only">{text}</span>
       <span aria-hidden>
         {words.map((w, i) => (
           <Word

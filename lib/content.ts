@@ -47,6 +47,7 @@ export type Member = {
   name: string;
   designation: string;
   role?: string;
+  photo?: string;
   group: (typeof teamGroups)[number]["id"];
 };
 
@@ -61,15 +62,15 @@ export const principal = {
   name: "Ghulam Shabbir Babar",
   designation: "Attorney at Law · LLM (Europe)",
   role: "Principal & Partner",
-  image: "/assets/gallery/photo-10.jpg",
+  image: "/assets/gallery/photo-18.jpg",
 };
 
 export const associates: Member[] = [
-  { name: "Shahmeer Ali Babar", designation: "Advocate High Court", role: "Associate Partner", group: "partners" },
-  { name: "Ghulam Ali Sabayo", designation: "Advocate High Court", role: "Associate", group: "high-court" },
-  { name: "Kamran Khan", designation: "Advocate High Court", group: "high-court" },
+  { name: "Shahmeer Ali Babar", designation: "Advocate High Court", role: "Associate Partner", group: "partners", photo: "/assets/team/shahmeer-ali-babar.jpg" },
+  { name: "Ghulam Ali Sabayo", designation: "Advocate High Court", role: "Associate", group: "high-court", photo: "/assets/team/ghulam-ali-sabayo.jpg" },
+  { name: "Kamran Khan", designation: "Advocate High Court", group: "high-court", photo: "/assets/team/kamran-khan.jpg" },
   { name: "Ms. Shaista Khan", designation: "Advocate High Court", group: "high-court" },
-  { name: "Abdul Hameed Leghari", designation: "Advocate High Court", group: "high-court" },
+  { name: "Abdul Hameed Laghari", designation: "Advocate High Court", group: "high-court", photo: "/assets/team/abdul-hameed-laghari.jpg" },
   { name: "Nadeem Khoso", designation: "Advocate", group: "advocates" },
   { name: "Saghar Ali Babar", designation: "Advocate", group: "advocates" },
   { name: "Ms. Ambreen Naz", designation: "Advocate", group: "advocates" },
@@ -124,7 +125,7 @@ export const recognition = [
   { src: "/assets/studyuk.png", alt: "Ghulam Shabbir Babar receiving a Study UK award at the British Council", title: "Study UK · British Council", meta: "Recognition at the GREAT Britain & Northern Ireland event" },
   { src: "/assets/cert-dla-2024.png", alt: "Certificate of appreciation, Dynamic Law Association, 2024", title: "Dynamic Law Association", meta: "Speaker, international scholarships webinar · 5 August 2024" },
   { src: "/assets/podium.png", alt: "Ghulam Shabbir Babar speaking at a university podium", title: "Guest lecture", meta: "University address on law and immigration" },
-  { src: "/assets/zamin-talpur-meeting.jpg", alt: "Ghulam Shabbir Babar with Mr. Zamin Talpur in Canada", title: "Meeting with Zamin Talpur", meta: "Cooperation with Zamin Talpur, Barrister & Solicitor, Canada" },
+  { src: "/assets/emle.png", alt: "Ghulam Shabbir Babar with members of the Erasmus Mundus Students and Alumni Association", title: "Erasmus Mundus Association", meta: "Students and Alumni Association meeting, Brussels" },
 ];
 
 export const gallery = [
@@ -132,9 +133,6 @@ export const gallery = [
   { src: "/assets/studyuk.png", alt: "Study UK award presentation, British Council", title: "Study UK, British Council" },
   { src: "/assets/emle.png", alt: "Erasmus Mundus Students and Alumni Association meeting", title: "Erasmus Mundus Alumni Association, Brussels" },
   { src: "/assets/seminar.png", alt: "Conference proceedings, Karachi", title: "Conference proceedings, Karachi" },
-  { src: "/assets/card.png", alt: "Ghulam Shabbir Babar", title: "Babar Law Associates" },
-  { src: "/assets/dc.png", alt: "Ghulam Shabbir Babar in Washington, DC", title: "Washington, DC" },
-  { src: "/assets/zamin-talpur-meeting.jpg", alt: "Ghulam Shabbir Babar with Mr. Zamin Talpur in Canada", title: "Meeting with Zamin Talpur, Canada" },
 ];
 
 export const certificates = [
@@ -319,31 +317,72 @@ export const matterTypes = [
   },
 ];
 
-export const galleryCategories = ["All", "Offices & practice", "Events & conventions", "International", "Portraits"] as const;
+export type GalleryPhoto = { src: string; w: number; h: number; caption: string; alt: string };
 
 const g = (n: number) => `/assets/gallery/photo-${String(n).padStart(2, "0")}.jpg`;
+const P = "Ghulam Shabbir Babar";
 
-export const galleryPhotos: { src: string; alt: string; title: string; category: Exclude<(typeof galleryCategories)[number], "All"> }[] = [
-  { src: g(10), alt: "Ghulam Shabbir Babar at his desk beneath the Babar Law Associates emblem", title: "At the desk, Babar Law Associates, Karachi", category: "Offices & practice" },
-  { src: g(14), alt: "Ghulam Shabbir Babar with two colleagues in his Karachi office", title: "With the team, Karachi office", category: "Offices & practice" },
-  { src: g(8), alt: "Ghulam Shabbir Babar in consultation in his office", title: "Client consultation, Karachi office", category: "Offices & practice" },
-  { src: g(13), alt: "Ghulam Shabbir Babar at the Sindh High Court Bar Association All Pakistan Lawyers Convention", title: "All Pakistan Lawyers Convention, Sindh High Court Bar Association", category: "Events & conventions" },
-  { src: g(11), alt: "Ghulam Shabbir Babar with fellow advocates", title: "With fellow advocates", category: "Events & conventions" },
-  { src: g(12), alt: "Ghulam Shabbir Babar being welcomed by a colleague in a law library", title: "Bar room welcome", category: "Events & conventions" },
-  { src: g(0), alt: "Meeting around a conference table in a New York law office", title: "Case meeting, law office conference room", category: "International" },
-  { src: g(1), alt: "Ghulam Shabbir Babar at an evening reception", title: "Diplomatic reception", category: "International" },
-  { src: g(2), alt: "Ghulam Shabbir Babar at an evening reception", title: "Diplomatic reception", category: "International" },
-  { src: g(3), alt: "Ghulam Shabbir Babar beside the European Union and Belgian flags", title: "European Union and Belgium", category: "International" },
-  { src: g(5), alt: "Ghulam Shabbir Babar outside Citigroup Place, Front Street West, Toronto", title: "Toronto, Canada", category: "International" },
-  { src: g(6), alt: "Ghulam Shabbir Babar in front of a historic hotel flying Canadian flags", title: "Canada", category: "International" },
-  { src: g(4), alt: "Ghulam Shabbir Babar in a modern office atrium", title: "Business district visit", category: "International" },
-  { src: g(15), alt: "Ghulam Shabbir Babar with colleagues in Times Square, New York", title: "Times Square, New York", category: "International" },
-  { src: g(16), alt: "Ghulam Shabbir Babar with colleagues in midtown New York", title: "Midtown, New York", category: "International" },
-  { src: g(17), alt: "Ghulam Shabbir Babar with colleagues in Times Square, New York", title: "New York", category: "International" },
-  { src: g(7), alt: "Portrait of Ghulam Shabbir Babar", title: "Ghulam Shabbir Babar", category: "Portraits" },
-  { src: g(9), alt: "Portrait of Ghulam Shabbir Babar", title: "Ghulam Shabbir Babar", category: "Portraits" },
-  { src: g(18), alt: "Portrait of Ghulam Shabbir Babar", title: "Ghulam Shabbir Babar", category: "Portraits" },
+// The professional gallery, grouped into chapters of his working life.
+export const galleryChapters: { id: string; title: string; blurb: string; photos: GalleryPhoto[] }[] = [
+  {
+    id: "chambers",
+    title: "Chambers",
+    blurb: "Babar Law Associates, Suite 305, Al-Ayesha Chambers, Saddar, Karachi.",
+    photos: [
+      { src: g(10), w: 2400, h: 1800, caption: "At his desk, Babar Law Associates, Karachi", alt: `${P} at his desk beneath the Babar Law Associates emblem` },
+      { src: g(14), w: 1800, h: 2400, caption: "With colleagues at chambers, Karachi", alt: `${P} seated at his desk with two colleagues standing` },
+      { src: g(8), w: 1280, h: 963, caption: "Client consultation at chambers, Karachi", alt: `${P} in consultation with a client in his office` },
+    ],
+  },
+  {
+    id: "bar",
+    title: "At the Bar",
+    blurb: "Conventions, bar associations and the company of fellow advocates.",
+    photos: [
+      { src: g(13), w: 1600, h: 900, caption: "All Pakistan Lawyers Convention, Sindh High Court Bar Association", alt: `${P} at the All Pakistan Lawyers Convention, Sindh High Court Bar Association` },
+      { src: g(11), w: 1600, h: 720, caption: "With fellow advocates", alt: `${P} standing with four fellow advocates` },
+      { src: g(12), w: 1200, h: 1600, caption: "Honoured with a Sindhi ajrak, bar library", alt: `${P} being presented with an ajrak by a colleague in a law library` },
+    ],
+  },
+  {
+    id: "podium",
+    title: "Speaking & recognition",
+    blurb: "Lectures, conferences and awards, in Pakistan and abroad.",
+    photos: [
+      { src: "/assets/podium.png", w: 1600, h: 1069, caption: "Guest lecture, university address", alt: `${P} speaking at a university podium` },
+      { src: "/assets/studyuk.png", w: 1280, h: 853, caption: "Study UK award, British Council", alt: `${P} at the Study UK awards, British Council` },
+      { src: "/assets/seminar.png", w: 1080, h: 1620, caption: "Conference proceedings, Karachi", alt: `${P} seated in the audience at a conference` },
+      { src: "/assets/emle.png", w: 1080, h: 720, caption: "Erasmus Mundus Students and Alumni Association, Brussels", alt: `${P} with members of the Erasmus Mundus Students and Alumni Association` },
+    ],
+  },
+  {
+    id: "international",
+    title: "International",
+    blurb: "New York, Brussels, Toronto and Cyprus: the firm's work beyond Pakistan.",
+    photos: [
+      { src: g(0), w: 1080, h: 631, caption: "Case meeting, law office, New York", alt: `${P} at a meeting around a conference table in a New York law office` },
+      { src: "/assets/gallery/cyprus-01.jpg", w: 720, h: 960, caption: "Site visit, Karma Developers properties, Cyprus", alt: `${P} at a Karma Developers villa in Cyprus` },
+      { src: "/assets/gallery/cyprus-02.jpg", w: 960, h: 720, caption: "Karma Developers properties, Cyprus", alt: "A Karma Developers residential property in Cyprus" },
+      { src: "/assets/gallery/cyprus-04.jpg", w: 960, h: 720, caption: "On the coast, Cyprus", alt: `${P} on the Cyprus coast` },
+      { src: g(2), w: 1200, h: 1600, caption: "Diplomatic reception", alt: `${P} at an evening garden reception` },
+      { src: g(3), w: 1200, h: 1600, caption: "Beside the flags of the European Union and Belgium", alt: `${P} beside the European Union and Belgian flags` },
+      { src: "/assets/gallery/cyprus-03.jpg", w: 720, h: 960, caption: "Site visit, Karma Developers properties, Cyprus", alt: `${P} outside a Karma Developers property in Cyprus` },
+      { src: g(4), w: 1200, h: 1600, caption: "Business district visit", alt: `${P} in a modern office atrium` },
+      { src: g(5), w: 1200, h: 1600, caption: "Front Street West, Toronto", alt: `${P} outside Citigroup Place, Toronto` },
+    ],
+  },
+  {
+    id: "portraits",
+    title: "Portraits",
+    blurb: "Ghulam Shabbir Babar, Attorney at Law · LLM (Europe).",
+    photos: [
+      { src: g(7), w: 1581, h: 2048, caption: P, alt: `Portrait of ${P}` },
+      { src: g(18), w: 720, h: 1280, caption: P, alt: `Standing portrait of ${P}` },
+    ],
+  },
 ];
+
+export const galleryPhotos = galleryChapters.flatMap((c) => c.photos);
 
 export const credentialGroups = [
   {

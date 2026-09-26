@@ -7,22 +7,21 @@ import { callLines, firm } from "@/lib/content";
 
 export default function ContactHero() {
   return (
-    <HeroFrame crumb="Consultation" index="Replies within one business day">
-      <div className="grid lg:grid-cols-[minmax(0,1fr)_340px] gap-[clamp(40px,6vw,96px)] items-end">
+    <HeroFrame crumb="Consultation">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-[clamp(40px,6vw,96px)] items-end">
         <div>
           <SplitWords
-            text="Tell us about your matter."
-            accent={["matter."]}
+            text="Arrange a consultation."
             className="font-display font-medium text-white text-[clamp(48px,8vw,124px)] leading-[0.92] tracking-[-0.05em] mb-9"
           />
-          <FadeIn delay={0.6}>
+          <FadeIn delay={0.3}>
             <p className="text-cream/65 text-[clamp(16px,1.5vw,19px)] leading-[1.65] max-w-[560px] m-0">
               Send a detailed enquiry below and Mr. Babar will review it personally, or reach him directly on
               WhatsApp, by email or by telephone.
             </p>
           </FadeIn>
         </div>
-        <FadeIn delay={0.8} className="border border-cream/12 bg-ink-3/70 backdrop-blur p-6 grid gap-6">
+        <FadeIn delay={0.4} className="border border-cream/12 bg-ink-3/70 backdrop-blur p-6 grid gap-6">
           <div>
             <div className="eyebrow mb-4">Local time</div>
             <LocalClock

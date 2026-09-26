@@ -1,40 +1,46 @@
 "use client";
 
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import HeroFrame, { FadeIn } from "@/components/heroes/HeroFrame";
 import SplitWords from "@/components/motion/SplitWords";
 
-export default function FaqHero({ count }: { count: number }) {
+export default function FaqHero() {
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
-  const rotate = useTransform(scrollY, [0, 600], [8, -14]);
-  const y = useTransform(scrollY, [0, 600], [0, 120]);
+  const y = useTransform(scrollY, [0, 600], [0, 80]);
 
   return (
-    <HeroFrame crumb="FAQ" index={`${count} questions`}>
-      <div className="relative">
-        <motion.div
-          aria-hidden
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          style={reduce ? undefined : { rotate, y }}
-          className="absolute right-0 -top-16 sm:-top-28 font-display font-semibold text-[clamp(220px,34vw,480px)] leading-none text-transparent [-webkit-text-stroke:1.5px_rgb(195_160_102/0.4)] select-none pointer-events-none"
-        >
-          ?
-        </motion.div>
-        <div className="relative max-w-[860px]">
+    <HeroFrame crumb="FAQ">
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,0.6fr)] gap-10 items-center">
+        <div className="max-w-[760px]">
           <SplitWords
-            text="Questions, answered plainly."
-            accent={["plainly."]}
-            className="font-display font-medium text-white text-[clamp(46px,7.6vw,112px)] leading-[0.94] tracking-[-0.045em] mb-9"
+            text="Frequently asked questions."
+            className="font-display font-medium text-white text-[clamp(44px,7vw,104px)] leading-[0.95] tracking-[-0.045em] mb-8"
           />
-          <FadeIn delay={0.6}>
+          <FadeIn delay={0.25}>
             <p className="text-cream/65 text-[clamp(16px,1.5vw,19px)] leading-[1.65] max-w-[520px] m-0">
               Jurisdictions, remote consultations, investment residency and how an engagement begins.
             </p>
           </FadeIn>
         </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden md:block justify-self-end w-full max-w-[380px]"
+        >
+          <motion.div style={reduce ? undefined : { y }}>
+            <Image
+              src="/assets/hero/justice-scale.png"
+              alt="Scales of justice resting on law books"
+              width={500}
+              height={500}
+              priority
+              className="w-full h-auto opacity-90"
+            />
+          </motion.div>
+        </motion.div>
       </div>
     </HeroFrame>
   );

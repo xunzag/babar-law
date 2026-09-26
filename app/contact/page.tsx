@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import ContactHero from "@/components/heroes/ContactHero";
+import ConsentMap from "@/components/ConsentMap";
 import ContactForm from "@/components/ContactForm";
 import { WhatsAppIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import { callLines, offices, firm } from "@/lib/content";
@@ -47,7 +48,6 @@ export default function ContactPage() {
           </div>
 
           <div className="relative border border-gold/25 bg-ink-3 p-[clamp(22px,4vw,44px)]">
-            <div className="absolute top-0 left-0 right-0 h-[3px] bg-[linear-gradient(90deg,#8c6d3c,#e0c894,#8c6d3c)]" />
             <ContactForm />
           </div>
         </Reveal>
@@ -70,9 +70,8 @@ export default function ContactPage() {
               href={firm.whatsapp}
               target="_blank"
               rel="noopener"
-              className="group lg:col-span-3 relative overflow-hidden bg-[linear-gradient(135deg,#c3a066,#8c6d3c)] text-ink p-[clamp(28px,4vw,44px)] flex flex-col justify-between transition-transform duration-500 hover:-translate-y-1"
+              className="group lg:col-span-3 relative overflow-hidden bg-gold text-ink p-[clamp(28px,4vw,44px)] flex flex-col justify-between transition-transform duration-500 hover:-translate-y-1"
             >
-              <div className="absolute -right-10 -top-10 w-56 h-56 rounded-full bg-white/10 blur-2xl" />
               <div className="relative flex items-start justify-between gap-6 mb-9">
                 <div className="text-[11.5px] tracking-[0.28em] uppercase opacity-70">
                   Fastest reply
@@ -97,7 +96,7 @@ export default function ContactPage() {
               className="group lg:col-span-2 border border-gold/30 bg-ink-4 p-[clamp(28px,4vw,44px)] flex flex-col justify-between transition-colors duration-300 hover:border-gold hover:bg-ink-5"
             >
               <div className="flex items-start justify-between gap-6 mb-9">
-                <div className="text-[11.5px] tracking-[0.28em] uppercase text-cream/45">
+                <div className="text-[11.5px] tracking-[0.28em] uppercase text-cream/60">
                   By email
                 </div>
                 <MailIcon className="w-8 h-8 text-gold" />
@@ -128,7 +127,7 @@ export default function ContactPage() {
               >
                 <PhoneIcon className="w-5 h-5 text-gold shrink-0" />
                 <div className="min-w-0">
-                  <div className="text-cream/45 text-[10.5px] tracking-[0.22em] uppercase mb-1.5">
+                  <div className="text-cream/60 text-[10.5px] tracking-[0.22em] uppercase mb-1.5">
                     {c.label}
                   </div>
                   <div className="text-cream text-[15px] tracking-wide truncate group-hover:text-gold-light transition-colors">
@@ -160,16 +159,10 @@ export default function ContactPage() {
           ))}
         </Reveal>
         <Reveal delay={0.08} className="border border-gold/25 bg-ink-4 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
-          <iframe
+          <ConsentMap
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.171051832325!2d67.02159857592189!3d24.858006845354776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f1dd395c97b%3A0xad5b1d3218570d01!2sAl-Ayesha%20Chambers!5e0!3m2!1sen!2s!4v1789093079015!5m2!1sen!2s"
-            width="600"
-            height="360"
-            style={{ border: 0 }}
-            className="w-full block grayscale-[0.3] contrast-105"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="strict-origin-when-cross-origin"
             title="Al-Ayesha Chambers, Saddar, Karachi"
+            directions="https://www.google.com/maps/search/?api=1&query=Al-Ayesha+Chambers+Saddar+Karachi"
           />
           <div className="py-4.5 px-5 border-t border-gold/20 flex items-center justify-between gap-4 flex-wrap">
             <span className="text-cream/62 text-[14.5px] leading-relaxed font-light">

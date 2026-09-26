@@ -1,11 +1,11 @@
-import Reveal from "@/components/Reveal";
 import GalleryHero from "@/components/heroes/GalleryHero";
-import GalleryGrid from "@/components/GalleryGrid";
+import GalleryChapters from "@/components/GalleryChapters";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "Offices, conventions and international engagements of Ghulam Shabbir Babar and Babar Law Associates.",
+  description:
+    "Ghulam Shabbir Babar in chambers, at the Bar, at the podium and abroad: Karachi, New York, Brussels, Toronto and Cyprus.",
   alternates: { canonical: "/gallery" },
 };
 
@@ -13,11 +13,11 @@ export default function GalleryPage() {
   return (
     <div>
       <GalleryHero />
-      <section className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(48px,8vw,84px)]">
-        <Reveal>
-          <GalleryGrid />
-        </Reveal>
-      </section>
+      <div className="bg-paper text-ink">
+        <div className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)]">
+          <GalleryChapters />
+        </div>
+      </div>
     </div>
   );
 }

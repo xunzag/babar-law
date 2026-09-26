@@ -22,10 +22,10 @@ export default function PracticeAreasPage() {
             <Reveal key={a.num}>
               <article
                 id={`area-${a.num}`}
-                className="group scroll-mt-24 grid lg:grid-cols-[minmax(0,0.2fr)_minmax(0,0.9fr)_minmax(0,1fr)] gap-x-10 gap-y-6 py-[clamp(40px,6vw,72px)] border-t border-ink/15 last:border-b"
+                className="group scroll-mt-24 grid grid-cols-1 lg:grid-cols-[minmax(0,0.2fr)_minmax(0,0.9fr)_minmax(0,1fr)] gap-x-10 gap-y-6 py-[clamp(40px,6vw,72px)] border-t border-ink/15 last:border-b"
               >
                 <div className="flex lg:flex-col items-center lg:items-start gap-5">
-                  <span className="font-display font-medium text-[clamp(44px,5vw,72px)] leading-[0.8] tracking-[-0.05em] text-transparent [-webkit-text-stroke:1.2px_#8c6d3c] group-hover:text-gold-deep transition-colors duration-500">
+                  <span className="font-display font-medium text-[clamp(32px,3.4vw,48px)] leading-[0.8] tracking-[-0.04em] text-gold-deep">
                     {a.num}
                   </span>
                   <span className="w-12 h-12 border border-ink/15 flex items-center justify-center transition-all duration-500 group-hover:bg-ink group-hover:border-ink">
@@ -41,7 +41,7 @@ export default function PracticeAreasPage() {
                     {a.tags.map((t) => (
                       <span
                         key={t}
-                        className="font-mono text-[10.5px] tracking-[0.12em] uppercase border border-ink/15 text-ink/70 py-1.5 px-3 rounded-full"
+                        className="font-medium text-[10.5px] tracking-[0.12em] uppercase border border-ink/15 text-ink/70 py-1.5 px-3 rounded-full"
                       >
                         {t}
                       </span>

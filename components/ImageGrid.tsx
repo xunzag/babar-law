@@ -85,7 +85,7 @@ export default function ImageGrid({
                   <div className="text-white font-display text-xl leading-tight mb-1.5">
                     {item.title}
                   </div>
-                  <div className="text-cream/45 text-[13px] tracking-wide">
+                  <div className="text-cream/60 text-[13px] tracking-wide">
                     {item.meta}
                   </div>
                 </>

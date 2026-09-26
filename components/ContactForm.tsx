@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { matterTypes } from "@/lib/content";
 import Dropdown from "@/components/Dropdown";
+import Link from "next/link";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -155,6 +156,15 @@ export default function ContactForm() {
         className={inputClasses + " resize-none"}
       />
 
+      <p className="m-0 text-cream/60 text-[13px] leading-relaxed">
+        Sending an enquiry does not create an advocate–client relationship. Please do not include confidential
+        documents at this stage. See our{" "}
+        <Link href="/privacy" className="underline underline-offset-2">
+          privacy policy
+        </Link>
+        .
+      </p>
+
       {status === "error" && (
         <p className="m-0 text-[#e6867b] text-sm">{errorMessage}</p>
       )}
@@ -164,7 +174,7 @@ export default function ContactForm() {
         disabled={status === "submitting"}
         whileHover={{ scale: status === "submitting" ? 1 : 1.01 }}
         whileTap={{ scale: 0.98 }}
-        className="bg-gold text-ink py-4 px-9 text-[13px] tracking-[0.16em] uppercase transition-colors duration-300 hover:bg-gold-light disabled:opacity-60 disabled:cursor-not-allowed justify-self-start"
+        className="bg-gold text-ink py-4 px-9 text-[14px] font-medium transition-colors duration-300 hover:bg-gold-light disabled:opacity-60 disabled:cursor-not-allowed justify-self-start"
       >
         {status === "submitting" ? "Sending" : "Send enquiry"}
       </motion.button>

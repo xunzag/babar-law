@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { callLines, firm, headerNav, nav } from "@/lib/content";
+import { lockScroll } from "@/components/SmoothScroll";
 
 export default function Header() {
   const pathname = usePathname();
@@ -31,7 +32,7 @@ export default function Header() {
   }
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    lockScroll(menuOpen);
   }, [menuOpen]);
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
@@ -48,7 +49,7 @@ export default function Header() {
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] h-[76px] flex items-center justify-between gap-6">
-          <Link href="/" className="flex items-center gap-3.5 min-w-0 shrink group" aria-label="Babar Law Associates, home">
+          <Link href="/" className="flex items-center gap-3.5 min-w-0 shrink group">
             <Image
               src="/assets/babar-law-mark.png"
               alt=""
@@ -61,7 +62,7 @@ export default function Header() {
               <span className="font-display font-semibold text-white text-[15px] tracking-[0.16em] whitespace-nowrap">
                 BABAR LAW
               </span>
-              <span className="font-mono text-gold text-[9.5px] tracking-[0.34em] mt-1.5 whitespace-nowrap">
+              <span className="font-medium text-gold text-[9.5px] tracking-[0.34em] mt-1.5 whitespace-nowrap">
                 ASSOCIATES
               </span>
             </span>
@@ -107,7 +108,7 @@ export default function Header() {
                           className="absolute left-0 top-full pt-2 w-60"
                         >
                           <div className="bg-ink-4/95 backdrop-blur-xl border border-cream/10 p-2 shadow-[0_30px_60px_rgba(0,0,0,0.5)]">
-                            {item.items.map((sub, i) => (
+                            {item.items.map((sub) => (
                               <Link
                                 key={sub.href}
                                 href={sub.href}
@@ -117,9 +118,6 @@ export default function Header() {
                                 }`}
                               >
                                 <span>{sub.label}</span>
-                                <span className="font-mono text-[10px] text-gold/60 group-hover/item:text-gold">
-                                  0{i + 1}
-                                </span>
                               </Link>
                             ))}
                           </div>
@@ -163,7 +161,7 @@ export default function Header() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             className="min-[1180px]:hidden flex items-center gap-3 text-cream cursor-pointer h-11 pl-3"
           >
-            <span className="font-mono text-[11px] tracking-[0.2em] uppercase">{menuOpen ? "Close" : "Menu"}</span>
+            <span className="font-medium text-[11px] tracking-[0.2em] uppercase">{menuOpen ? "Close" : "Menu"}</span>
             <span className="relative w-6 h-3 block">
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
@@ -185,9 +183,9 @@ export default function Header() {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[55] bg-ink-6 min-[1180px]:hidden overflow-y-auto"
+            data-lenis-prevent
+            className="fixed inset-0 z-[55] bg-ink-6 min-[1180px]:hidden overflow-y-auto overscroll-contain"
           >
-            <div className="absolute inset-0 bg-grid opacity-60 pointer-events-none" />
             <div className="relative px-[clamp(16px,4vw,40px)] pt-[104px] pb-10 min-h-full flex flex-col">
               <nav className="grid">
                 {nav.filter((n) => n.href !== "/contact").map((item, i) => (
@@ -204,9 +202,6 @@ export default function Header() {
                         isActive(item.href) ? "text-gold" : "text-white"
                       }`}
                     >
-                      <span className="font-mono text-[11px] text-gold/60 tracking-normal w-6">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
                       {item.label}
                     </Link>
                   </motion.div>

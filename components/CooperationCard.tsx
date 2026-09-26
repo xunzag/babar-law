@@ -31,7 +31,7 @@ function CardBody({ partner }: { partner: Partner }) {
         </div>
       )}
       <div>
-        <div className="text-cream/40 text-[11px] tracking-[0.24em] uppercase mb-2.5">
+        <div className="text-cream/55 text-[11px] tracking-[0.24em] uppercase mb-2.5">
           {partner.country}
         </div>
         <h3 className="font-display font-semibold text-[22px] leading-tight text-white mb-1.5">

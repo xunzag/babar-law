@@ -28,10 +28,9 @@ export default function AboutPage() {
         <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
           <ScrollText
             text="Babar Ghulam Shabbir is Partner of Babar Law Associates: professional lawyer, academician and international consultant in immigration, corporate and commercial matters, engaged in litigation since 2004."
-            highlight={["Partner", "2004."]}
             className="font-display font-medium text-[clamp(26px,3.8vw,54px)] leading-[1.1] tracking-[-0.035em] max-w-[1180px] m-0 mb-[clamp(56px,8vw,110px)]"
           />
-          <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-[clamp(40px,6vw,96px)] items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-[clamp(40px,6vw,96px)] items-start">
             <div className="lg:sticky lg:top-28">
               <ParallaxImage
                 src="/assets/home-and-about-page.png"
@@ -55,12 +54,12 @@ export default function AboutPage() {
               </p>
               <div className="eyebrow text-gold-deep! mb-5">Academic appointments</div>
               <Stagger className="border-t border-ink/12">
-                {academic.map((t, i) => (
+                {academic.map((t) => (
                   <StaggerItem
                     key={t}
-                    className="grid grid-cols-[40px_minmax(0,1fr)] gap-3 py-4.5 border-b border-ink/12"
+                    className="grid grid-cols-[28px_minmax(0,1fr)] gap-2 py-4.5 border-b border-ink/12"
                   >
-                    <span className="font-mono text-[11px] text-gold-deep pt-1">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="mt-3 w-4 h-px bg-gold-deep" />
                     <span className="text-ink/85 text-[16px] leading-relaxed">{t}</span>
                   </StaggerItem>
                 ))}
@@ -73,14 +72,14 @@ export default function AboutPage() {
       {/* Education */}
       <section className="bg-ink">
         <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
-          <SectionHead index="01" label="Education" title="Qualifications." />
+          <SectionHead label="Education" title="Qualifications." />
           <Stagger className="border-t border-cream/10">
             {education.map((e) => (
               <StaggerItem
                 key={e.school}
-                className="group grid md:grid-cols-[140px_minmax(0,1fr)_minmax(0,1.1fr)] gap-x-10 gap-y-3 py-9 border-b border-cream/10"
+                className="group grid grid-cols-1 md:grid-cols-[140px_minmax(0,1fr)_minmax(0,1.1fr)] gap-x-10 gap-y-3 py-9 border-b border-cream/10"
               >
-                <div className="font-mono text-[12px] text-gold pt-1.5">{e.years}</div>
+                <div className="font-medium text-[12px] text-gold pt-1.5">{e.years}</div>
                 <div>
                   <h3 className="m-0 font-display font-medium text-[clamp(22px,2.4vw,30px)] leading-[1.1] text-white mb-2 group-hover:text-gold-light transition-colors">
                     {e.school}
@@ -97,11 +96,11 @@ export default function AboutPage() {
       {/* Memberships */}
       <section className="bg-ink-2 border-y border-cream/8">
         <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
-          <SectionHead index="02" label="Memberships & distinctions" title="Institutions and associations." />
-          <Stagger className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-cream/10 border border-cream/10">
-            {memberships.map((m, i) => (
-              <StaggerItem key={m} className="bg-ink-2 p-7 min-h-[180px] flex flex-col justify-between gap-8 hover:bg-ink-4 transition-colors">
-                <span className="font-mono text-[11px] text-gold">{String(i + 1).padStart(2, "0")}</span>
+          <SectionHead label="Memberships & distinctions" title="Institutions and associations." />
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-cream/10 border border-cream/10">
+            {memberships.map((m) => (
+              <StaggerItem key={m} className="bg-ink-2 p-7 min-h-[150px] flex flex-col gap-6 hover:bg-ink-4 transition-colors">
+                <span className="w-6 h-px bg-gold" />
                 <p className="m-0 text-cream/80 text-[15.5px] leading-relaxed">{m}</p>
               </StaggerItem>
             ))}
@@ -112,10 +111,10 @@ export default function AboutPage() {
       {/* Credentials */}
       <section className="bg-ink">
         <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
-          <SectionHead index="03" label="Credentials" title="Licence, degrees and letters of cooperation." />
+          <SectionHead label="Credentials" title="Licence, degrees and letters of cooperation." />
           {credentialGroups.map((g) => (
             <Reveal key={g.heading} className="mb-16 last:mb-0">
-              <div className="font-mono text-cream/40 text-[10.5px] tracking-[0.2em] uppercase mb-6">{g.heading}</div>
+              <div className="font-medium text-cream/55 text-[10.5px] tracking-[0.2em] uppercase mb-6">{g.heading}</div>
               <CredentialGrid items={g.items} />
             </Reveal>
           ))}
@@ -125,12 +124,12 @@ export default function AboutPage() {
       {/* In practice + certificates */}
       <section className="bg-ink-3 border-t border-cream/8">
         <div className={`${wrap} py-[clamp(80px,11vw,150px)]`}>
-          <SectionHead index="04" label="In practice" title="At the podium and abroad." />
+          <SectionHead label="In practice" title="At the podium and abroad." />
           <Reveal>
             <ImageGrid items={gallery} variant="gallery" />
           </Reveal>
           <div className="mt-[clamp(64px,9vw,120px)]">
-            <SectionHead index="05" label="Certificates" title="Speaking & appreciation." />
+            <SectionHead label="Certificates" title="Speaking & appreciation." />
             <Reveal>
               <ImageGrid items={certificates} variant="certificates" />
             </Reveal>
