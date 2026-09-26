@@ -21,10 +21,17 @@ const priority: Record<string, number> = {
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return nav.map((item) => ({
+  const pages = nav.map((item) => ({
     url: `${siteUrl}${item.href === "/" ? "" : item.href}`,
     lastModified: new Date(),
-    changeFrequency: item.href === "/" ? "weekly" : "monthly",
+    changeFrequency: item.href === "/" ? ("weekly" as const) : ("monthly" as const),
     priority: priority[item.href] ?? 0.5,
   }));
+  const legal = ["/privacy", "/cookies", "/terms"].map((href) => ({
+    url: `${siteUrl}${href}`,
+    lastModified: new Date(),
+    changeFrequency: "yearly" as const,
+    priority: 0.2,
+  }));
+  return [...pages, ...legal];
 }

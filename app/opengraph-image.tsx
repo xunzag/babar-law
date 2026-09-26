@@ -26,7 +26,7 @@ export default async function OpengraphImage() {
           alignItems: "center",
           justifyContent: "center",
           background:
-            "linear-gradient(160deg, #0a0a0c 0%, #08080a 55%, #0c0c0e 100%)",
+            "#0a0d13",
           position: "relative",
         }}
       >
@@ -37,7 +37,7 @@ export default async function OpengraphImage() {
             border: "1px solid rgba(201,162,39,0.38)",
           }}
         />
-        <img src={markSrc} width={124} height={124} style={{ marginBottom: 30 }} />
+        <img alt="" src={markSrc} width={124} height={124} style={{ marginBottom: 30 }} />
         <div
           style={{
             display: "flex",

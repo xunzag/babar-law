@@ -11,7 +11,7 @@
   /* Brass: muted, not jewellery-yellow */
   --color-gold: #c3a066;
   --color-gold-light: #e0c894;
-  --color-gold-deep: #8c6d3c;
+  --color-gold-deep: #76592c;
   --color-cream: #ebe7df;
   /* Paper: warm light surfaces for contrast sections */
   --color-paper: #f3f0e9;
@@ -20,7 +20,6 @@
 
   --font-display: var(--font-inter-tight), "Helvetica Neue", Arial, sans-serif;
   --font-sans: var(--font-inter-tight), "Helvetica Neue", Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, Menlo, monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -45,7 +44,7 @@
   body {
     color: var(--color-cream);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-feature-settings: "cv11";
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
   }
@@ -97,23 +96,11 @@
 
 /* Small uppercase label used above headings */
 @utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-gold);
-}
-
-/* Faint architectural grid used behind heroes */
-@utility bg-grid {
-  background-image:
-    linear-gradient(to right, rgb(235 231 223 / 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(235 231 223 / 0.045) 1px, transparent 1px);
-  background-size: 88px 88px;
-}
-
-@utility grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 
 @keyframes heroDrift {
@@ -134,6 +121,78 @@
     opacity: 1;
     transform: none;
   }
+}
+
+@keyframes wordRise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes heroSettle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes clipUp {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes clipLeft {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Photo reveals used in heroes: a wipe on the frame, a settle on the image */
+.clip-up {
+  animation: clipUp 1.3s cubic-bezier(0.76, 0, 0.24, 1) both;
+  animation-delay: var(--d, 0.15s);
+}
+
+.clip-left {
+  animation: clipLeft 1.4s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.settle {
+  animation: heroSettle 1.9s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0.15s);
+}
+
+.word-rise {
+  animation: wordRise 0.9s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+
+.fade-rise {
+  animation: fadeRise 0.9s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
 }
 
 @keyframes lineGrow {
@@ -163,25 +222,13 @@
   }
 }
 
-@keyframes pulseDot {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.35;
-    transform: scale(0.8);
-  }
+/* Lenis owns wheel scrolling; keep embedded maps interactive. */
+html.lenis {
+  scroll-behavior: auto;
 }
 
-@keyframes scrollCue {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(200%);
-  }
+html.lenis.lenis-smooth iframe {
+  pointer-events: auto;
 }
 
 .no-scrollbar {

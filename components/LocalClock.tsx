@@ -33,14 +33,14 @@ export default function LocalClock({
       {cities.map((c) => (
         <div key={c.city} className="flex items-baseline justify-between gap-6">
           <span
-            className={`font-mono text-[10.5px] tracking-[0.2em] uppercase ${
-              tone === "dark" ? "text-cream/45" : "text-ink/50"
+            className={`font-medium text-[10.5px] tracking-[0.2em] uppercase ${
+              tone === "dark" ? "text-cream/60" : "text-ink/62"
             }`}
           >
             {c.city}
           </span>
           <span
-            className={`font-mono text-[15px] tabular-nums ${tone === "dark" ? "text-cream" : "text-ink"}`}
+            className={`font-medium text-[15px] tabular-nums ${tone === "dark" ? "text-cream" : "text-ink"}`}
           >
             {now ? fmt(c.tz).format(now) : "--:--"}
           </span>

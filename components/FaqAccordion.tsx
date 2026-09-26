@@ -16,9 +16,8 @@ export default function FaqAccordion() {
             <button
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className="group w-full grid grid-cols-[44px_minmax(0,1fr)_40px] items-center gap-4 py-7 cursor-pointer text-left"
+              className="group w-full grid grid-cols-[minmax(0,1fr)_40px] items-center gap-4 py-7 cursor-pointer text-left"
             >
-              <span className="font-mono text-[11px] text-gold-deep">{String(i + 1).padStart(2, "0")}</span>
               <h3
                 className={`m-0 font-display font-medium text-[clamp(20px,2.2vw,28px)] leading-[1.2] transition-colors ${
                   isOpen ? "text-ink" : "text-ink/75 group-hover:text-ink"
@@ -45,7 +44,7 @@ export default function FaqAccordion() {
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="m-0 pb-8 pl-[60px] pr-14 text-ink/65 text-[16.5px] leading-[1.8] max-w-[820px]">{f.a}</p>
+                  <p className="m-0 pb-8 pr-14 text-ink/65 text-[16.5px] leading-[1.8] max-w-[820px]">{f.a}</p>
                 </motion.div>
               )}
             </AnimatePresence>

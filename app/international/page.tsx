@@ -37,7 +37,7 @@ export default function InternationalPage() {
               <h2 className="font-display font-medium text-[clamp(26px,4.2vw,38px)] mb-3 leading-tight text-ink">
                 European Master in Law and Economics
               </h2>
-              <p className="text-ink/50 text-[15.5px] mb-0 font-light tracking-wide">
+              <p className="text-ink/62 text-[15.5px] mb-0 font-light tracking-wide">
                 Erasmus University of Rotterdam, The Netherlands · since
                 December 2009
               </p>
@@ -63,7 +63,7 @@ export default function InternationalPage() {
           <div className="grid gap-4">
             {emle.map((e) => (
               <div key={e.n} className="grid grid-cols-[28px_minmax(0,1fr)] gap-4 items-start">
-                <span className="text-gold-deep font-mono text-sm pt-1">{e.n}</span>
+                <span className="text-gold-deep font-medium text-sm pt-1">{e.n}</span>
                 <span className="text-ink/65 text-base leading-[1.75] font-light">
                   {e.text}
                 </span>

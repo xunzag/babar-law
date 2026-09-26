@@ -19,8 +19,7 @@ export default function GavelBandClient({ src }: { src: string }) {
       <motion.div style={reduce ? undefined : { scale, y }} className="absolute inset-0">
         <Image src={src} alt="A wooden judge's gavel lit against a dark background" fill sizes="100vw" className="object-cover object-center" />
       </motion.div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(5,6,5,0.85)_85%)]" />
-      <div className="absolute inset-0 grain opacity-[0.08] mix-blend-overlay pointer-events-none" />
+      <div className="absolute inset-0 bg-black/30" />
 
       <div className="relative h-full max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(48px,8vw,96px)] flex flex-col justify-between">
         <motion.div style={reduce ? undefined : { x: leftX, opacity: fade }}>
@@ -33,7 +32,7 @@ export default function GavelBandClient({ src }: { src: string }) {
           <div className="font-display font-medium text-gold text-[clamp(40px,7.5vw,112px)] leading-[0.92] tracking-[-0.05em]">
             to final hearing.
           </div>
-          <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-cream/50 mt-5">
+          <div className="font-medium text-[11px] tracking-[0.2em] uppercase text-cream/50 mt-5">
             High Court of Sindh · Karachi · Sukkur · Larkana · Hyderabad
           </div>
         </motion.div>

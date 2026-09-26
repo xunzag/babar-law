@@ -1,49 +1,63 @@
 "use client";
 
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import HeroFrame, { FadeIn } from "@/components/heroes/HeroFrame";
 import SplitWords from "@/components/motion/SplitWords";
-import { galleryPhotos } from "@/lib/content";
-
-function Strip({ photos, reverse }: { photos: typeof galleryPhotos; reverse?: boolean }) {
-  const track = [...photos, ...photos];
-  return (
-    <div className="flex overflow-hidden">
-      <div
-        className={`flex w-max gap-3 pr-3 ${
-          reverse ? "animate-[marqueeReverse_70s_linear_infinite]" : "animate-[marquee_70s_linear_infinite]"
-        }`}
-      >
-        {track.map((p, i) => (
-          <div key={p.src + i} className="relative h-[clamp(140px,18vw,230px)] aspect-[4/3] shrink-0 overflow-hidden">
-            <Image src={p.src} alt="" fill sizes="320px" className="object-cover grayscale-[0.35] hover:grayscale-0 transition-[filter] duration-500" />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+import { galleryChapters } from "@/lib/content";
 
 export default function GalleryHero() {
-  const half = Math.ceil(galleryPhotos.length / 2);
+  const total = galleryChapters.reduce((t, c) => t + c.photos.length, 0);
   return (
-    <HeroFrame crumb="Gallery" index={`${galleryPhotos.length} photographs`} className="pb-0">
-      <div className="grid lg:grid-cols-[minmax(0,1fr)_auto] gap-8 items-end mb-[clamp(40px,6vw,72px)]">
-        <SplitWords
-          text="In practice, and abroad."
-          accent={["abroad."]}
-          className="font-display font-medium text-white text-[clamp(46px,8vw,120px)] leading-[0.92] tracking-[-0.05em]"
-        />
-        <FadeIn delay={0.6}>
-          <p className="text-cream/60 text-[16px] leading-[1.6] max-w-[340px] m-0">
-            From the courts and offices of Karachi to meetings in New York, Brussels and Toronto.
-          </p>
-        </FadeIn>
+    <HeroFrame crumb="Gallery">
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-[clamp(36px,6vw,96px)] items-end">
+        <div>
+          <SplitWords
+            text="Gallery."
+            className="font-display font-medium text-white text-[clamp(52px,9vw,136px)] leading-[0.9] tracking-[-0.05em] mb-8"
+          />
+          <FadeIn delay={0.2}>
+            <p className="text-cream/65 text-[clamp(16px,1.5vw,19px)] leading-[1.65] max-w-[520px] mb-10">
+              Ghulam Shabbir Babar in chambers, at the Bar, at the podium and abroad. {total} photographs.
+            </p>
+          </FadeIn>
+          <nav aria-label="Gallery sections" className="border-t border-cream/10">
+            {galleryChapters.map((c, i) => (
+              <a
+                key={c.id}
+                href={`#${c.id}`}
+                style={{ "--d": `${0.2 + i * 0.05}s` } as CSSProperties}
+                className="fade-rise group flex items-center justify-between gap-4 py-3.5 border-b border-cream/10 text-cream/75 hover:text-white"
+              >
+                <span className="text-[clamp(16px,1.5vw,18px)] transition-transform duration-500 ease-out-expo group-hover:translate-x-1.5">
+                  {c.title}
+                </span>
+                <span className="flex items-center gap-3 text-[12.5px] text-cream/55 tabular-nums">
+                  {c.photos.length}
+                  <span className="text-gold opacity-0 -translate-y-1 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                    ↓
+                  </span>
+                </span>
+              </a>
+            ))}
+          </nav>
+        </div>
+        <div
+          className="clip-up relative aspect-[4/5] max-h-[70vh] w-full overflow-hidden"
+        >
+          <div className="settle absolute inset-0"
+          >
+            <Image
+              src="/assets/gallery/photo-09.jpg"
+              alt="Portrait of Ghulam Shabbir Babar"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 45vw"
+              className="object-cover object-top"
+            />
+          </div>
+        </div>
       </div>
-      <FadeIn delay={0.4} className="grid gap-3 -mx-[clamp(16px,4vw,40px)] [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
-        <Strip photos={galleryPhotos.slice(0, half)} />
-        <Strip photos={galleryPhotos.slice(half)} reverse />
-      </FadeIn>
     </HeroFrame>
   );
 }

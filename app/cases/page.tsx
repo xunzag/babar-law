@@ -46,10 +46,9 @@ export default function CasesPage() {
       <CasesHero registered={s.registered} byYear={s.byYear} since={s.firstYear} />
 
       <section className="relative bg-ink-2 border-b border-cream/8 overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none [mask-image:radial-gradient(ellipse_at_25%_40%,black,transparent_70%)]" />
-        <div className="relative max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(64px,9vw,120px)] grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-[clamp(40px,6vw,96px)] items-start">
+        <div className="relative max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(64px,9vw,120px)] grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-[clamp(40px,6vw,96px)] items-start">
           <div>
-            <SectionHead index="01" label="On the docket" title="Matters, as they appear in the register." className="mb-10" />
+            <SectionHead label="On the docket" title="Matters, as they appear in the register." className="mb-10" />
             <Reveal delay={0.1}>
               <DocketFeed items={docketSample(48)} total={s.listed} visible={6} />
             </Reveal>
@@ -61,7 +60,7 @@ export default function CasesPage() {
                   <div className="font-display font-medium tracking-[-0.05em] text-gold-light text-[clamp(40px,4.4vw,60px)] leading-none mb-2.5">
                     <CountUp to={v} />
                   </div>
-                  <div className="font-mono text-[10px] tracking-[0.16em] leading-relaxed uppercase text-cream/45">{l}</div>
+                  <div className="font-medium text-[10px] tracking-[0.16em] leading-relaxed uppercase text-cream/60">{l}</div>
                 </StaggerItem>
               ))}
             </Stagger>
@@ -79,7 +78,7 @@ export default function CasesPage() {
 
       <section className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(52px,8vw,88px)]">
         <Reveal>
-          <SectionHead index="02" label="Case register" title="Search the record." className="mb-5" />
+          <SectionHead label="Case register" title="Search the record." className="mb-5" />
           <p className="text-cream/55 text-[15px] leading-relaxed max-w-[680px] mb-10">
             {s.listed} matters from the High Court of Sindh case register, as generated on {s.generated}. Case numbers and
             titles are taken from the court&apos;s public record.

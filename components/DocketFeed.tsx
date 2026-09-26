@@ -55,16 +55,13 @@ export default function DocketFeed({
     >
       <div className="flex items-center justify-between gap-4 px-5 sm:px-6 py-4 border-b border-cream/10">
         <div className="flex items-center gap-2.5">
-          <span className="relative flex w-2 h-2">
-            <span className={`absolute inset-0 rounded-full bg-emerald-400/70 ${running ? "animate-ping" : ""}`} />
-            <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
-          </span>
-          <span className="font-mono text-[10.5px] tracking-[0.2em] uppercase text-cream/70">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+          <span className="font-medium text-[10.5px] tracking-[0.2em] uppercase text-cream/70">
             From the register
           </span>
         </div>
-        <span className="font-mono text-[10.5px] tracking-[0.12em] text-cream/40 tabular-nums">
-          {paused ? "PAUSED · " : ""}
+        <span className="font-medium text-[10.5px] tracking-[0.12em] text-cream/55 tabular-nums">
+          {paused ? "Paused · " : ""}
           {String(serial).padStart(3, "0")} / {total}
         </span>
       </div>
@@ -101,11 +98,11 @@ export default function DocketFeed({
                 />
               )}
               <div className="flex items-center justify-between gap-4 mb-2">
-                <span className="font-mono text-[12.5px] text-gold-light tracking-[0.02em] whitespace-nowrap">
+                <span className="font-medium text-[12.5px] text-gold-light tracking-[0.02em] whitespace-nowrap">
                   {item.id}
                 </span>
                 <span
-                  className={`font-mono text-[9.5px] tracking-[0.16em] uppercase px-2 py-1 whitespace-nowrap ${
+                  className={`font-medium text-[9.5px] tracking-[0.16em] uppercase px-2 py-1 whitespace-nowrap ${
                     item.status === "Pending"
                       ? "bg-gold text-ink"
                       : item.judgment
@@ -119,14 +116,13 @@ export default function DocketFeed({
               <div className="text-white text-[15.5px] leading-snug tracking-[-0.01em] line-clamp-1 mb-1.5">
                 {item.title}
               </div>
-              <div className="font-mono text-[10.5px] tracking-[0.08em] uppercase text-cream/40 truncate">
+              <div className="font-medium text-[10.5px] tracking-[0.08em] uppercase text-cream/55 truncate">
                 {item.subject} · {item.seat} · {item.role} · {item.when}
               </div>
             </motion.li>
           ))}
         </AnimatePresence>
       </ul>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-ink-3 to-transparent" />
     </div>
   );
 }

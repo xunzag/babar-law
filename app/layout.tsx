@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Geist_Mono } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CookieBanner from "@/components/CookieBanner";
 import ScrollProgress from "@/components/ScrollProgress";
+import SmoothScroll from "@/components/SmoothScroll";
+import "lenis/dist/lenis.css";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -92,17 +89,19 @@ export default function RootLayout({
   children,
 }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${interTight.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${interTight.variable}`}>
       <body className="bg-ink min-h-screen flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <SmoothScroll />
         <ScrollProgress />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <CookieBanner />
       </body>
     </html>
   );

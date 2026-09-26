@@ -15,7 +15,7 @@ const toOptions = (values: string[]) => values.map((v) => ({ id: v, label: v }))
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="text-gold/60 text-[10px] tracking-[0.22em] uppercase mb-2">{label}</div>
+      <div className="text-gold text-[10px] tracking-[0.22em] uppercase mb-2">{label}</div>
       {children}
     </div>
   );
@@ -146,7 +146,7 @@ export default function CasesExplorer() {
         </div>
       </div>
 
-      <div className="font-mono text-cream/45 text-[11px] tracking-[0.16em] uppercase mb-4 tabular-nums">
+      <div className="font-medium text-cream/60 text-[11px] tracking-[0.16em] uppercase mb-4 tabular-nums">
         <motion.span key={list.length} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} className="inline-block text-gold-light">
           {list.length}
         </motion.span>{" "}
@@ -174,10 +174,10 @@ export default function CasesExplorer() {
                 transition={{ duration: 0.5, delay: (i % (PAGE * 2)) * 0.022, ease: [0.16, 1, 0.3, 1] }}
                 className="group border-b border-cream/8 hover:bg-ink-5 transition-colors align-top"
               >
-                <td className="relative px-5 py-4 font-mono text-gold-light text-[13.5px] whitespace-nowrap">
+                <td className="relative px-5 py-4 font-medium text-gold-light text-[13.5px] whitespace-nowrap">
                   <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-gold scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top" />
                   {c.short} {c.bench}-{c.number}/{c.year}
-                  <div className="font-sans text-cream/40 text-[11.5px] mt-1.5 tracking-normal">{c.seat} · {c.typeLabel}</div>
+                  <div className="font-sans text-cream/55 text-[11.5px] mt-1.5 tracking-normal">{c.seat} · {c.typeLabel}</div>
                 </td>
                 <td className="px-5 py-4 text-cream/75 text-[14px] leading-snug max-w-[340px]">{c.title}</td>
                 <td className="px-5 py-4 text-cream/65 text-[13.5px]">{c.subject}</td>
@@ -188,7 +188,7 @@ export default function CasesExplorer() {
                     {c.status}
                   </span>
                   {c.judgment && <span className="ml-2 text-gold-light text-[11px] tracking-wide">Judgment</span>}
-                  {c.disposed && <div className="text-cream/40 text-[11.5px] mt-1.5">{fmtMonth(c.disposed)}</div>}
+                  {c.disposed && <div className="text-cream/55 text-[11.5px] mt-1.5">{fmtMonth(c.disposed)}</div>}
                 </td>
               </motion.tr>
             ))}

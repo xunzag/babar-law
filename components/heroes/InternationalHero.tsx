@@ -34,15 +34,14 @@ for (let x = 10; x < W; x += 22) for (let y = 10; y < H; y += 22) dots.push([x, 
 export default function InternationalHero() {
   const [hx, hy] = project(hub.lon, hub.lat);
   return (
-    <HeroFrame crumb="International" index={`${cities.length} cities`} grid={false}>
-      <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 items-center">
+    <HeroFrame crumb="International">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 items-center">
         <div className="relative z-10">
           <SplitWords
-            text="From Karachi, to the capitals that matter."
-            accent={["Karachi,"]}
+            text="International cooperation."
             className="font-display font-medium text-white text-[clamp(42px,6vw,92px)] leading-[0.95] tracking-[-0.045em] mb-8"
           />
-          <FadeIn delay={0.7}>
+          <FadeIn delay={0.35}>
             <p className="text-cream/65 text-[clamp(16px,1.5vw,19px)] leading-[1.65] max-w-[520px]">
               Standing arrangements with firms, developers, banks and universities in the United States, Canada,
               Cyprus, Greece, Portugal, the Netherlands, the UAE and Pakistan.
@@ -97,7 +96,7 @@ export default function InternationalHero() {
                       x={x}
                       y={y - 12}
                       textAnchor="middle"
-                      className="fill-cream/70 font-mono"
+                      className="fill-cream/70 font-medium"
                       fontSize={12}
                       letterSpacing={1.5}
                       initial={{ opacity: 0 }}
@@ -112,7 +111,7 @@ export default function InternationalHero() {
             })}
             <circle cx={hx} cy={hy} r={7} className="fill-gold" />
             <circle cx={hx} cy={hy} r={14} fill="none" className="stroke-gold/50" />
-            <text x={hx} y={hy + 32} textAnchor="middle" className="fill-gold font-mono" fontSize={13} letterSpacing={2}>
+            <text x={hx} y={hy + 32} textAnchor="middle" className="fill-gold font-medium" fontSize={13} letterSpacing={2}>
               KARACHI
             </text>
             <defs>
