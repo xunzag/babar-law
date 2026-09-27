@@ -33,8 +33,10 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-[clamp(40px,6vw,96px)] items-start">
             <div className="lg:sticky lg:top-28">
               <ParallaxImage
-                src="/assets/home-and-about-page.png"
-                alt="Ghulam Shabbir Babar at his desk, Babar Law Associates, Karachi"
+                src="/assets/team/ghulam-shabbir-babar.jpg"
+                alt="Portrait of Ghulam Shabbir Babar, Attorney at Law"
+                imgClassName="object-cover object-top"
+                strength={5}
                 className="aspect-[4/5] w-full"
               />
             </div>

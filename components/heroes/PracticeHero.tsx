@@ -1,46 +1,62 @@
-"use client";
-
+import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
-import HeroFrame, { FadeIn } from "@/components/heroes/HeroFrame";
+import { FadeIn } from "@/components/heroes/HeroFrame";
 import SplitWords from "@/components/motion/SplitWords";
 import { areasFull } from "@/lib/content";
 
+// Full-bleed photographic hero. The statue sits centre-right, so the text
+// takes the left and an even scrim keeps it legible over the stone.
 export default function PracticeHero() {
   return (
-    <HeroFrame crumb="Practice areas" image="/assets/hero/lady-justice.jpg" imagePosition="object-[38%_center]">
-      <div className="grid gap-12">
-        <div>
+    <section className="relative min-h-[88svh] flex flex-col overflow-hidden bg-ink">
+      <div className="absolute inset-0 settle">
+        <Image
+          src="/assets/hero/lady-justice.jpg"
+          alt="Statue of Lady Justice before a court building at sunset"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[62%_center]"
+        />
+      </div>
+      <div className="absolute inset-0 bg-ink/65 lg:bg-ink/58" />
+
+      <div className="relative flex-1 flex flex-col justify-end w-full max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] pt-[clamp(112px,14vw,160px)] pb-[clamp(40px,6vw,72px)]">
+        <nav aria-label="Breadcrumb" className="fade-rise flex items-center gap-2.5 text-[12.5px] mb-auto pb-10">
+          <Link href="/" className="text-cream/70 hover:text-white">
+            Home
+          </Link>
+          <span className="text-cream/50">/</span>
+          <span className="text-gold-light">Practice areas</span>
+        </nav>
+
+        <div className="max-w-[640px] [text-shadow:0_1px_24px_rgba(10,13,19,0.55)]">
           <SplitWords
             text="Practice areas."
-            className="font-display font-medium text-white text-[clamp(44px,6.4vw,96px)] leading-[0.95] tracking-[-0.045em] mb-9"
+            className="font-display font-medium text-white text-[clamp(48px,7.4vw,112px)] leading-[0.92] tracking-[-0.05em] mb-7"
           />
-          <FadeIn delay={0.35}>
-            <p className="text-cream/65 text-[clamp(16px,1.5vw,19px)] leading-[1.65] max-w-[540px]">
+          <FadeIn delay={0.3}>
+            <p className="m-0 text-cream/90 text-[clamp(16px,1.5vw,19px)] leading-[1.65] mb-10">
               Seven areas of practice, for private individuals, families, investors, companies and institutions in
               Pakistan and abroad.
             </p>
           </FadeIn>
         </div>
-        <nav aria-label="Practice areas" className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 border-t border-cream/10">
+
+        <ul className="m-0 p-0 list-none flex flex-wrap gap-2">
           {areasFull.map((a, i) => (
-            <a
-              key={a.num}
-              href={`#area-${a.num}`}
-              style={{ "--d": `${0.2 + i * 0.05}s` } as CSSProperties}
-              className="fade-rise group relative flex items-center gap-5 py-4 border-b border-cream/10 overflow-hidden"
-            >
-              <span className="absolute inset-0 bg-cream/4 -translate-x-full transition-transform duration-500 ease-out-expo group-hover:translate-x-0" />
-              <span className="relative font-medium text-[11px] text-gold w-6">{a.num}</span>
-              <span className="relative flex-1 text-cream/80 text-[clamp(16px,1.6vw,19px)] tracking-[-0.01em] group-hover:text-white transition-colors">
+            <li key={a.num} className="fade-rise" style={{ "--d": `${0.4 + i * 0.05}s` } as CSSProperties}>
+              <a
+                href={`#area-${a.num}`}
+                className="inline-flex items-center gap-2 h-10 px-4 bg-ink/70 backdrop-blur-sm border border-cream/15 text-[13.5px] text-cream hover:bg-gold hover:text-ink hover:border-gold transition-colors"
+              >
                 {a.title}
-              </span>
-              <span className="relative text-gold opacity-0 -translate-x-3 transition-all duration-500 ease-out-expo group-hover:opacity-100 group-hover:translate-x-0">
-                ↓
-              </span>
-            </a>
+              </a>
+            </li>
           ))}
-        </nav>
+        </ul>
       </div>
-    </HeroFrame>
+    </section>
   );
 }

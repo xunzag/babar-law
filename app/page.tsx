@@ -128,8 +128,10 @@ export default function HomePage() {
         <div className={`${wrap} py-[clamp(80px,11vw,150px)] grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-[clamp(40px,7vw,120px)] items-center`}>
           <div className="relative">
             <ParallaxImage
-              src="/assets/home-and-about-page.png"
-              alt="Ghulam Shabbir Babar at his desk, Babar Law Associates, Karachi"
+              src="/assets/team/ghulam-shabbir-babar.jpg"
+              alt="Portrait of Ghulam Shabbir Babar, Attorney at Law"
+              imgClassName="object-cover object-top"
+              strength={5}
               className="aspect-[4/5] w-full"
             />
             <div className="absolute -bottom-5 right-3 lg:-right-8 bg-gold text-ink px-5 py-4 max-w-[220px]">

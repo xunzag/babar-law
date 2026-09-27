@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import SectionHead from "@/components/SectionHead";
 import InternationalHero from "@/components/heroes/InternationalHero";
 import CooperationCard from "@/components/CooperationCard";
 import LogoBadge from "@/components/LogoBadge";
@@ -17,10 +18,15 @@ export default function InternationalPage() {
     <div>
       <InternationalHero />
 
-      <section className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] pt-[clamp(50px,8vw,84px)] pb-11">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-6">
+      <section className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] pt-[clamp(56px,8vw,100px)] pb-11">
+        <SectionHead
+          label="Partners and panels"
+          title="Firms, developers, banks and universities we work with."
+          className="mb-10 sm:mb-12"
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {partners.map((p, i) => (
-            <Reveal key={p.name} delay={Math.min(i * 0.04, 0.3)}>
+            <Reveal key={p.name} delay={Math.min((i % 3) * 0.06, 0.2)} className="h-full">
               <CooperationCard partner={p} />
             </Reveal>
           ))}
