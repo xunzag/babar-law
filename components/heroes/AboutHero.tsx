@@ -49,7 +49,7 @@ export default function AboutHero() {
             <div className="settle absolute inset-0"
             >
               <Image
-                src="/assets/gallery/photo-18.jpg"
+                src="/assets/team/ghulam-shabbir-babar.jpg"
                 alt="Portrait of Ghulam Shabbir Babar"
                 fill
                 priority

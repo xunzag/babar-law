@@ -62,7 +62,7 @@ export const principal = {
   name: "Ghulam Shabbir Babar",
   designation: "Attorney at Law · LLM (Europe)",
   role: "Principal & Partner",
-  image: "/assets/gallery/photo-18.jpg",
+  image: "/assets/team/ghulam-shabbir-babar.jpg",
 };
 
 export const associates: Member[] = [
@@ -72,7 +72,7 @@ export const associates: Member[] = [
   { name: "Ms. Shaista Khan", designation: "Advocate High Court", group: "high-court" },
   { name: "Abdul Hameed Laghari", designation: "Advocate High Court", group: "high-court", photo: "/assets/team/abdul-hameed-laghari.jpg" },
   { name: "Nadeem Khoso", designation: "Advocate", group: "advocates" },
-  { name: "Saghar Ali Babar", designation: "Advocate", group: "advocates" },
+  { name: "Saghar Ali Babar", designation: "Advocate", group: "advocates", photo: "/assets/team/saghar-ali-babar.jpg" },
   { name: "Ms. Ambreen Naz", designation: "Advocate", group: "advocates" },
   { name: "Ms. Ramsha", designation: "Advocate", group: "advocates" },
   { name: "Shahzad Ali", designation: "Court Clerk", group: "staff" },
@@ -317,72 +317,50 @@ export const matterTypes = [
   },
 ];
 
-export type GalleryPhoto = { src: string; w: number; h: number; caption: string; alt: string };
+export type GalleryPhoto = { src: string; w: number; h: number; alt: string };
 
 const g = (n: number) => `/assets/gallery/photo-${String(n).padStart(2, "0")}.jpg`;
 const P = "Ghulam Shabbir Babar";
 
-// The professional gallery, grouped into chapters of his working life.
-export const galleryChapters: { id: string; title: string; blurb: string; photos: GalleryPhoto[] }[] = [
-  {
-    id: "chambers",
-    title: "Chambers",
-    blurb: "Babar Law Associates, Suite 305, Al-Ayesha Chambers, Saddar, Karachi.",
-    photos: [
-      { src: g(10), w: 2400, h: 1800, caption: "At his desk, Babar Law Associates, Karachi", alt: `${P} at his desk beneath the Babar Law Associates emblem` },
-      { src: g(14), w: 1800, h: 2400, caption: "With colleagues at chambers, Karachi", alt: `${P} seated at his desk with two colleagues standing` },
-      { src: g(8), w: 1280, h: 963, caption: "Client consultation at chambers, Karachi", alt: `${P} in consultation with a client in his office` },
-    ],
-  },
-  {
-    id: "bar",
-    title: "At the Bar",
-    blurb: "Conventions, bar associations and the company of fellow advocates.",
-    photos: [
-      { src: g(13), w: 1600, h: 900, caption: "All Pakistan Lawyers Convention, Sindh High Court Bar Association", alt: `${P} at the All Pakistan Lawyers Convention, Sindh High Court Bar Association` },
-      { src: g(11), w: 1600, h: 720, caption: "With fellow advocates", alt: `${P} standing with four fellow advocates` },
-      { src: g(12), w: 1200, h: 1600, caption: "Honoured with a Sindhi ajrak, bar library", alt: `${P} being presented with an ajrak by a colleague in a law library` },
-    ],
-  },
-  {
-    id: "podium",
-    title: "Speaking & recognition",
-    blurb: "Lectures, conferences and awards, in Pakistan and abroad.",
-    photos: [
-      { src: "/assets/podium.png", w: 1600, h: 1069, caption: "Guest lecture, university address", alt: `${P} speaking at a university podium` },
-      { src: "/assets/studyuk.png", w: 1280, h: 853, caption: "Study UK award, British Council", alt: `${P} at the Study UK awards, British Council` },
-      { src: "/assets/seminar.png", w: 1080, h: 1620, caption: "Conference proceedings, Karachi", alt: `${P} seated in the audience at a conference` },
-      { src: "/assets/emle.png", w: 1080, h: 720, caption: "Erasmus Mundus Students and Alumni Association, Brussels", alt: `${P} with members of the Erasmus Mundus Students and Alumni Association` },
-    ],
-  },
-  {
-    id: "international",
-    title: "International",
-    blurb: "New York, Brussels, Toronto and Cyprus: the firm's work beyond Pakistan.",
-    photos: [
-      { src: g(0), w: 1080, h: 631, caption: "Case meeting, law office, New York", alt: `${P} at a meeting around a conference table in a New York law office` },
-      { src: "/assets/gallery/cyprus-01.jpg", w: 720, h: 960, caption: "Site visit, Karma Developers properties, Cyprus", alt: `${P} at a Karma Developers villa in Cyprus` },
-      { src: "/assets/gallery/cyprus-02.jpg", w: 960, h: 720, caption: "Karma Developers properties, Cyprus", alt: "A Karma Developers residential property in Cyprus" },
-      { src: "/assets/gallery/cyprus-04.jpg", w: 960, h: 720, caption: "On the coast, Cyprus", alt: `${P} on the Cyprus coast` },
-      { src: g(2), w: 1200, h: 1600, caption: "Diplomatic reception", alt: `${P} at an evening garden reception` },
-      { src: g(3), w: 1200, h: 1600, caption: "Beside the flags of the European Union and Belgium", alt: `${P} beside the European Union and Belgian flags` },
-      { src: "/assets/gallery/cyprus-03.jpg", w: 720, h: 960, caption: "Site visit, Karma Developers properties, Cyprus", alt: `${P} outside a Karma Developers property in Cyprus` },
-      { src: g(4), w: 1200, h: 1600, caption: "Business district visit", alt: `${P} in a modern office atrium` },
-      { src: g(5), w: 1200, h: 1600, caption: "Front Street West, Toronto", alt: `${P} outside Citigroup Place, Toronto` },
-    ],
-  },
-  {
-    id: "portraits",
-    title: "Portraits",
-    blurb: "Ghulam Shabbir Babar, Attorney at Law · LLM (Europe).",
-    photos: [
-      { src: g(7), w: 1581, h: 2048, caption: P, alt: `Portrait of ${P}` },
-      { src: g(18), w: 720, h: 1280, caption: P, alt: `Standing portrait of ${P}` },
-    ],
-  },
+// Every photograph in the gallery, in display order.
+export const galleryPhotos: GalleryPhoto[] = [
+  { src: g(10), w: 2400, h: 1800, alt: `${P} at his desk, Babar Law Associates, Karachi` },
+  { src: g(14), w: 1800, h: 2400, alt: `${P} with colleagues at chambers, Karachi` },
+  { src: g(8), w: 1280, h: 963, alt: `${P} in consultation at chambers, Karachi` },
+  { src: g(19), w: 1200, h: 1600, alt: `${P} at the United States Capitol, Washington, D.C.` },
+  { src: g(13), w: 1600, h: 900, alt: `${P} at the All Pakistan Lawyers Convention, Sindh High Court Bar Association` },
+  { src: g(20), w: 939, h: 1091, alt: `${P} lecturing at PAF-KIET, Karachi` },
+  { src: g(11), w: 1600, h: 720, alt: `${P} with fellow advocates` },
+  { src: g(12), w: 1200, h: 1600, alt: `${P} presented with a Sindhi ajrak in a bar library` },
+  { src: g(21), w: 1200, h: 1600, alt: `${P} with a colleague` },
+  { src: g(22), w: 1200, h: 1600, alt: `${P} with a colleague in an office` },
+  { src: g(23), w: 1200, h: 1600, alt: `${P} with colleagues` },
+  { src: g(24), w: 960, h: 1212, alt: `${P} with a colleague in an office` },
+  { src: g(25), w: 1254, h: 1600, alt: `${P} with colleagues` },
+  { src: "/assets/podium.png", w: 1600, h: 1069, alt: `${P} speaking at a university podium` },
+  { src: "/assets/studyuk.png", w: 1280, h: 853, alt: `${P} at the Study UK awards, British Council` },
+  { src: "/assets/seminar.png", w: 1080, h: 1620, alt: `${P} at a conference in Karachi` },
+  { src: "/assets/emle.png", w: 1080, h: 720, alt: `${P} with the Erasmus Mundus Students and Alumni Association, Brussels` },
+  { src: g(0), w: 1080, h: 631, alt: `${P} at a meeting in a New York law office` },
+  { src: g(2), w: 1200, h: 1600, alt: `${P} at an evening garden reception` },
+  { src: g(1), w: 1600, h: 1200, alt: `${P} at an evening garden reception` },
+  { src: g(3), w: 1200, h: 1600, alt: `${P} beside the flags of the European Union and Belgium` },
+  { src: g(4), w: 1200, h: 1600, alt: `${P} in a modern office atrium` },
+  { src: "/assets/dc.png", w: 1536, h: 2048, alt: `${P} in Washington, D.C.` },
+  { src: "/assets/zamin-talpur-meeting.jpg", w: 1600, h: 1200, alt: `${P} with Mr. Zamin Talpur, Barrister & Solicitor, Canada` },
+  { src: "/assets/gallery/cyprus-01.jpg", w: 720, h: 960, alt: `${P} at Karma Developers properties, Cyprus` },
+  { src: "/assets/gallery/cyprus-02.jpg", w: 960, h: 720, alt: "Karma Developers residential property, Cyprus" },
+  { src: "/assets/gallery/cyprus-03.jpg", w: 720, h: 960, alt: `${P} at Karma Developers properties, Cyprus` },
+  { src: "/assets/gallery/cyprus-04.jpg", w: 960, h: 720, alt: `${P} on the coast, Cyprus` },
+  { src: g(5), w: 1200, h: 1600, alt: `${P} on Front Street West, Toronto` },
+  { src: g(6), w: 1200, h: 1600, alt: `${P} in Canada` },
+  { src: g(15), w: 900, h: 1600, alt: `${P} with colleagues in Times Square, New York` },
+  { src: g(16), w: 900, h: 1600, alt: `${P} with colleagues in midtown New York` },
+  { src: g(17), w: 900, h: 1600, alt: `${P} with colleagues in Times Square, New York` },
+  { src: g(7), w: 1581, h: 2048, alt: `Portrait of ${P}` },
+  { src: g(9), w: 1258, h: 1446, alt: `Portrait of ${P}` },
+  { src: g(18), w: 720, h: 1280, alt: `Standing portrait of ${P}` },
 ];
-
-export const galleryPhotos = galleryChapters.flatMap((c) => c.photos);
 
 export const credentialGroups = [
   {
