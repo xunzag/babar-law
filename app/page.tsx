@@ -16,6 +16,7 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { casesSummary, docketSample } from "@/lib/cases";
 import DocketFeed from "@/components/DocketFeed";
 import { practiceHref } from "@/lib/practice";
+import { articles } from "@/lib/insights";
 import ChambersRoster from "@/components/ChambersRoster";
 import GrowSegment from "@/components/motion/GrowSegment";
 import {
@@ -363,6 +364,45 @@ title="A record before the High Court of Sindh."
                 </StaggerItem>
               );
             })}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Latest insights */}
+      <section className="bg-paper text-ink">
+        <div className={`${wrap} py-[clamp(72px,10vw,130px)]`}>
+          <SectionHead
+            tone="light"
+            label="Insights"
+            title="Guides from the chambers."
+            aside={
+              <ArrowLink href="/insights" variant="dark">
+                All insights
+              </ArrowLink>
+            }
+          />
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12">
+            {articles.slice(0, 3).map((a) => (
+              <StaggerItem key={a.slug}>
+                <Link href={`/insights/${a.slug}`} className="group block text-ink">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-paper-2 mb-5">
+                    <Image
+                      src={a.image}
+                      alt={a.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-[1.4s] ease-out-expo group-hover:scale-[1.05]"
+                      style={{ objectPosition: a.imagePos }}
+                    />
+                  </div>
+                  <div className="eyebrow text-gold-deep! mb-3">{a.category}</div>
+                  <h3 className="m-0 mb-3 font-display font-medium text-[clamp(21px,2vw,26px)] leading-[1.15] tracking-[-0.02em] group-hover:text-gold-deep transition-colors">
+                    {a.title}
+                  </h3>
+                  <span className="text-[13.5px] text-ink/60">{a.readMinutes} min read</span>
+                </Link>
+              </StaggerItem>
+            ))}
           </Stagger>
         </div>
       </section>

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/site";
 import { nav } from "@/lib/content";
 import { practicePages } from "@/lib/practice";
+import { articles } from "@/lib/insights";
 
 const priority: Record<string, number> = {
   "/": 1,
@@ -14,6 +15,7 @@ const priority: Record<string, number> = {
   "/experience": 0.5,
   "/gallery": 0.5,
   "/faq": 0.5,
+  "/insights": 0.7,
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -35,5 +37,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
-  return [...pages, ...practice, ...legal];
+  const posts = articles.map((a) => ({
+    url: `${siteUrl}/insights/${a.slug}`,
+    lastModified: new Date(a.updated ?? a.date),
+    changeFrequency: "yearly" as const,
+    priority: 0.7,
+  }));
+  return [...pages, ...practice, ...posts, ...legal];
 }

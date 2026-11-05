@@ -15,9 +15,23 @@ const inputClasses =
 
 const matterOptions = matterTypes.map((m) => ({ id: m.id, label: m.label }));
 
+// Where enquiries come from, so the firm can see which channels work.
+const sourceOptions = [
+  "Select an option",
+  "Google search",
+  "Google Maps",
+  "Instagram or Facebook",
+  "LinkedIn",
+  "Recommended by a friend or client",
+  "Bar, court or colleague",
+  "Bank (UBL)",
+  "Other",
+].map((label) => ({ id: label, label }));
+
 export default function ContactForm() {
   const [matterType, setMatterType] = useState(matterTypes[0].id);
   const [fields, setFields] = useState<Record<string, string>>({});
+  const [source, setSource] = useState(sourceOptions[0].id);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -50,9 +64,11 @@ export default function ContactForm() {
     }
 
     const form = new FormData(e.currentTarget);
-    const details = selected.fields
-      .map((f) => `${f.label}: ${fields[f.name] || "Not provided"}`)
-      .join("\n");
+    const heard = source === sourceOptions[0].id ? "Not provided" : source;
+    const details = [
+      ...selected.fields.map((f) => `${f.label}: ${fields[f.name] || "Not provided"}`),
+      `How they heard about us: ${heard}`,
+    ].join("\n");
 
     try {
       await emailjs.send(
@@ -66,12 +82,13 @@ export default function ContactForm() {
           country: form.get("country"),
           matter_type: selected.label,
           message: form.get("message"),
-          details: details || "None",
+          details,
+          heard_about: heard,
         },
         { publicKey }
       );
       setStatus("success");
-      track("generate_lead", { matter_type: selected.label, country: String(form.get("country") ?? "") });
+      track("generate_lead", { matter_type: selected.label, country: String(form.get("country") ?? ""), lead_source: heard });
     } catch (err) {
       setStatus("error");
       setErrorMessage(
@@ -149,6 +166,13 @@ export default function ContactForm() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <div>
+        <label className="block text-gold text-[11.5px] tracking-[0.16em] uppercase mb-2.5">
+          How did you hear about us? <span className="normal-case tracking-normal text-cream/50">(optional)</span>
+        </label>
+        <Dropdown label="How did you hear about us" options={sourceOptions} value={source} onChange={setSource} />
+      </div>
 
       <textarea
         required
