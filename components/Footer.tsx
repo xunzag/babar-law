@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { areasFull, callLines, firm, offices } from "@/lib/content";
 import ArrowLink from "@/components/ArrowLink";
+import { practiceHref } from "@/lib/practice";
 import CookieSettingsButton from "@/components/CookieSettingsButton";
 import FooterCta from "@/components/FooterCta";
 
@@ -89,7 +90,7 @@ export default function Footer() {
           <ul className="m-0 p-0 list-none grid gap-2.5">
             {areasFull.map((a) => (
               <li key={a.num}>
-                <Link href={`/practice-areas#area-${a.num}`} className="text-[14.5px] text-cream/65 hover:text-white">
+                <Link href={practiceHref(a.num)} className="text-[14.5px] text-cream/65 hover:text-white">
                   {a.title}
                 </Link>
               </li>

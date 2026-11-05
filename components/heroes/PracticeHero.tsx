@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { FadeIn } from "@/components/heroes/HeroFrame";
 import SplitWords from "@/components/motion/SplitWords";
 import { areasFull } from "@/lib/content";
+import { practiceHref } from "@/lib/practice";
 
 // Full-bleed photographic hero. The statue sits centre-right, so the text
 // takes the left and an even scrim keeps it legible over the stone.
@@ -48,7 +49,7 @@ export default function PracticeHero() {
           {areasFull.map((a, i) => (
             <li key={a.num} className="fade-rise" style={{ "--d": `${0.4 + i * 0.05}s` } as CSSProperties}>
               <a
-                href={`#area-${a.num}`}
+                href={practiceHref(a.num)}
                 className="inline-flex items-center gap-2 h-10 px-4 bg-ink/70 backdrop-blur-sm border border-cream/15 text-[13.5px] text-cream hover:bg-gold hover:text-ink hover:border-gold transition-colors"
               >
                 {a.title}

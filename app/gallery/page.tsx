@@ -3,19 +3,22 @@ import HeroFrame from "@/components/heroes/HeroFrame";
 import SplitWords from "@/components/motion/SplitWords";
 import { galleryPhotos } from "@/lib/content";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Gallery",
+export const metadata: Metadata = pageMeta({
+  title: "Gallery: Ghulam Shabbir Babar at Work",
   description:
     "Photographs of Ghulam Shabbir Babar in chambers, at the Bar, at the podium and abroad: Karachi, New York, Washington, Brussels, Toronto and Cyprus.",
-  alternates: { canonical: "/gallery" },
-};
+  path: "/gallery",
+});
 
 // A plain wall of photographs: every image shown whole, in balanced columns,
 // with hairline gutters and no overlays.
 export default function GalleryPage() {
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "Gallery", path: "/gallery" }])} />
       <HeroFrame crumb="Gallery">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
           <SplitWords

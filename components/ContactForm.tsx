@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { matterTypes } from "@/lib/content";
 import Dropdown from "@/components/Dropdown";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -70,6 +71,7 @@ export default function ContactForm() {
         { publicKey }
       );
       setStatus("success");
+      track("generate_lead", { matter_type: selected.label, country: String(form.get("country") ?? "") });
     } catch (err) {
       setStatus("error");
       setErrorMessage(

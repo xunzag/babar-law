@@ -44,10 +44,12 @@ export default function CookieBanner() {
   const [forced, setForced] = useState(false);
   const [details, setDetails] = useState(false);
   const [embeds, setEmbeds] = useState(false);
+  const [analytics, setAnalytics] = useState(false);
 
   useEffect(() => {
     const open = () => {
       setEmbeds(Boolean(consent?.embeds));
+      setAnalytics(Boolean(consent?.analytics));
       setDetails(true);
       setForced(true);
     };
@@ -57,8 +59,8 @@ export default function CookieBanner() {
 
   const visible = consent === null || forced;
 
-  const choose = (value: boolean) => {
-    saveConsent({ embeds: value });
+  const choose = (e: boolean, a: boolean) => {
+    saveConsent({ embeds: e, analytics: a });
     setForced(false);
     setDetails(false);
   };
@@ -77,8 +79,8 @@ export default function CookieBanner() {
           <div className="p-5 sm:p-6">
             <div className="text-white text-[16px] font-medium mb-2">Cookies on this site</div>
             <p className="m-0 text-cream/65 text-[14px] leading-relaxed">
-              We use one essential cookie to remember this choice. The office map on the contact page is provided by
-              Google, which sets its own cookies, so it only loads if you allow it.{" "}
+              We use one essential cookie to remember this choice. With your permission we also use Google Analytics
+              to understand how the site is used, and load the Google map on the contact page.{" "}
               <Link href="/cookies" className="underline underline-offset-2">
                 Cookie policy
               </Link>
@@ -110,6 +112,15 @@ export default function CookieBanner() {
                       </div>
                       <Toggle checked={embeds} onChange={setEmbeds} label="Embedded content cookies" />
                     </div>
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <div className="text-[14px] text-white">Analytics</div>
+                        <div className="text-[13px] text-cream/60 leading-snug mt-0.5">
+                          Google Analytics: anonymous statistics on visits and enquiries.
+                        </div>
+                      </div>
+                      <Toggle checked={analytics} onChange={setAnalytics} label="Analytics cookies" />
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -118,7 +129,7 @@ export default function CookieBanner() {
             <div className="mt-5 grid grid-cols-2 gap-2">
               {details ? (
                 <button
-                  onClick={() => choose(embeds)}
+                  onClick={() => choose(embeds, analytics)}
                   className="col-span-2 bg-gold text-ink py-3 text-[13.5px] font-medium cursor-pointer hover:bg-gold-light transition-colors"
                 >
                   Save choices
@@ -126,13 +137,13 @@ export default function CookieBanner() {
               ) : (
                 <>
                   <button
-                    onClick={() => choose(false)}
+                    onClick={() => choose(false, false)}
                     className="border border-cream/20 text-cream py-3 text-[13.5px] font-medium cursor-pointer hover:border-cream/50 transition-colors"
                   >
                     Necessary only
                   </button>
                   <button
-                    onClick={() => choose(true)}
+                    onClick={() => choose(true, true)}
                     className="bg-gold text-ink py-3 text-[13.5px] font-medium cursor-pointer hover:bg-gold-light transition-colors"
                   >
                     Allow all
@@ -140,6 +151,7 @@ export default function CookieBanner() {
                   <button
                     onClick={() => {
                       setEmbeds(Boolean(consent?.embeds));
+                      setAnalytics(Boolean(consent?.analytics));
                       setDetails(true);
                     }}
                     className="col-span-2 py-2 text-[13px] text-cream/60 hover:text-cream cursor-pointer"

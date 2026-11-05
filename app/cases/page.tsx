@@ -8,12 +8,15 @@ import DocketFeed from "@/components/DocketFeed";
 import SectionHead from "@/components/SectionHead";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Cases",
-  description: `${s.registered} matters registered before the High Court of Sindh across constitutional, criminal, bail and civil jurisdictions.`,
-  alternates: { canonical: "/cases" },
-};
+export const metadata: Metadata = pageMeta({
+  title: "Case Portfolio: High Court of Sindh Record",
+  description:
+    `${s.registered} matters registered before the High Court of Sindh across constitutional, criminal, bail and civil jurisdictions.`,
+  path: "/cases",
+});
 
 const Bars = ({ rows, max }: { rows: [string, number][]; max: number }) => (
   <div className="grid gap-4">
@@ -43,6 +46,7 @@ export default function CasesPage() {
 
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "Case portfolio", path: "/cases" }])} />
       <CasesHero registered={s.registered} byYear={s.byYear} since={s.firstYear} />
 
       <section className="relative bg-ink-2 border-b border-cream/8 overflow-hidden">

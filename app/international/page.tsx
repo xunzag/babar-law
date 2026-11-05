@@ -5,17 +5,20 @@ import CooperationCard from "@/components/CooperationCard";
 import LogoBadge from "@/components/LogoBadge";
 import { partners, emle, erasmusMundusAssociation } from "@/lib/content";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "International",
+export const metadata: Metadata = pageMeta({
+  title: "International Network: US, Canada, Greece & Cyprus",
   description:
-    "Partnerships and panels across the United States, Cyprus, Greece, Portugal, the Netherlands and Pakistan.",
-  alternates: { canonical: "/international" },
-};
+    "Partnerships and panels of Babar Law Associates: the Law Offices of Manuel B. Quintal in New York, UBL, PassBeyond, Golden Visa partners in Greece and Portugal, Cyprus developers, and the EMLE network.",
+  path: "/international",
+});
 
 export default function InternationalPage() {
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "International", path: "/international" }])} />
       <InternationalHero />
 
       <section className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] pt-[clamp(56px,8vw,100px)] pb-11">

@@ -2,12 +2,9 @@ import LegalPage, { type LegalSection } from "@/components/LegalPage";
 import CookieSettingsButton from "@/components/CookieSettingsButton";
 import { firm } from "@/lib/content";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Cookie Policy",
-  description: "The cookies used on the Babar Law Associates website and how to control them.",
-  alternates: { canonical: "/cookies" },
-};
+export const metadata: Metadata = pageMeta({ title: "Cookie Policy", description: "The cookies used on the Babar Law Associates website and how to control them.", path: "/cookies" });
 
 const rows = [
   {
@@ -23,6 +20,14 @@ const rows = [
     purpose: "Set by Google Maps when you choose to load the office map on the contact page.",
     type: "Embedded content",
     duration: "Set by Google",
+  },
+  {
+    name: "_ga and _ga_<ID>",
+    who: "Google Analytics",
+    purpose:
+      "Distinguish visitors so we can see, in aggregate, which pages are read and how visitors reach us. IP addresses are anonymised. Set only if you allow analytics, and removed if you withdraw consent.",
+    type: "Analytics",
+    duration: "Up to 2 years",
   },
 ];
 
@@ -43,8 +48,8 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>
-          We keep cookies to a minimum. We do not use advertising or tracking cookies, and we do not currently use
-          analytics.
+          We keep cookies to a minimum and do not use advertising cookies. Analytics and embedded content are only
+          used if you allow them.
         </p>
         <div className="mt-6 grid gap-3">
           {rows.map((r) => (
@@ -72,7 +77,7 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>
-          When you first visit, you can allow embedded content or keep to strictly necessary cookies. You can change
+          When you first visit, you can allow analytics and embedded content, or keep to strictly necessary cookies. You can change
           your mind at any time:
         </p>
         <div className="my-6">

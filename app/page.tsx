@@ -15,6 +15,7 @@ import ParallaxImage from "@/components/motion/ParallaxImage";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { casesSummary, docketSample } from "@/lib/cases";
 import DocketFeed from "@/components/DocketFeed";
+import { practiceHref } from "@/lib/practice";
 import ChambersRoster from "@/components/ChambersRoster";
 import GrowSegment from "@/components/motion/GrowSegment";
 import {
@@ -97,7 +98,7 @@ export default function HomePage() {
             {areasHome.map((a) => (
               <StaggerItem key={a.num}>
                 <Link
-                  href={`/practice-areas#area-${a.num}`}
+                  href={practiceHref(a.num)}
                   className="group relative grid grid-cols-[40px_minmax(0,1fr)_32px] lg:grid-cols-[80px_minmax(0,0.9fr)_minmax(0,1fr)_48px] items-center gap-x-6 gap-y-3 py-[clamp(22px,3vw,34px)] border-b border-cream/10 overflow-hidden text-cream"
                 >
                   <span className="absolute inset-0 bg-gold origin-bottom scale-y-0 transition-transform duration-600 ease-out-expo group-hover:scale-y-100" />

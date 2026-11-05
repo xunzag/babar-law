@@ -2,12 +2,9 @@ import Link from "next/link";
 import LegalPage, { type LegalSection } from "@/components/LegalPage";
 import { firm, offices } from "@/lib/content";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "How Babar Law Associates collects, uses and protects personal information shared through this website.",
-  alternates: { canonical: "/privacy" },
-};
+export const metadata: Metadata = pageMeta({ title: "Privacy Policy", description: "How Babar Law Associates collects, uses and protects personal information shared through this website.", path: "/privacy" });
 
 const mail = <a href={`mailto:${firm.email}`}>{firm.email}</a>;
 
@@ -72,8 +69,8 @@ const sections: LegalSection[] = [
       <p>
         Where data protection laws such as the EU or UK General Data Protection Regulation apply to you, we rely on:
         taking steps at your request before entering into an engagement; our legitimate interest in responding to
-        enquiries and running a secure website; compliance with legal obligations; and your consent, for embedded
-        content such as maps. You can withdraw consent at any time through the cookie settings link at the foot of
+        enquiries and running a secure website; compliance with legal obligations; and your consent, for analytics
+        cookies and embedded content such as maps. You can withdraw consent at any time through the cookie settings link at the foot of
         every page.
       </p>
     ),
@@ -90,7 +87,9 @@ const sections: LegalSection[] = [
             enquiry form submissions to our email inbox.
           </li>
           <li>
-            <strong>Google</strong>, if you choose to load the map on our contact page.
+            <strong>Google</strong>, if you choose to load the map on our contact page, and for Google Analytics if
+            you allow analytics cookies: aggregate statistics about visits, such as pages viewed, approximate location
+            and how you reached the site. We do not send your name, email or enquiry details to Google Analytics.
           </li>
           <li>
             <strong>WhatsApp (Meta)</strong>, when you choose to message us there, under WhatsApp&apos;s own terms.

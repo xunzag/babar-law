@@ -256,7 +256,7 @@ export const matterTypes = [
     label: "Immigration & Visas",
     helper: "Tell us your destination country, current visa/status, and what you're hoping to achieve (study, work, family, settlement, appeal).",
     fields: [
-      { name: "country", label: "Country of residence", placeholder: "e.g. United Kingdom" },
+      { name: "destination", label: "Destination country", placeholder: "e.g. United States, United Kingdom, Canada" },
       { name: "visaType", label: "Visa / route of interest", placeholder: "e.g. Family settlement, work visa, appeal" },
     ],
   },
