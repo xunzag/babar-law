@@ -16,6 +16,7 @@ export const nav = [
   { href: "/experience", label: "Experience" },
   { href: "/international", label: "International" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/insights", label: "Insights" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Consultation" },
 ];
@@ -31,6 +32,7 @@ export const headerNav: {
   { href: "/associates", label: "Associates" },
   { href: "/cases", label: "Cases" },
   { href: "/international", label: "International" },
+  { href: "/insights", label: "Insights" },
   {
     label: "The Firm",
     items: [

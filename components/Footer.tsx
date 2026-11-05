@@ -13,6 +13,7 @@ const firmLinks = [
   { href: "/experience", label: "Experience" },
   { href: "/international", label: "International" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/insights", label: "Insights" },
   { href: "/faq", label: "FAQ" },
 ];
 

@@ -21,12 +21,12 @@ const interTight = Inter_Tight({
 });
 
 const description =
-  "Karachi law firm of Ghulam Shabbir Babar, Advocate High Court and Attorney at Law, LLM (Europe): litigation before the High Court of Sindh, immigration and Golden Visa, banking and corporate law. Offices in Karachi and New York.";
+  "Lawyers and advocates in Karachi since 2004: litigation before the High Court of Sindh, bail, immigration and Golden Visa, banking and corporate law. Led by Ghulam Shabbir Babar, Advocate High Court. Call +92 300 2723976.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Babar Law Associates | Advocates & Immigration Lawyers, Karachi",
+    default: "Babar Law Associates | Lawyers & Advocates in Karachi, Pakistan",
     template: "%s · Babar Law Associates",
   },
   description,
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: SITE_NAME,
-    title: "Babar Law Associates | Advocates & Immigration Lawyers, Karachi",
+    title: "Babar Law Associates | Lawyers & Advocates in Karachi, Pakistan",
     description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Babar Law Associates | Advocates & Immigration Lawyers, Karachi",
+    title: "Babar Law Associates | Lawyers & Advocates in Karachi, Pakistan",
     description,
   },
   robots: {
