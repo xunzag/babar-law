@@ -3,16 +3,32 @@ import FaqAccordion from "@/components/FaqAccordion";
 import ArrowLink from "@/components/ArrowLink";
 import Reveal from "@/components/Reveal";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
+import { faqs } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "FAQ",
-  description: "Common questions about jurisdictions, remote consultations, investment residency and more.",
-  alternates: { canonical: "/faq" },
-};
+export const metadata: Metadata = pageMeta({
+  title: "FAQ: Immigration, Golden Visa & Consultations",
+  description:
+    "Answers on the countries we advise on, remote consultations for clients in the US and UK, Golden Visa and residency by investment, banking and corporate work, and how consultations work.",
+  path: "/faq",
+});
 
 export default function FaqPage() {
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "FAQ", path: "/faq" }])} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }}
+      />
       <FaqHero />
       <section className="bg-paper text-ink">
         <div className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(64px,9vw,120px)] grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-x-[clamp(40px,6vw,96px)] gap-y-12">

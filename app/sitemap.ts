@@ -1,11 +1,7 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 import { nav } from "@/lib/content";
-
-const productionUrl =
-  process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (productionUrl ? `https://${productionUrl}` : "http://localhost:3000");
+import { practicePages } from "@/lib/practice";
 
 const priority: Record<string, number> = {
   "/": 1,
@@ -33,5 +29,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "yearly" as const,
     priority: 0.2,
   }));
-  return [...pages, ...legal];
+  const practice = practicePages.map((p) => ({
+    url: `${siteUrl}/practice-areas/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+  return [...pages, ...practice, ...legal];
 }

@@ -2,16 +2,20 @@ import ExperienceHero from "@/components/heroes/ExperienceHero";
 import Reveal from "@/components/Reveal";
 import { experience } from "@/lib/content";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Experience",
-  description: "Appointments and engagements since 2004.",
-  alternates: { canonical: "/experience" },
-};
+export const metadata: Metadata = pageMeta({
+  title: "Experience and Appointments since 2004",
+  description:
+    "Career of Ghulam Shabbir Babar: UBL legal panel, Foreign Attorney in New York, Special Public Prosecutor for the Government of Sindh, visiting professorships, and cooperation in Greece, Cyprus and Portugal.",
+  path: "/experience",
+});
 
 export default function ExperiencePage() {
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "Experience", path: "/experience" }])} />
       <ExperienceHero />
       <section className="bg-paper text-ink">
         <div className="max-w-[1200px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(64px,9vw,120px)]">

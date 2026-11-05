@@ -7,13 +7,15 @@ import ArrowLink from "@/components/ArrowLink";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { associates, principal, teamGroups } from "@/lib/content";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Associates",
+export const metadata: Metadata = pageMeta({
+  title: "Our Lawyers: Advocates of the High Court, Karachi",
   description:
-    "The chambers of Babar Law Associates: partners, Advocates of the High Court, advocates and court staff in Karachi.",
-  alternates: { canonical: "/associates" },
-};
+    "Meet the chambers of Babar Law Associates: partners, Advocates of the High Court, advocates and court staff at Al-Ayesha Chambers, Saddar, Karachi.",
+  path: "/associates",
+});
 
 const wrap = "max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)]";
 
@@ -38,6 +40,7 @@ export default function AssociatesPage() {
 
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "Associates", path: "/associates" }])} />
       <AssociatesHero />
 
       <div className="bg-paper text-ink">

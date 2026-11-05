@@ -5,16 +5,20 @@ import ContactForm from "@/components/ContactForm";
 import { WhatsAppIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import { callLines, offices, firm } from "@/lib/content";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Consultation",
-  description: "Send a detailed enquiry, or speak with Mr. Babar directly on WhatsApp, by email, or by telephone.",
-  alternates: { canonical: "/contact" },
-};
+export const metadata: Metadata = pageMeta({
+  title: "Book a Legal Consultation in Karachi or Online",
+  description:
+    "Send an enquiry about immigration, Golden Visa, litigation, banking or corporate matters, or speak with Ghulam Shabbir Babar on WhatsApp, by email or by phone. Replies usually within one business day.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "Consultation", path: "/contact" }])} />
       <ContactHero />
 
       {/* Primary: the enquiry form */}

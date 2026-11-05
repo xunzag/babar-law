@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 
 // Image that drifts against the scroll and unveils with a clip-path wipe.
 export default function ParallaxImage({
@@ -10,6 +10,7 @@ export default function ParallaxImage({
   alt,
   className,
   imgClassName = "object-cover",
+  imgStyle,
   strength = 12,
   priority,
   sizes = "(max-width: 900px) 100vw, 50vw",
@@ -19,6 +20,7 @@ export default function ParallaxImage({
   alt: string;
   className?: string;
   imgClassName?: string;
+  imgStyle?: CSSProperties;
   strength?: number;
   priority?: boolean;
   sizes?: string;
@@ -50,7 +52,7 @@ export default function ParallaxImage({
           style={reduce ? undefined : { y }}
           className="absolute inset-x-0 -inset-y-[14%]"
         >
-          <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className={imgClassName} />
+          <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className={imgClassName} style={imgStyle} />
         </motion.div>
       </motion.div>
     </motion.div>

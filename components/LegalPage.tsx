@@ -1,10 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import HeroFrame from "@/components/heroes/HeroFrame";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/site";
 
 export type LegalSection = { id: string; heading: string; body: ReactNode };
 
-export const LAST_UPDATED = "26 September 2026";
+export const LAST_UPDATED = "5 November 2026";
 
 const others = [
   { href: "/privacy", label: "Privacy policy" },
@@ -28,6 +30,7 @@ export default function LegalPage({
 }) {
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: title, path: current }])} />
       <HeroFrame crumb={crumb}>
         <h1 className="m-0 font-display font-medium text-white text-[clamp(40px,6.4vw,88px)] leading-[0.98] tracking-[-0.045em] mb-6">
           {title}

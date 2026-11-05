@@ -2,12 +2,9 @@ import Link from "next/link";
 import LegalPage, { type LegalSection } from "@/components/LegalPage";
 import { firm } from "@/lib/content";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Terms of Use & Disclaimer",
-  description: "Terms of use of the Babar Law Associates website and important legal disclaimers.",
-  alternates: { canonical: "/terms" },
-};
+export const metadata: Metadata = pageMeta({ title: "Terms of Use & Disclaimer", description: "Terms of use of the Babar Law Associates website and important legal disclaimers.", path: "/terms" });
 
 const sections: LegalSection[] = [
   {

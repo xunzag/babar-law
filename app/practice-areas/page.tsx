@@ -2,19 +2,24 @@ import Reveal from "@/components/Reveal";
 import PracticeHero from "@/components/heroes/PracticeHero";
 import PracticeIcon from "@/components/PracticeIcon";
 import ArrowLink from "@/components/ArrowLink";
+import Link from "next/link";
 import { areasFull } from "@/lib/content";
+import { practiceHref } from "@/lib/practice";
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Practice Areas",
+export const metadata: Metadata = pageMeta({
+  title: "Practice Areas: Litigation, Immigration & Banking",
   description:
-    "Immigration & visas, citizenship & residency by investment, banking & consumer law, corporate & commercial, litigation, mediation & ADR, and academic advisory.",
-  alternates: { canonical: "/practice-areas" },
-};
+    "Seven practice areas: immigration and visas, Golden Visa and residency by investment, banking and consumer law, corporate and commercial, litigation before the High Court of Sindh, mediation and ADR, and academic advisory.",
+  path: "/practice-areas",
+});
 
 export default function PracticeAreasPage() {
   return (
     <div>
+      <JsonLd data={breadcrumbLd([{ name: "Practice areas", path: "/practice-areas" }])} />
       <PracticeHero />
       <section className="bg-paper text-ink">
         <div className="max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)] py-[clamp(64px,9vw,120px)]">
@@ -33,7 +38,9 @@ export default function PracticeAreasPage() {
                   </span>
                 </div>
                 <h2 className="m-0 font-display font-medium text-[clamp(30px,3.8vw,52px)] leading-[1.02]">
-                  {a.title}
+                  <Link href={practiceHref(a.num)} className="text-ink hover:text-gold-deep transition-colors">
+                    {a.title}
+                  </Link>
                 </h2>
                 <div>
                   <p className="m-0 mb-7 text-ink/70 text-[17px] leading-[1.8]">{a.body}</p>
@@ -47,6 +54,12 @@ export default function PracticeAreasPage() {
                       </span>
                     ))}
                   </div>
+                  <Link
+                    href={practiceHref(a.num)}
+                    className="mt-7 inline-flex items-center gap-2 text-[14px] font-medium text-ink border-b border-ink/30 pb-1 hover:border-ink hover:text-ink"
+                  >
+                    More on {a.title.toLowerCase()} <span aria-hidden>→</span>
+                  </Link>
                 </div>
               </article>
             </Reveal>
