@@ -12,6 +12,16 @@ export type PracticePage = {
   services: string[];
   forWhom: string;
   related: string[];
+  /** Full-bleed hero photograph and its focal point. */
+  hero: string;
+  heroPos: string;
+  heroAlt: string;
+  /** Second photograph beside the introduction. */
+  side: string;
+  sideAlt: string;
+  sidePos?: string;
+  /** Three key facts; numeric values count up. */
+  facts: { value: number | string; label: string }[];
 };
 
 export const practicePages: PracticePage[] = [
@@ -39,6 +49,13 @@ export const practicePages: PracticePage[] = [
     ],
     forWhom: "Students, professionals, families and businesses in Pakistan and the diaspora in the US, UK, Canada and the Gulf.",
     related: ["residency-by-investment", "corporate-commercial"],
+    hero: "/assets/gallery/photo-19.jpg",
+    heroPos: "center 35%",
+    heroAlt: "Ghulam Shabbir Babar at the United States Capitol, Washington, D.C.",
+    side: "/assets/gallery/photo-03.jpg",
+    sideAlt: "Ghulam Shabbir Babar beside the flags of the European Union and Belgium",
+    sidePos: "center 30%",
+    facts: [{ value: 2004, label: "Advising on immigration since" }, { value: "New York", label: "Associated counsel: Law Offices of Manuel B. Quintal, P.C." }, { value: 4, label: "Main destinations: US, UK, Canada and the EU" }],
   },
   {
     num: "02",
@@ -63,6 +80,13 @@ export const practicePages: PracticePage[] = [
     ],
     forWhom: "Investors and families in Pakistan, the Gulf and beyond looking for European residency through property.",
     related: ["immigration-visas", "corporate-commercial"],
+    hero: "/assets/gallery/cyprus-02.jpg",
+    heroPos: "center 55%",
+    heroAlt: "A Karma Developers residential property in Cyprus",
+    side: "/assets/gallery/cyprus-01.jpg",
+    sideAlt: "Ghulam Shabbir Babar on a site visit to Karma Developers properties, Cyprus",
+    sidePos: "center",
+    facts: [{ value: 3, label: "Programme countries: Greece, Cyprus and Portugal" }, { value: 2017, label: "Investment migration work since" }, { value: 9, label: "Partner developers, firms and agents" }],
   },
   {
     num: "03",
@@ -85,6 +109,13 @@ export const practicePages: PracticePage[] = [
     ],
     forWhom: "Banks and financial institutions, and individuals or businesses in disputes with them.",
     related: ["litigation", "corporate-commercial"],
+    hero: "/assets/hero/gavel.jpg",
+    heroPos: "center",
+    heroAlt: "A judge\u2019s gavel",
+    side: "/assets/gallery/photo-10.jpg",
+    sideAlt: "Ghulam Shabbir Babar at his desk, Babar Law Associates, Karachi",
+    sidePos: "50% center",
+    facts: [{ value: "UBL", label: "Enlisted on the United Bank Limited legal panel" }, { value: "HBL", label: "Privatisation experience, Habib Bank Limited" }, { value: 2004, label: "In practice since" }],
   },
   {
     num: "04",
@@ -108,6 +139,13 @@ export const practicePages: PracticePage[] = [
     ],
     forWhom: "Founders, family businesses, investors and companies with interests in Pakistan.",
     related: ["banking-consumer-law", "mediation-adr"],
+    hero: "/assets/gallery/photo-00.jpg",
+    heroPos: "center 40%",
+    heroAlt: "Case meeting at a law office in New York",
+    side: "/assets/gallery/photo-14.jpg",
+    sideAlt: "Ghulam Shabbir Babar with colleagues at chambers, Karachi",
+    sidePos: "center",
+    facts: [{ value: 2004, label: "Advising companies since" }, { value: "M&A", label: "Bank and company mergers, and privatisation" }, { value: "EMLE", label: "LLM in Law and Economics, Bologna and Ghent" }],
   },
   {
     num: "05",
@@ -131,6 +169,13 @@ export const practicePages: PracticePage[] = [
     ],
     forWhom: "Individuals, families, businesses and public servants with matters before the courts of Sindh.",
     related: ["banking-consumer-law", "mediation-adr"],
+    hero: "/assets/hero/supreme-court.jpg",
+    heroPos: "62% center",
+    heroAlt: "The Supreme Court of Pakistan at night",
+    side: "/assets/gallery/photo-13.jpg",
+    sideAlt: "Ghulam Shabbir Babar at the All Pakistan Lawyers Convention, Sindh High Court Bar Association",
+    sidePos: "25% center",
+    facts: [{ value: 607, label: "Matters registered, High Court of Sindh" }, { value: 4, label: "Benches: Karachi, Sukkur, Larkana and Hyderabad" }, { value: 2006, label: "Advocate of the High Court since" }],
   },
   {
     num: "06",
@@ -152,6 +197,13 @@ export const practicePages: PracticePage[] = [
     ],
     forWhom: "Businesses, partners and families who want to resolve a dispute without a long court process.",
     related: ["litigation", "corporate-commercial"],
+    hero: "/assets/gallery/photo-08.jpg",
+    heroPos: "center 40%",
+    heroAlt: "Ghulam Shabbir Babar in consultation with a client, Karachi",
+    side: "/assets/gallery/photo-11.jpg",
+    sideAlt: "Ghulam Shabbir Babar with fellow advocates",
+    sidePos: "45% center",
+    facts: [{ value: 2004, label: "Courtroom experience since" }, { value: 2, label: "Dispute types: commercial and family" }, { value: "ADR", label: "Mediation, arbitration and negotiated settlement" }],
   },
   {
     num: "07",
@@ -174,6 +226,13 @@ export const practicePages: PracticePage[] = [
     ],
     forWhom: "Universities, law colleges, bar associations and students.",
     related: ["immigration-visas", "corporate-commercial"],
+    hero: "/assets/gallery/photo-20.jpg",
+    heroPos: "center 30%",
+    heroAlt: "Ghulam Shabbir Babar lecturing at PAF-KIET, Karachi",
+    side: "/assets/podium.png",
+    sideAlt: "Ghulam Shabbir Babar speaking at a university podium",
+    sidePos: "40% center",
+    facts: [{ value: 4, label: "University and college appointments" }, { value: 2009, label: "EMLE Associated Partner since" }, { value: "LLM", label: "Thesis supervision, SZABUL Karachi" }],
   },
 ];
 
