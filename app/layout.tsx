@@ -84,10 +84,11 @@ const jsonLd = {
         streetAddress: "Suite No. 305, 3rd Floor, Al-Ayesha Chambers, Passport Office, Saddar",
         addressLocality: "Karachi",
         addressRegion: "Sindh",
+        postalCode: "74400",
         addressCountry: "PK",
       },
-      geo: { "@type": "GeoCoordinates", latitude: 24.858007, longitude: 67.021599 },
-      hasMap: "https://www.google.com/maps/search/?api=1&query=Al-Ayesha+Chambers+Saddar+Karachi",
+      geo: { "@type": "GeoCoordinates", latitude: 24.8579903, longitude: 67.0238429 },
+      hasMap: "https://maps.google.com/?cid=3486306843400598280",
       contactPoint: [
         { "@type": "ContactPoint", contactType: "customer service", telephone: "+923002723976", areaServed: "PK", availableLanguage: ["English", "Urdu", "Sindhi"] },
         { "@type": "ContactPoint", contactType: "customer service", telephone: "+19145577765", areaServed: ["US", "CA"], availableLanguage: "English" },
@@ -96,7 +97,7 @@ const jsonLd = {
       knowsAbout: practicePages.map((p) => p.title),
       knowsLanguage: ["en", "ur", "sd"],
       priceRange: "$$",
-      sameAs: ["https://www.lawofficesofmanuelbquintal.com"],
+      sameAs: ["https://maps.google.com/?cid=3486306843400598280", "https://www.lawofficesofmanuelbquintal.com"],
     },
     {
       "@type": "Person",
