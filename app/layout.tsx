@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
-import { SITE_NAME, siteUrl } from "@/lib/site";
+import { SITE_NAME, ogImage, siteUrl } from "@/lib/site";
 import { firm } from "@/lib/content";
 import { practicePages } from "@/lib/practice";
 import Header from "@/components/Header";
@@ -43,11 +43,13 @@ export const metadata: Metadata = {
     title: "Babar Law Associates | Lawyers & Advocates in Karachi, Pakistan",
     description,
     locale: "en_US",
+    images: [ogImage("/", "Babar Law Associates | Lawyers & Advocates in Karachi, Pakistan")],
   },
   twitter: {
     card: "summary_large_image",
     title: "Babar Law Associates | Lawyers & Advocates in Karachi, Pakistan",
     description,
+    images: [ogImage("/", "Babar Law Associates | Lawyers & Advocates in Karachi, Pakistan")],
   },
   robots: {
     index: true,
