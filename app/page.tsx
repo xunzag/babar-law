@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ReviewSection } from "@/components/ReviewInvite";
 import Reveal from "@/components/Reveal";
 import ImageGrid from "@/components/ImageGrid";
 import LogoBadge from "@/components/LogoBadge";
@@ -425,6 +426,9 @@ title="A record before the High Court of Sindh."
           </Reveal>
         </div>
       </section>
+
+      {/* Reviews */}
+      <ReviewSection />
     </div>
   );
 }

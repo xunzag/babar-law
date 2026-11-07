@@ -7,6 +7,7 @@ import { callLines, offices, firm } from "@/lib/content";
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, pageMeta } from "@/lib/site";
+import { ReviewStrip } from "@/components/ReviewInvite";
 
 export const metadata: Metadata = pageMeta({
   title: "Book a Legal Consultation in Karachi or Online",
@@ -164,9 +165,9 @@ export default function ContactPage() {
         </Reveal>
         <Reveal delay={0.08} className="border border-gold/25 bg-ink-4 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
           <ConsentMap
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.171051832325!2d67.02159857592189!3d24.858006845354776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f1dd395c97b%3A0xad5b1d3218570d01!2sAl-Ayesha%20Chambers!5e0!3m2!1sen!2s!4v1789093079015!5m2!1sen!2s"
-            title="Al-Ayesha Chambers, Saddar, Karachi"
-            directions="https://www.google.com/maps/search/?api=1&query=Al-Ayesha+Chambers+Saddar+Karachi"
+            src="https://maps.google.com/maps?cid=3486306843400598280&output=embed&z=17"
+            title="Babar Law Associates on Google Maps"
+            directions="https://maps.google.com/?cid=3486306843400598280"
           />
           <div className="py-4.5 px-5 border-t border-gold/20 flex items-center justify-between gap-4 flex-wrap">
             <span className="text-cream/62 text-[14.5px] leading-relaxed font-light">
@@ -174,14 +175,17 @@ export default function ContactPage() {
               Saddar, Karachi
             </span>
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Al-Ayesha+Chambers+Saddar+Karachi"
+              href="https://maps.google.com/?cid=3486306843400598280"
               target="_blank"
               rel="noopener"
               className="text-xs tracking-[0.16em] uppercase whitespace-nowrap"
             >
-              Directions →
+              Open in Google Maps →
             </a>
           </div>
+        </Reveal>
+        <Reveal delay={0.12} className="mt-5">
+          <ReviewStrip />
         </Reveal>
       </section>
     </div>

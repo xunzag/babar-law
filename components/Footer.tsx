@@ -71,6 +71,15 @@ export default function Footer() {
           <a href={`mailto:${firm.email}`} className="text-[14.5px] text-cream/80 hover:text-white break-all">
             {firm.email}
           </a>
+          <a
+            href={firm.review}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex w-fit items-center gap-2.5 text-[14px] text-gold hover:text-gold-light"
+          >
+            <span aria-hidden className="text-[13px]">★</span>
+            Review us on Google ↗
+          </a>
         </div>
 
         <nav aria-label="The firm">
