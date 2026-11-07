@@ -7,6 +7,7 @@ import { callLines, offices, firm } from "@/lib/content";
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, pageMeta } from "@/lib/site";
+import { ReviewStrip } from "@/components/ReviewInvite";
 
 export const metadata: Metadata = pageMeta({
   title: "Book a Legal Consultation in Karachi or Online",
@@ -182,6 +183,9 @@ export default function ContactPage() {
               Open in Google Maps →
             </a>
           </div>
+        </Reveal>
+        <Reveal delay={0.12} className="mt-5">
+          <ReviewStrip />
         </Reveal>
       </section>
     </div>

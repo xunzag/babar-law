@@ -5,6 +5,9 @@ export const firm = {
   email: "ghulam.babar123@gmail.com",
   whatsapp: "https://wa.me/923002723976?text=Hello%20Mr.%20Babar%2C%20I%20would%20like%20to%20request%20a%20consultation.",
   websites: ["www.babarlawassociates.com", "www.lawofficesofmanuelbquintal.com"],
+  // Google Business Profile: write-a-review link and the public listing.
+  review: "https://g.page/r/CQjz51Ka2WEwECE/review",
+  maps: "https://maps.google.com/?cid=3486306843400598280",
 };
 
 export const nav = [
