@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { faqs } from "@/lib/content";
 
-export default function FaqAccordion() {
+export default function FaqAccordion({ items = faqs }: { items?: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <div className="border-t border-ink/15">
-      {faqs.map((f, i) => {
+      {items.map((f, i) => {
         const isOpen = open === i;
         return (
           <div key={f.q} className="border-b border-ink/15">

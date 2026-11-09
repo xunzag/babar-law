@@ -11,6 +11,8 @@ import CountUp from "@/components/motion/CountUp";
 import ParallaxImage from "@/components/motion/ParallaxImage";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import EngagementSteps from "@/components/EngagementSteps";
+import FaqAccordion from "@/components/FaqAccordion";
+import { articles } from "@/lib/insights";
 import JsonLd from "@/components/JsonLd";
 import { practiceBySlug, practicePages } from "@/lib/practice";
 import { breadcrumbLd, pageMeta, siteUrl } from "@/lib/site";
@@ -43,6 +45,7 @@ export default async function PracticePage({ params }: PageProps<"/practice-area
   if (!p) notFound();
   const related = p.related.map((r) => practiceBySlug(r)).filter((r) => r !== undefined);
   const path = `/practice-areas/${p.slug}`;
+  const guides = articles.filter((a) => a.practice === p.slug);
 
   return (
     <div>
@@ -64,6 +67,15 @@ export default async function PracticePage({ params }: PageProps<"/practice-area
           },
         }}
       />
+      {p.faqs && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: p.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          }}
+        />
+      )}
       <JsonLd
         data={breadcrumbLd([
           { name: "Practice areas", path: "/practice-areas" },
@@ -197,6 +209,65 @@ export default async function PracticePage({ params }: PageProps<"/practice-area
           </Stagger>
         </div>
       </section>
+
+      {/* Guides from the insights section on this practice area */}
+      {guides.length > 0 && (
+        <section className="bg-paper-2 text-ink">
+          <div className={`${wrap} pt-[clamp(72px,10vw,130px)] ${p.faqs ? "pb-[clamp(40px,5vw,64px)]" : "pb-[clamp(72px,10vw,130px)]"}`}>
+            <Reveal className="flex flex-wrap items-end justify-between gap-6 mb-10 sm:mb-12">
+              <div>
+                <div className="eyebrow text-gold-deep! mb-4">Guides</div>
+                <h2 className="m-0 font-display font-medium text-[clamp(30px,4.4vw,54px)] leading-[1.04]">Read before you decide.</h2>
+              </div>
+              <ArrowLink href="/insights" variant="outlineDark">
+                All insights
+              </ArrowLink>
+            </Reveal>
+            <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
+              {guides.map((a) => (
+                <StaggerItem key={a.slug}>
+                  <Link href={`/insights/${a.slug}`} className="group grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-5 sm:gap-7 items-center text-ink">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-paper">
+                      <Image
+                        src={a.image}
+                        alt={a.imageAlt}
+                        fill
+                        sizes="(max-width: 768px) 45vw, 22vw"
+                        className="object-cover transition-transform duration-[1.4s] ease-out-expo group-hover:scale-[1.05]"
+                        style={{ objectPosition: a.imagePos }}
+                      />
+                    </div>
+                    <div>
+                      <div className="text-[12px] font-medium tracking-[0.14em] uppercase text-gold-deep mb-2">{a.readMinutes} min read</div>
+                      <h3 className="m-0 font-display font-medium text-[clamp(19px,1.9vw,25px)] leading-[1.18] tracking-[-0.02em] group-hover:text-gold-deep transition-colors">
+                        {a.title}
+                      </h3>
+                    </div>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </section>
+      )}
+
+      {/* Common questions */}
+      {p.faqs && (
+        <section className="bg-paper-2 text-ink">
+          <div className={`${wrap} ${guides.length > 0 ? "pt-[clamp(40px,5vw,64px)]" : "pt-[clamp(72px,10vw,130px)]"} pb-[clamp(72px,10vw,130px)] grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-x-[clamp(40px,6vw,96px)] gap-y-10`}>
+            <Reveal className="lg:sticky lg:top-28 self-start">
+              <div className="eyebrow text-gold-deep! mb-4">Common questions</div>
+              <h2 className="m-0 mb-5 font-display font-medium text-[clamp(30px,4.4vw,54px)] leading-[1.04]">Questions clients ask.</h2>
+              <p className="m-0 max-w-[380px] text-ink/60 text-[15.5px] leading-relaxed">
+                General answers only. Every case turns on its own facts, so send a short summary for advice on yours.
+              </p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <FaqAccordion items={p.faqs} />
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* How an engagement begins */}
       <section className="bg-paper text-ink">
