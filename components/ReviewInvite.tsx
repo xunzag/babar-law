@@ -74,18 +74,22 @@ function StarRow({ size, placement, tone }: { size: number; placement: string; t
   );
 }
 
-function GoogleButton({ placement, dark }: { placement: string; dark?: boolean }) {
+function GoogleButton({ placement, href, event, label, variant }: { placement: string; href: string; event: string; label: string; variant: "gold" | "dark" | "outlineDark" | "outline" }) {
+  const styles = {
+    gold: "bg-gold text-ink hover:bg-gold-light hover:text-ink",
+    dark: "bg-ink text-paper hover:bg-graphite hover:text-paper",
+    outlineDark: "border border-ink/25 text-ink hover:border-ink hover:text-ink",
+    outline: "border border-cream/25 text-cream hover:border-gold hover:text-gold-light",
+  };
   return (
     <a
-      href={firm.review}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => track("review_click", { placement })}
-      className={`group/btn inline-flex items-center gap-3 py-4 pl-6.5 pr-5.5 text-[13px] font-medium tracking-[0.02em] transition-colors duration-300 ${
-        dark ? "bg-ink text-paper hover:bg-graphite hover:text-paper" : "bg-gold text-ink hover:bg-gold-light hover:text-ink"
-      }`}
+      onClick={() => track(event, { placement })}
+      className={`group/btn inline-flex items-center justify-between gap-3 py-4 pl-6.5 pr-5.5 text-[13px] font-medium tracking-[0.02em] transition-colors duration-300 ${styles[variant]}`}
     >
-      <span>Write a review on Google</span>
+      <span>{label}</span>
       <span aria-hidden className="transition-transform duration-500 ease-out-expo group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
         ↗
       </span>
@@ -93,44 +97,76 @@ function GoogleButton({ placement, dark }: { placement: string; dark?: boolean }
   );
 }
 
-/** Full homepage section. */
+const read = (placement: string, variant: "dark" | "outline" | "outlineDark") => (
+  <GoogleButton placement={placement} href={firm.reviews} event="reviews_open" label="Read reviews on Google" variant={variant} />
+);
+const write = (placement: string, variant: "gold" | "dark" | "outlineDark") => (
+  <GoogleButton placement={placement} href={firm.review} event="review_click" label="Write a review" variant={variant} />
+);
+
+function QuoteIcon() {
+  return (
+    <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden className="text-gold-deep shrink-0">
+      <path fill="currentColor" d="M9.5 6C6.5 7.2 4.5 9.9 4.5 13.3V18h5.3v-5.2H7.4c.1-2 1.2-3.6 3.1-4.6L9.5 6zm9 0c-3 1.2-5 3.9-5 7.3V18h5.3v-5.2h-2.4c.1-2 1.2-3.6 3.1-4.6L18.5 6z" />
+    </svg>
+  );
+}
+
+/**
+ * Homepage section. Reviews are written and published by clients on Google;
+ * the site only points there (no quotes or ratings are shown here).
+ */
 export function ReviewSection() {
   const wrap = "max-w-[1400px] mx-auto px-[clamp(16px,4vw,40px)]";
   return (
     <section className="bg-paper text-ink border-t border-ink/8">
-      <div className={`${wrap} py-[clamp(80px,11vw,150px)] grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-[clamp(40px,6vw,96px)] items-center`}>
+      <div className={`${wrap} py-[clamp(80px,11vw,150px)] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-[clamp(40px,6vw,96px)] items-center`}>
         <div>
           <div className="eyebrow text-gold-deep! mb-6">Client reviews</div>
           <h2 className="m-0 mb-6 font-display font-medium text-[clamp(36px,5vw,68px)] leading-[1.02] tracking-[-0.04em]">
-            Worked with us?
+            In our clients&rsquo;
             <br />
-            <span className="text-ink/45">Tell others.</span>
+            own words.
+            <span className="block text-ink/40">On Google.</span>
           </h2>
           <p className="m-0 max-w-[520px] text-ink/70 text-[17px] leading-[1.8]">
-            If Mr. Babar or the chambers have helped you, a few honest words on Google help others facing the same
-            situation find counsel they can trust. It takes about a minute.
+            Reviews of Babar Law Associates are written by clients and published on Google, not on this website.
+            Read them there, and if we have helped you, add your own.
           </p>
         </div>
 
-        <div className="relative bg-white/70 border border-ink/10 p-[clamp(28px,4vw,52px)] shadow-[0_30px_80px_-40px_rgba(10,12,18,0.35)]">
+        <div className="relative bg-white/70 border border-ink/10 shadow-[0_30px_80px_-40px_rgba(10,12,18,0.35)]">
           <div className="absolute left-0 top-0 h-full w-[3px] bg-gold" aria-hidden />
-          <div className="text-[12px] font-medium tracking-[0.2em] uppercase text-ink/50 mb-5">Rate your experience</div>
-          <StarRow size={52} placement="home" tone="light" />
-          <div className="mt-8 pt-7 border-t border-ink/10 flex flex-wrap items-center justify-between gap-5">
-            <div className="flex items-center gap-3">
-              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden className="text-gold-deep shrink-0">
-                <path fill="currentColor" d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
-              </svg>
-              <span className="text-[14.5px] leading-snug">
-                <a href={firm.maps} target="_blank" rel="noopener noreferrer" className="text-ink font-medium hover:text-gold-deep">
-                  Babar Law Associates
-                </a>
-                <span className="block text-ink/55">Saddar, Karachi · on Google</span>
+          {/* Read */}
+          <div className="p-[clamp(26px,3.6vw,44px)]">
+            <div className="flex items-start gap-5">
+              <QuoteIcon />
+              <div className="min-w-0">
+                <div className="text-[12px] font-medium tracking-[0.2em] uppercase text-ink/50 mb-2">Considering us?</div>
+                <p className="m-0 text-[clamp(19px,1.7vw,22px)] leading-[1.4] tracking-[-0.01em] font-medium">
+                  See what clients say about the chambers.
+                </p>
+              </div>
+            </div>
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+              {read("home", "dark")}
+              <span className="flex items-center gap-2 text-[13.5px] text-ink/55">
+                <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden className="text-gold-deep">
+                  <path fill="currentColor" d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
+                </svg>
+                Saddar, Karachi · Google Maps
               </span>
             </div>
-            <GoogleButton placement="home" dark />
           </div>
-          <p className="m-0 mt-5 text-[12.5px] text-ink/45">Opens Google in a new tab. Please don&apos;t include details of your case.</p>
+          {/* Write */}
+          <div className="border-t border-ink/10 bg-paper-2/50 p-[clamp(26px,3.6vw,44px)]">
+            <div className="text-[12px] font-medium tracking-[0.2em] uppercase text-ink/50 mb-4">Already a client?</div>
+            <div className="flex flex-wrap items-center justify-between gap-5">
+              <StarRow size={40} placement="home" tone="light" />
+              {write("home", "outlineDark")}
+            </div>
+            <p className="m-0 mt-5 text-[12.5px] text-ink/45">Opens Google in a new tab. Please don&apos;t include details of your case.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -140,15 +176,15 @@ export function ReviewSection() {
 /** Compact strip for the contact page. */
 export function ReviewStrip() {
   return (
-    <div className="border border-gold/25 bg-ink-4 px-[clamp(22px,3vw,36px)] py-[clamp(22px,3vw,30px)] flex flex-col md:flex-row md:items-center justify-between gap-6">
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-7">
-        <StarRow size={30} placement="contact" tone="dark" />
-        <div>
-          <div className="text-white text-[17px] font-medium">Already a client?</div>
-          <div className="text-cream/60 text-[14.5px]">A short review on Google helps others find us.</div>
-        </div>
+    <div className="border border-gold/25 bg-ink-4 px-[clamp(22px,3vw,36px)] py-[clamp(22px,3vw,30px)] flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div>
+        <div className="text-white text-[17px] font-medium">Client reviews on Google</div>
+        <div className="text-cream/60 text-[14.5px]">Read what clients say, or leave a review of your own.</div>
       </div>
-      <GoogleButton placement="contact" />
+      <div className="flex flex-col sm:flex-row gap-3">
+        {read("contact", "outline")}
+        {write("contact", "gold")}
+      </div>
     </div>
   );
 }
