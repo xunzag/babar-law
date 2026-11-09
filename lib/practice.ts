@@ -22,6 +22,8 @@ export type PracticePage = {
   sidePos?: string;
   /** Three key facts; numeric values count up. */
   facts: { value: number | string; label: string }[];
+  /** Optional common questions, shown as an accordion on the page. */
+  faqs?: { q: string; a: string }[];
 };
 
 export const practicePages: PracticePage[] = [
@@ -37,6 +39,7 @@ export const practicePages: PracticePage[] = [
       "Babar Law Associates has provided immigration consultancy worldwide since September 2004. The firm advises on the route that fits a client's circumstances, prepares and reviews applications and supporting documents, and represents clients when an application is refused or appealed.",
       "Matters connected to the United States are handled together with the Law Offices of Manuel B. Quintal, P.C., 291 Broadway, New York, where Ghulam Shabbir Babar is Foreign Attorney. In Canada the firm works with Zamin Talpur, Barrister, Solicitor and Notary Public, in Mississauga.",
       "Mr. Babar is an Erasmus Mundus scholar and has spent many years advising students on admissions and scholarships abroad, so study routes and the move from study to work are a particular strength.",
+      "Clients in Karachi can meet Mr. Babar at the chambers in Al-Ayesha Chambers, Saddar, near the Passport Office, by appointment. Families elsewhere in Pakistan and abroad consult by phone, WhatsApp or video call, with documents shared securely.",
     ],
     services: [
       "Study visas, admissions and scholarship guidance",
@@ -56,6 +59,14 @@ export const practicePages: PracticePage[] = [
     sideAlt: "Ghulam Shabbir Babar beside the flags of the European Union and Belgium",
     sidePos: "center 30%",
     facts: [{ value: 2004, label: "Advising on immigration since" }, { value: "New York", label: "Associated counsel: Law Offices of Manuel B. Quintal, P.C." }, { value: 4, label: "Main destinations: US, UK, Canada and the EU" }],
+    faqs: [
+      { q: "Do I need a lawyer to apply for a visa?", a: "For most visas the law does not require one. Advice helps most when choosing the right route, preparing evidence that answers what the officer will look for, and above all after a refusal, where a second application has to address every reason given." },
+      { q: "My visa was refused. Can you help?", a: "Yes. We start with the refusal letter, which sets out the reasons and the options available, such as an administrative review, an appeal where the law allows one, or a fresh application that answers each point. For UK student refusals, see our guide on the options." },
+      { q: "Do you handle United States immigration matters?", a: "Yes. US matters are handled together with the Law Offices of Manuel B. Quintal, P.C., 291 Broadway, New York, where Ghulam Shabbir Babar is Foreign Attorney." },
+      { q: "Can I meet you in Karachi?", a: "Yes. Consultations are held at the chambers in Al-Ayesha Chambers, Saddar, Karachi, by appointment. We also consult by phone, WhatsApp and video call for clients outside Karachi or abroad." },
+      { q: "What should I bring to the first consultation?", a: "Your passport, any previous applications and refusal letters, educational and employment records, financial documents, and any offer or admission letters. If you are unsure what is relevant, send a short summary first and we will tell you." },
+      { q: "Do you help students with admissions and scholarships?", a: "Yes. Mr. Babar is an Erasmus Mundus scholar and has advised students for many years on admissions and international scholarships, as well as on the study visa itself and the move from study to work." },
+    ],
   },
   {
     num: "02",
@@ -66,13 +77,13 @@ export const practicePages: PracticePage[] = [
       "Golden Visa and property-based residency advice for Greece, Cyprus and Portugal, through government-approved developments and partners in Greece, Cyprus and Portugal.",
     lead: "Advice on property-based residency and citizenship programmes in Greece, Cyprus and Portugal, through partners on the ground in each country.",
     body: [
-      "Investment migration has been part of the firm's practice since 2017, when Babar Law Associates began working with Cyprus developers including Karma Developers, Singularis Investment Ltd, JWPegasus Ltd and Giovani Developers Limited. Singularis developments in Larnaca are approved by the Cyprus Government and meet the requirements for permanent residency, citizenship and passport applications.",
+      "Investment migration has been part of the firm's practice since 2017, when Babar Law Associates began working with Cyprus developers including Karma Developers, Singularis Investment Ltd, JWPegasus Ltd and Giovani Developers Limited. Singularis developments in Larnaca are approved by the Cyprus Government for permanent residency applications. (Cyprus closed its citizenship-by-investment programme in 2020.)",
       "For Greece, the firm cooperates with PassBeyond in Athens, where Mr. Babar is Relationship Manager, with Epirus Assets Real Estate Investment, and with CHRO'NI & Associates Law Firm under a memorandum of understanding on the Greece Golden Visa programme. For Portugal and the wider EU, it works with Visa Doro, an Accredited STP Agent.",
       "Programme rules and investment thresholds change from time to time, so every engagement starts with a current assessment of the options for the client and their family.",
     ],
     services: [
       "Greece Golden Visa through property investment",
-      "Cyprus permanent residency and citizenship applications",
+      "Cyprus permanent residency applications",
       "Portugal and EU Golden Visa routes",
       "Choosing a programme and a government-approved development",
       "Coordination with developers, lawyers and agents in each country",
