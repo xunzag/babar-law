@@ -72,13 +72,13 @@ export default function Footer() {
             {firm.email}
           </a>
           <a
-            href={firm.review}
+            href={firm.reviews}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 flex w-fit items-center gap-2.5 text-[14px] text-gold hover:text-gold-light"
           >
             <span aria-hidden className="text-[13px]">★</span>
-            Review us on Google ↗
+            Client reviews on Google ↗
           </a>
         </div>
 

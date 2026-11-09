@@ -7,6 +7,8 @@ export const firm = {
   websites: ["www.babarlawassociates.com", "www.lawofficesofmanuelbquintal.com"],
   // Google Business Profile: write-a-review link and the public listing.
   review: "https://g.page/r/CQjz51Ka2WEwECE/review",
+  // Opens the profile in Google Maps (the app on phones), reviews one tap away.
+  reviews: "https://www.google.com/maps/search/?api=1&query=Babar%20Law%20Associates&query_place_id=ChIJyTVdRAQ_sz4RCPPnUprZYTA",
   maps: "https://maps.google.com/?cid=3486306843400598280",
 };
 
