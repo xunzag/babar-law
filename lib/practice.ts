@@ -78,7 +78,7 @@ export const practicePages: PracticePage[] = [
     lead: "Advice on property-based residency and citizenship programmes in Greece, Cyprus and Portugal, through partners on the ground in each country.",
     body: [
       "Investment migration has been part of the firm's practice since 2017, when Babar Law Associates began working with Cyprus developers including Karma Developers, Singularis Investment Ltd, JWPegasus Ltd and Giovani Developers Limited. Singularis developments in Larnaca are approved by the Cyprus Government for permanent residency applications. (Cyprus closed its citizenship-by-investment programme in 2020.)",
-      "For Greece, the firm cooperates with PassBeyond in Athens, where Mr. Babar is Relationship Manager, with Epirus Assets Real Estate Investment, and with CHRO'NI & Associates Law Firm under a memorandum of understanding on the Greece Golden Visa programme. For Portugal and the wider EU, it works with Visa Doro, an Accredited STP Agent.",
+      "For Greece, the firm cooperates with PassBeyond in Athens, where Mr. Babar is Relationship Manager, with Epirus Assets Real Estate Investment and Hellenic Investment Fund (HIF), real estate developers in Athens, and with CHRO'NI & Associates Law Firm under a memorandum of understanding on the Greece Golden Visa programme. For Portugal and the wider EU, it works with Visa Doro, an Accredited STP Agent.",
       "Programme rules and investment thresholds change from time to time, so every engagement starts with a current assessment of the options for the client and their family.",
     ],
     services: [
@@ -97,7 +97,7 @@ export const practicePages: PracticePage[] = [
     side: "/assets/gallery/cyprus-01.jpg",
     sideAlt: "Ghulam Shabbir Babar on a site visit to Karma Developers properties, Cyprus",
     sidePos: "center",
-    facts: [{ value: 3, label: "Programme countries: Greece, Cyprus and Portugal" }, { value: 2017, label: "Investment migration work since" }, { value: 9, label: "Partner developers, firms and agents" }],
+    facts: [{ value: 3, label: "Programme countries: Greece, Cyprus and Portugal" }, { value: 2017, label: "Investment migration work since" }, { value: 10, label: "Partner developers, firms and agents" }],
   },
   {
     num: "03",

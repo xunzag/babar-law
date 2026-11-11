@@ -132,7 +132,7 @@ export const articles: Article[] = [
         "How the permit fits longer-term plans, such as education for children or a future citizenship application.",
       ] },
       { type: "h2", text: "How we help" },
-      { type: "p", text: "Babar Law Associates advises on the Greece Golden Visa from Karachi, working with partners in Greece: PassBeyond in Athens, Epirus Assets Real Estate Investment, and CHRO'NI & Associates Law Firm. We also advise on Cyprus and Portugal, so you can compare the options side by side before deciding." },
+      { type: "p", text: "Babar Law Associates advises on the Greece Golden Visa from Karachi, working with partners in Greece: PassBeyond in Athens, the developers Epirus Assets Real Estate Investment and Hellenic Investment Fund (HIF), and CHRO'NI & Associates Law Firm. We also advise on Cyprus and Portugal, so you can compare the options side by side before deciding." },
     ],
   },
   {
