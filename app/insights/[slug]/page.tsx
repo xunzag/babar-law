@@ -151,7 +151,7 @@ export default async function ArticlePage({ params }: PageProps<"/insights/[slug
               </span>
               <span>
                 <span className="block text-white">{principal.name}</span>
-                <span className="block text-[12.5px] text-cream/55">Advocate High Court</span>
+                <span className="block text-[12.5px] text-cream/55">{principal.short}</span>
               </span>
             </span>
             <span className="hidden sm:block w-px h-8 bg-cream/15" />
@@ -216,8 +216,7 @@ export default async function ArticlePage({ params }: PageProps<"/insights/[slug
                 <div className="text-[12px] tracking-[0.14em] uppercase text-ink/45 mb-1.5">Written by</div>
                 <Link href="/about" className="font-display font-medium text-[21px] text-ink hover:text-gold-deep">{principal.name}</Link>
                 <p className="m-0 mt-2 text-[15px] leading-relaxed text-ink/65">
-                  Advocate of the High Court of Sindh and Foreign Attorney in New York, with an Erasmus Mundus LLM
-                  from Bologna and Ghent. In litigation and international practice since 2004.
+                  {principal.designation}. Foreign Attorney in New York, in litigation and international practice since 2004.
                 </p>
               </div>
             </div>

@@ -21,7 +21,7 @@ const interTight = Inter_Tight({
 });
 
 const description =
-  "Lawyers and advocates in Karachi since 2004: litigation before the High Court of Sindh, bail, immigration and Golden Visa, banking and corporate law. Led by Ghulam Shabbir Babar, Advocate High Court. Call +92 300 2723976.";
+  "Lawyers and advocates in Karachi since 2004: litigation before the High Court of Sindh, bail, immigration and Golden Visa, banking and corporate law. Led by Ghulam Shabbir Babar, Attorney at Law, LLM (Europe). Call +92 300 2723976.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -103,7 +103,7 @@ const jsonLd = {
       "@type": "Person",
       "@id": `${siteUrl}/#principal`,
       name: "Ghulam Shabbir Babar",
-      jobTitle: "Advocate High Court, Attorney at Law, LLM (Europe)",
+      jobTitle: "Attorney at Law, LLM (Europe), M.A (US), LLB (HU), Recognized Counsellor and Agent (British Council), ADR, Mediator and Conciliator",
       url: `${siteUrl}/about`,
       image: `${siteUrl}/assets/team/ghulam-shabbir-babar.jpg`,
       worksFor: { "@id": `${siteUrl}/#firm` },

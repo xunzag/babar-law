@@ -75,16 +75,18 @@ export const practicePages: PracticePage[] = [
     seoTitle: "Golden Visa Lawyer: Greece, Cyprus & Portugal",
     description:
       "Golden Visa and property-based residency advice for Greece, Cyprus and Portugal, through government-approved developments and partners in Greece, Cyprus and Portugal.",
-    lead: "Advice on property-based residency and citizenship programmes in Greece, Cyprus and Portugal, through partners on the ground in each country.",
+    lead: "Advice on residency and citizenship by investment: property-based Golden Visa routes in Greece, Cyprus and Portugal, and citizenship programmes through partners on the ground.",
     body: [
       "Investment migration has been part of the firm's practice since 2017, when Babar Law Associates began working with Cyprus developers including Karma Developers, Singularis Investment Ltd, JWPegasus Ltd and Giovani Developers Limited. Singularis developments in Larnaca are approved by the Cyprus Government for permanent residency applications. (Cyprus closed its citizenship-by-investment programme in 2020.)",
       "For Greece, the firm cooperates with PassBeyond in Athens, where Mr. Babar is Relationship Manager, with Epirus Assets Real Estate Investment and Hellenic Investment Fund (HIF), real estate developers in Athens, and with CHRO'NI & Associates Law Firm under a memorandum of understanding on the Greece Golden Visa programme. For Portugal and the wider EU, it works with Visa Doro, an Accredited STP Agent.",
+      "For citizenship by investment, the firm cooperates with A Plus Capital (A+ Capital), headquartered in Hong Kong with an office in Port Vila, Vanuatu. A+ Capital is a licensed Marketing Agent of the São Tomé and Príncipe Citizenship by Investment Program, and its affiliate is an approved agent of the Vanuatu Development Support Program.",
       "Programme rules and investment thresholds change from time to time, so every engagement starts with a current assessment of the options for the client and their family.",
     ],
     services: [
       "Greece Golden Visa through property investment",
       "Cyprus permanent residency applications",
       "Portugal and EU Golden Visa routes",
+      "Citizenship by investment, including Vanuatu and São Tomé and Príncipe, with A+ Capital",
       "Choosing a programme and a government-approved development",
       "Coordination with developers, lawyers and agents in each country",
       "Preparation of the application file",
@@ -97,7 +99,7 @@ export const practicePages: PracticePage[] = [
     side: "/assets/gallery/cyprus-01.jpg",
     sideAlt: "Ghulam Shabbir Babar on a site visit to Karma Developers properties, Cyprus",
     sidePos: "center",
-    facts: [{ value: 3, label: "Programme countries: Greece, Cyprus and Portugal" }, { value: 2017, label: "Investment migration work since" }, { value: 10, label: "Partner developers, firms and agents" }],
+    facts: [{ value: 3, label: "Golden Visa countries: Greece, Cyprus and Portugal" }, { value: 2017, label: "Investment migration work since" }, { value: 11, label: "Partner developers, firms and agents" }],
   },
   {
     num: "03",

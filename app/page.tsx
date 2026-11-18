@@ -147,7 +147,7 @@ export default function HomePage() {
           <div>
             <SectionHead
               label="The principal"
-              title="Advocate of the High Court of Sindh, and counsel abroad."
+              title="Attorney at Law, mediator, and counsel abroad."
               className="mb-9"
             />
             <Reveal delay={0.1}>
