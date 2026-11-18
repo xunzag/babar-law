@@ -67,7 +67,9 @@ export const teamGroups = [
 
 export const principal = {
   name: "Ghulam Shabbir Babar",
-  designation: "Attorney at Law · LLM (Europe)",
+  designation: "Attorney at Law, LLM (Europe) · M.A (US) · LLB (HU) · Recognized Counsellor and Agent (British Council) · ADR, Mediator and Conciliator",
+  // Short form for bylines and tight spaces.
+  short: "Attorney at Law, LLM (Europe)",
   role: "Principal & Partner",
   image: "/assets/team/ghulam-shabbir-babar.jpg",
 };
@@ -120,7 +122,7 @@ export const areasHome = [
 
 export const areasFull = [
   { num: "01", title: "Immigration & visas", body: "Immigration consultancy provided globally since 2004, covering study, work, family and settlement routes, appeals and representation. Matters connected to the United States are handled together with the Law Offices of Manuel B. Quintal, P.C., New York.", tags: ["United States", "United Kingdom", "Canada", "European Union"] },
-  { num: "02", title: "Citizenship & residency by investment", body: "Advice on property-based investment programmes, including the Greek Golden Visa programme and Cyprus permanent residency through government-approved developments in Larnaca.", tags: ["Greece", "Cyprus", "Permanent residency", "Citizenship"] },
+  { num: "02", title: "Citizenship & residency by investment", body: "Advice on property-based investment programmes, including the Greek Golden Visa programme and Cyprus permanent residency through government-approved developments in Larnaca, and citizenship by investment programmes such as Vanuatu and São Tomé and Príncipe through A+ Capital.", tags: ["Greece", "Cyprus", "Permanent residency", "Citizenship"] },
   { num: "03", title: "Banking & consumer law", body: "Babar Law Associates has been enlisted in the UBL Legal Panel Team and provides services in banking law, consumer law and related fields.", tags: ["Banking law", "Consumer law", "Recovery"] },
   { num: "04", title: "Corporate & commercial", body: "Drafting and negotiation of agreements and contracts, mergers, acquisitions and privatisation of firms, corporations and banks, together with ongoing commercial advice for companies operating across borders.", tags: ["Contracts", "M&A", "Privatisation"] },
   { num: "05", title: "Litigation", body: "Litigation practice since 2004 in criminal, civil, constitutional petitions, service matters, labour law and family law before the courts of Pakistan.", tags: ["Criminal", "Civil", "Constitutional", "Service matters"] },
@@ -172,6 +174,7 @@ export const memberships = [
 ];
 
 export const experience = [
+  { period: "Nov 2026 to Present", place: "Hong Kong / Port Vila, Vanuatu · Remote", role: "Cooperation Agreement", org: "A Plus Capital Ltd (A+ Capital)", note: "Cooperation Agreement with A+ Capital in international immigration services: citizenship and residency by investment programmes, including Vanuatu and São Tomé and Príncipe." },
   { period: "Nov 2026 to Present", place: "Athens, Greece", role: "Cooperation Agreement", org: "Hellenic Investment Fund (HIF)", note: "Cooperation with Hellenic Investment Fund Co IKE (HIF), Athens, a real estate development and construction company with over 73 apartment buildings completed across Athens, on property investment in Greece, including for Greece Golden Visa clients." },
   { period: "2026", place: "Washington, D.C., United States", role: "Judge", org: "Philip C. Jessup International Law Moot Court Competition (ILSA) · White & Case International Rounds", note: "Invited as Judge at the White & Case International Rounds of the 2026 Philip C. Jessup International Law Moot Court Competition, Hyatt Regency, Capitol Hill, Washington, D.C., 28 March – 4 April 2026." },
   { period: "2026 to Present", place: "Greece", role: "Cooperation Agreement", org: "Epirus Assets Real Estate Investment", note: "Cooperation with Ms. Olga of Epirus Assets Real Estate Investment, Athens, Greece, on the Greece Golden Visa programme." },
@@ -201,6 +204,7 @@ export const partners = [
   { country: "Portugal / EU", name: "Visa Doro", role: "Cooperation agreement · Accredited STP Agent to Portugal & the EU", note: "Cooperation with Mr. José Mineiro, CEO of Visa Doro, on business- and property-based Golden Visa investment routes into Portugal.", logo: "/assets/visa-doro-logo.png", url: "https://www.visadoro.com/" },
   { country: "Greece", name: "CHRO'NI & Associates Law Firm", role: "Memorandum of Understanding", note: "MoU with Ms. Anastasia Chorni, Founder & Chief Lawyer of CHRO'NI & Associates Law Firm, to work together on the Greece Golden Visa programme.", logo: "/assets/chroni-logo.png", url: "https://chronilaw.com/" },
   { country: "Greece", name: "Hellenic Investment Fund (HIF)", role: "Cooperation agreement · since Nov 2026", note: "Cooperation with Hellenic Investment Fund Co IKE (HIF), Athens: a real estate development and construction company that has built over 73 apartment buildings across Athens and offers apartments, homes and villas to investors. The firm works with HIF as a B2B partner on property investment in Greece, including for Greece Golden Visa clients.", logo: "/assets/hif-logo.png", url: "https://www.hifgr.com/" },
+  { country: "Hong Kong / Vanuatu", name: "A Plus Capital Ltd (A+ Capital)", role: "Cooperation agreement · International immigration services", note: "Cooperation with A Plus Capital, an investment migration consultancy headquartered in Hong Kong with an office in Port Vila, Vanuatu, on citizenship and residency by investment. A Plus Capital is a licensed Marketing Agent of the São Tomé and Príncipe Citizenship by Investment Program (licence STP-2026-120), and its affiliate A+ South Pacific Citizenship Limited is an approved agent of the Vanuatu Development Support Program.", logo: "/assets/aplus-capital-logo.png", url: "https://a.plus/" },
   { country: "Cyprus", name: "Singularis Investment Ltd", role: "Consultant · since Feb 2018", note: "Agreement to promote all development projects of Singularis Investments in Larnaca, a Cyprus Government approved project for permanent residency applications.", logo: "/assets/singularis-logo.webp", url: undefined },
   { country: "Cyprus", name: "Karma Developers", role: "Cooperation agreement", note: "Cooperation on Cyprus development projects supporting permanent residency applications.", logo: "/assets/karma-logo.svg", url: undefined },
   { country: "United Arab Emirates", name: "Hotel101", role: "Cooperation agreement", note: "Cooperation with Hotel101, supporting real estate and investment-related client engagements in Dubai.", logo: "/assets/hotel101-logo.png", url: "https://hotel101global.com" },
@@ -247,7 +251,7 @@ export const emle = [
 export const faqs = [
   { q: "Which countries does the firm advise on?", a: "Immigration and investment work is handled for Pakistan, the United States, the United Kingdom, Canada, Cyprus, Greece and the wider European Union. Litigation is conducted before the courts of Pakistan; matters in New York are handled jointly with the Law Offices of Manuel B. Quintal, P.C." },
   { q: "Can you assist clients who live in the US or UK?", a: "Yes. A large part of the practice is conducted remotely for clients abroad, with documents exchanged electronically and consultations held by video call across time zones." },
-  { q: "What is the Golden Visa / residency by investment work?", a: "The firm advises on property-based investment routes, including the Greek Golden Visa programme through PassBeyond and Cyprus permanent residency through approved developments in Larnaca." },
+  { q: "What is the Golden Visa / residency by investment work?", a: "The firm advises on property-based investment routes, including the Greek Golden Visa programme through PassBeyond and Cyprus permanent residency through approved developments in Larnaca, and citizenship by investment programmes through A+ Capital." },
   { q: "Do you act for banks and companies?", a: "Yes. Babar Law Associates is enlisted on the UBL legal panel and advises on banking law, consumer law, corporate and commercial matters, including drafting of agreements, contracts, mergers, acquisitions and privatisation." },
   { q: "How do consultations work?", a: "Send a short summary of your matter through the contact page or by email. You will receive an initial assessment and, where the firm can act, a scope of work and fee basis before any engagement begins." },
   { q: "Does the firm take academic and research work?", a: "Ghulam Shabbir Babar serves as Visiting Professor and LLM thesis supervisor at several universities and is available for guest lectures, curriculum advice and supervision through the EMLE network." },
@@ -272,7 +276,7 @@ export const matterTypes = [
   {
     id: "investment",
     label: "Citizenship & Residency by Investment",
-    helper: "Let us know which programme interests you (Greece Golden Visa, Cyprus permanent residency) and your approximate investment budget.",
+    helper: "Let us know which programme interests you (Greece Golden Visa, Cyprus permanent residency, citizenship by investment) and your approximate investment budget.",
     fields: [
       { name: "programCountry", label: "Programme country", placeholder: "e.g. Greece or Cyprus" },
       { name: "budget", label: "Approximate investment budget", placeholder: "e.g. €250,000 – €400,000" },

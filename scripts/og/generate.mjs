@@ -18,7 +18,7 @@ const { articles } = await import(path.join(root, "lib/insights.ts"));
 /** @type {{ key: string; eyebrow: string; title: string; sub?: string; image?: string; pos?: string }[]} */
 const cards = [
   { key: "home", eyebrow: "Advocates & International Legal Consultants", title: "Litigation in Pakistan. Counsel across borders.", sub: "Lawyers and advocates in Karachi since 2004", image: "/assets/hero/supreme-court.jpg", pos: "center 45%" },
-  { key: "about", eyebrow: "The Principal", title: "Ghulam Shabbir Babar", sub: "Advocate High Court · Attorney at Law, LLM (Europe)", image: "/assets/team/ghulam-shabbir-babar.jpg", pos: "center 22%" },
+  { key: "about", eyebrow: "The Principal", title: "Ghulam Shabbir Babar", sub: "Attorney at Law, LLM (Europe) · M.A (US) · LLB (HU)", image: "/assets/team/ghulam-shabbir-babar.jpg", pos: "center 22%" },
   { key: "associates", eyebrow: "Our lawyers", title: "Advocates of the High Court, Karachi.", sub: "The chambers of Babar Law Associates", image: "/assets/gallery/photo-25.jpg", pos: "center 30%" },
   { key: "cases", eyebrow: "Case portfolio", title: "A record before the High Court of Sindh.", image: "/assets/hero/gavel.jpg", pos: "center" },
   { key: "experience", eyebrow: "Experience", title: "Experience and appointments since 2004.", image: "/assets/gallery/photo-20.jpg", pos: "center 35%" },

@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import HeroFrame, { FadeIn } from "@/components/heroes/HeroFrame";
 import SplitWords from "@/components/motion/SplitWords";
+import { principal } from "@/lib/content";
 
 const lines = [
   ["Practice", "Advocate of the High Court of Sindh, 2006"],
@@ -24,8 +25,8 @@ export default function AboutHero() {
           />
           <FadeIn delay={0.3}>
             <p className="text-gold-light text-[clamp(17px,1.6vw,21px)] leading-snug mb-10 max-w-[560px]">
-              Attorney at Law · LLM (Europe). Litigator since 2004, international consultant in immigration,
-              corporate and commercial matters.
+              {principal.designation}. Litigator since 2004, international consultant in immigration, corporate
+              and commercial matters.
             </p>
           </FadeIn>
           <div className="border-t border-cream/10">

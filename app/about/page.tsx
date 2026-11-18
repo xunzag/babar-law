@@ -12,7 +12,7 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "Ghulam Shabbir Babar, Advocate High Court",
+  title: "Ghulam Shabbir Babar, Attorney at Law, LLM (Europe)",
   description:
     "Profile of Ghulam Shabbir Babar: Advocate of the High Court of Sindh since 2006, Foreign Attorney in New York, Erasmus Mundus LLM (Bologna and Ghent), former Special Public Prosecutor and visiting professor of law.",
   path: "/about",
