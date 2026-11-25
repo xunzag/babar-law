@@ -338,10 +338,15 @@ const P = "Ghulam Shabbir Babar";
 // Every photograph in the gallery, in display order.
 export const galleryPhotos: GalleryPhoto[] = [
   { src: g(10), w: 2400, h: 1800, alt: `${P} at his desk, Babar Law Associates, Karachi` },
+  { src: g(28), w: 960, h: 1280, alt: `${P} in his chambers, Babar Law Associates, Karachi` },
   { src: g(14), w: 1800, h: 2400, alt: `${P} with colleagues at chambers, Karachi` },
   { src: g(8), w: 1280, h: 963, alt: `${P} in consultation at chambers, Karachi` },
   { src: g(19), w: 1200, h: 1600, alt: `${P} at the United States Capitol, Washington, D.C.` },
   { src: g(13), w: 1600, h: 900, alt: `${P} at the All Pakistan Lawyers Convention, Sindh High Court Bar Association` },
+  { src: g(30), w: 1280, h: 960, alt: `${P} with members of the Sindh High Court Bar Association, Larkana` },
+  { src: g(29), w: 1200, h: 1600, alt: `${P} at the Sindh High Court Bar Association, Larkana` },
+  { src: g(26), w: 1080, h: 534, alt: `${P} with fellow advocates at the Sindh High Court Bar Association, Karachi` },
+  { src: g(27), w: 1080, h: 1440, alt: `${P} with associates outside court, Karachi` },
   { src: g(20), w: 939, h: 1091, alt: `${P} lecturing at PAF-KIET, Karachi` },
   { src: g(11), w: 1600, h: 720, alt: `${P} with fellow advocates` },
   { src: g(12), w: 1200, h: 1600, alt: `${P} presented with a Sindhi ajrak in a bar library` },
