@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Destinations from "@/components/Destinations";
 import { ReviewSection } from "@/components/ReviewInvite";
 import Reveal from "@/components/Reveal";
 import ImageGrid from "@/components/ImageGrid";
@@ -125,6 +126,9 @@ export default function HomePage() {
       </section>
 
       <GavelBand />
+
+      {/* Destinations */}
+      <Destinations tone="light" />
 
       {/* Principal */}
       <section className="bg-ink-2 border-y border-cream/8">
