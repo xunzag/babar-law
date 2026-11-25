@@ -160,16 +160,16 @@ export const articles: Article[] = [
   {
     slug: "cyprus-permanent-residency-for-pakistani-investors",
     title: "Cyprus permanent residency: a guide for Pakistani investors",
-    seoTitle: "Cyprus Permanent Residency for Pakistani Investors (€300,000 Route)",
+    seoTitle: "Cyprus Golden Visa (Permanent Residency) for Pakistani Investors: €300,000 Route",
     description:
       "How Cyprus permanent residency by investment works for investors from Pakistan: the €300,000 requirement, income rules, who can be included, what the permit allows, and the steps to apply.",
     date: "2026-11-09",
     readMinutes: 6,
     category: "Residency by investment",
     practice: "residency-by-investment",
-    image: "/assets/gallery/cyprus-02.jpg",
-    imagePos: "center 55%",
-    imageAlt: "A Karma Developers residential property in Cyprus",
+    image: "/assets/hero/residency-villa.jpg",
+    imagePos: "center 50%",
+    imageAlt: "A Mediterranean villa with an infinity pool overlooking the sea at sunset",
     summary: [
       "Cyprus grants permanent residence, not a renewable temporary permit, to non-EU investors who make a qualifying investment of at least €300,000 (excluding VAT).",
       "Applicants must also show a secure annual income from outside Cyprus, starting at €50,000 for the main applicant.",
@@ -270,9 +270,9 @@ export const articles: Article[] = [
   {
     slug: "pre-arrest-bail-in-sindh-explained",
     title: "Pre-arrest bail in Sindh, explained",
-    seoTitle: "Pre-arrest Bail in Sindh Explained: Process and Requirements",
+    seoTitle: "Pre-Arrest Bail in Pakistan (Section 498 CrPC): What It Is & How to Apply",
     description:
-      "What pre-arrest bail is, when courts in Sindh grant it, how it differs from post-arrest and protective bail, and what to prepare if you fear arrest in a case you believe is false.",
+      "What is pre-arrest bail under Section 498 CrPC, when courts in Sindh grant it, how it differs from post-arrest and protective bail, and what to prepare if you fear arrest in a false case.",
     date: "2026-11-05",
     readMinutes: 5,
     category: "Litigation",

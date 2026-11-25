@@ -27,7 +27,7 @@ const cards = [
   { key: "faq", eyebrow: "FAQ", title: "Questions clients ask, answered.", sub: "Immigration, Golden Visa and consultations", image: "/assets/hero/justice-scale.png", pos: "center" },
   { key: "contact", eyebrow: "Consultations", title: "Book a consultation in Karachi or online.", sub: "Every enquiry reviewed by Mr. Babar personally", image: "/assets/team/ghulam-shabbir-babar.jpg", pos: "center 22%" },
   { key: "practice-areas", eyebrow: "Practice areas", title: "Litigation, immigration, banking and more.", image: "/assets/hero/lady-justice.jpg", pos: "center 30%" },
-  { key: "insights", eyebrow: "Insights", title: "Guides from the chambers.", sub: "Immigration, Golden Visa and Pakistani law explained", image: "/assets/gallery/photo-11.jpg", pos: "center 30%" },
+  { key: "insights", eyebrow: "Insights", title: "Guides from the chambers.", sub: "Immigration, Golden Visa and Pakistani law explained", image: "/assets/hero/law-library.jpg", pos: "center 50%" },
   { key: "privacy", eyebrow: "Legal", title: "Privacy policy" },
   { key: "cookies", eyebrow: "Legal", title: "Cookie policy" },
   { key: "terms", eyebrow: "Legal", title: "Terms of use & disclaimer" },

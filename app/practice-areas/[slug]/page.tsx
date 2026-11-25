@@ -12,6 +12,7 @@ import ParallaxImage from "@/components/motion/ParallaxImage";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import EngagementSteps from "@/components/EngagementSteps";
 import FaqAccordion from "@/components/FaqAccordion";
+import Destinations from "@/components/Destinations";
 import { articles } from "@/lib/insights";
 import JsonLd from "@/components/JsonLd";
 import { practiceBySlug, practicePages } from "@/lib/practice";
@@ -209,6 +210,8 @@ export default async function PracticePage({ params }: PageProps<"/practice-area
           </Stagger>
         </div>
       </section>
+
+      {p.slug === "immigration-visas" && <Destinations tone="light" linkToPractice={false} />}
 
       {/* Guides from the insights section on this practice area */}
       {guides.length > 0 && (
