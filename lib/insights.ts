@@ -167,9 +167,9 @@ export const articles: Article[] = [
     readMinutes: 6,
     category: "Residency by investment",
     practice: "residency-by-investment",
-    image: "/assets/gallery/cyprus-02.jpg",
-    imagePos: "center 55%",
-    imageAlt: "A Karma Developers residential property in Cyprus",
+    image: "/assets/hero/residency-villa.jpg",
+    imagePos: "center 50%",
+    imageAlt: "A Mediterranean villa with an infinity pool overlooking the sea at sunset",
     summary: [
       "Cyprus grants permanent residence, not a renewable temporary permit, to non-EU investors who make a qualifying investment of at least €300,000 (excluding VAT).",
       "Applicants must also show a secure annual income from outside Cyprus, starting at €50,000 for the main applicant.",
