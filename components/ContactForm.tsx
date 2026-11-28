@@ -2,7 +2,7 @@
 
 import emailjs from "@emailjs/browser";
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { matterTypes } from "@/lib/content";
 import Dropdown from "@/components/Dropdown";
 import Link from "next/link";
@@ -28,7 +28,22 @@ const sourceOptions = [
   "Other",
 ].map((label) => ({ id: label, label }));
 
+// Spam signals. Bots fill every field (including hidden ones), submit within
+// a second or two, and type random strings such as "WLKEYoXQHglYeqmK".
+const MIN_FILL_MS = 4000;
+function looksRandom(value: string) {
+  const v = value.trim();
+  if (!v) return false;
+  const words = v.split(/\s+/);
+  // One long "word" with capitals scattered through it, and no real sentence.
+  return words.length <= 2 && words.some((w) => w.length >= 10 && (w.slice(1).match(/[A-Z]/g) ?? []).length >= 3);
+}
+
 export default function ContactForm() {
+  const startedAt = useRef(0);
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
   const [matterType, setMatterType] = useState(matterTypes[0].id);
   const [fields, setFields] = useState<Record<string, string>>({});
   const [source, setSource] = useState(sourceOptions[0].id);
@@ -48,6 +63,18 @@ export default function ContactForm() {
     setStatus("submitting");
     setErrorMessage("");
 
+    const form = new FormData(e.currentTarget);
+
+    // Quietly drop likely spam: show the usual thank-you, send nothing, and
+    // do not count it as a lead in analytics.
+    const tooFast = Date.now() - startedAt.current < MIN_FILL_MS;
+    const honeypot = String(form.get("website") ?? "").trim() !== "";
+    const gibberish = looksRandom(String(form.get("message") ?? "")) || Object.values(fields).some(looksRandom);
+    if (honeypot || tooFast || gibberish) {
+      setStatus("success");
+      return;
+    }
+
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -63,7 +90,6 @@ export default function ContactForm() {
       return;
     }
 
-    const form = new FormData(e.currentTarget);
     const heard = source === sourceOptions[0].id ? "Not provided" : source;
     const details = [
       ...selected.fields.map((f) => `${f.label}: ${fields[f.name] || "Not provided"}`),
@@ -117,6 +143,13 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-5">
+      {/* Honeypot: hidden from people and screen readers; bots fill it in. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+        <label>
+          Website
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),1fr))] gap-5">
         <input required name="name" placeholder="Full name" className={inputClasses} />
         <input required type="email" name="email" placeholder="Email address" className={inputClasses} />
